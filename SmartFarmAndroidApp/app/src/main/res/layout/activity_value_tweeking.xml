@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#474747"
     tools:context=".ValueTweekingActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,6 +22,7 @@
             android:layout_marginRight="40dp"
             android:ems="10"
             android:inputType="number"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -33,6 +35,7 @@
             android:layout_marginRight="116dp"
             android:ems="10"
             android:inputType="number"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -45,6 +48,7 @@
             android:layout_marginRight="116dp"
             android:ems="10"
             android:inputType="number"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/co2Min" />
 
@@ -57,6 +61,7 @@
             android:layout_marginRight="40dp"
             android:ems="10"
             android:inputType="number"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/co2Max" />
 
@@ -69,6 +74,7 @@
             android:layout_marginRight="40dp"
             android:ems="10"
             android:inputType="number"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/temperatureMax" />
 
@@ -81,6 +87,7 @@
             android:layout_marginRight="116dp"
             android:ems="10"
             android:inputType="number"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/temperatureMin" />
 
@@ -93,6 +100,7 @@
             android:layout_marginTop="80dp"
             android:text="CO2"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -105,6 +113,7 @@
             android:layout_marginRight="40dp"
             android:text="MAX"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -117,6 +126,7 @@
             android:layout_marginRight="30dp"
             android:text="MIN"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toStartOf="@+id/textView6"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -129,6 +139,7 @@
             android:layout_marginTop="40dp"
             android:text="Temperature"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -141,6 +152,7 @@
             android:layout_marginTop="40dp"
             android:text="Humidity"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -152,6 +164,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
             android:text="Save"
+            app:backgroundTint="@android:color/holo_green_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/returnFromTewakingButton" />
 
@@ -163,6 +176,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
             android:text="Return"
+            app:backgroundTint="#5499CC00"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
