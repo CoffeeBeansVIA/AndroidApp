@@ -4,15 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.text.Editable;
 import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.smartfarmandroidapp.model.Temperature;
 import com.example.smartfarmandroidapp.viewmodel.CO2ViewModel;
@@ -31,8 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private MovementViewModel movementViewModel; //TODO if we decide that we don't need it, just delete it
 
     // CO2 Level ProgressBar
-    TextView textView;
-    EditText editText;
+    TextView temperatureTextView;
     ProgressBar progressBar;
     TextView textViewProgress;
 
@@ -45,39 +39,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //temperatureViewModel = new ViewModelProvider(this).get(TemperatureViewModel.class); //TODO
 
-        temperatureViewModel = new ViewModelProvider(this).get(TemperatureViewModel.class);
         temperatureViewModel.getAllTemperatureLevels().observe(this, new Observer<List<Temperature>>() {
             @Override
             public void onChanged(List<Temperature> temperatures) {
                 if (!temperatures.isEmpty()) {
-                    textView.setText("");
+                    temperatureTextView.setText("");
                     for (Temperature t : temperatures) {
-                        textView.append(t.getTemperature() + "\n");
+                        temperatureTextView.append(t.getTemperature() + "\n");
                     }
                 } else {
-                    textView.setText("Empty");
+                    temperatureTextView.setText("Empty");
                 }
             }
         });
 
-        //
-        textView = findViewById(R.id.textView);
+
+        temperatureTextView = findViewById(R.id.temperatureTextView);
         textViewProgress = findViewById(R.id.textViewProgress);
         progressBar = findViewById(R.id.progressBar);
-        editText = findViewById(R.id.editTextMessage);
 
         Log.d(TAG, "onCreate was called");
-    }
-
-    public void login(View view){
-        Context context = getApplicationContext();
-        String text = "Sending message...";
-
-        int duration = Toast.LENGTH_SHORT;
-        Toast.makeText(context, text, duration).show();
-
-        Editable message = editText.getText();
-        textView.setText(message);
     }
 }
