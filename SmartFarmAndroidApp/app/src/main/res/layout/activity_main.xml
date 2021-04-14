@@ -16,7 +16,7 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.391"
+        app:layout_constraintHorizontal_bias="0.097"
         app:layout_constraintStart_toEndOf="@+id/humValue"
         app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
@@ -30,7 +30,7 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.415"
+        app:layout_constraintHorizontal_bias="0.141"
         app:layout_constraintStart_toEndOf="@+id/tempValue"
         app:layout_constraintTop_toBottomOf="@+id/humidityTextView"
         app:layout_constraintVertical_bias="0.0" />
@@ -44,7 +44,7 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.209"
+        app:layout_constraintHorizontal_bias="0.323"
         app:layout_constraintStart_toEndOf="@+id/humidityTextView"
         app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
@@ -57,7 +57,7 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.253"
+        app:layout_constraintHorizontal_bias="0.305"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
@@ -71,7 +71,7 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.209"
+        app:layout_constraintHorizontal_bias="0.323"
         app:layout_constraintStart_toEndOf="@+id/temperatureTextView"
         app:layout_constraintTop_toBottomOf="@+id/humidityTextView"
         app:layout_constraintVertical_bias="0.0" />
@@ -114,7 +114,7 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.168"
+        app:layout_constraintHorizontal_bias="0.225"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/humidityTextView"
         app:layout_constraintVertical_bias="0.0" />
@@ -146,7 +146,7 @@
 
     <TextView
         android:id="@+id/qualityMeaningTextView"
-        android:layout_width="207dp"
+        android:layout_width="171dp"
         android:layout_height="26dp"
         android:text="Good - Okay - Poor"
         android:textColor="#FFFFFF"
