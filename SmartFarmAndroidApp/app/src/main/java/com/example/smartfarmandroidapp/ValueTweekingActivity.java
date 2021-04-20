@@ -7,11 +7,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.smartfarmandroidapp.viewmodel.CO2ViewModel;
+import com.example.smartfarmandroidapp.viewmodel.HumidityViewModel;
+import com.example.smartfarmandroidapp.viewmodel.MovementViewModel;
+import com.example.smartfarmandroidapp.viewmodel.TemperatureViewModel;
+
 public class ValueTweekingActivity extends AppCompatActivity {
     private EditText co2Min, co2Max;
     private EditText temperatureMin, temperatureMax;
     private EditText humidityMin, humidityMax;
     private Button saveButton, returnButton;
+
+    private TemperatureViewModel temperatureViewModel;
+    private HumidityViewModel humidityViewModel;
+    private CO2ViewModel co2ViewModel;
+    private MovementViewModel movementViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +39,10 @@ public class ValueTweekingActivity extends AppCompatActivity {
         returnButton = findViewById(R.id.returnFromTewakingButton);
 
         saveButton.setOnClickListener(v -> {
-            if(getNumber(co2Min)>getNumber(co2Max)&&getNumber(temperatureMin)>getNumber(temperatureMax) && getNumber(humidityMin)>getNumber(humidityMax)) {
-                // Should give an error.
-            } else {
-                // Save the values.
-            }
+
         });
+
+        returnButton.setOnClickListener(v -> { finish(); });
     }
 
 

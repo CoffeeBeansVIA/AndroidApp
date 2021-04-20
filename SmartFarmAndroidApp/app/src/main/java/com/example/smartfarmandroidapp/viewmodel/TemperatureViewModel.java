@@ -11,9 +11,12 @@ import java.util.List;
 public class TemperatureViewModel extends ViewModel {
 
     private TemperatureRepository temperatureRepository;
+    private int temperatureMin, temperatureMax;
 
     public TemperatureViewModel() {
         temperatureRepository = TemperatureRepository.getInstance();
+        temperatureMin = 0;
+        temperatureMax = 0;
     }
 
     public LiveData<List<Temperature>> getAllTemperatureLevels() {

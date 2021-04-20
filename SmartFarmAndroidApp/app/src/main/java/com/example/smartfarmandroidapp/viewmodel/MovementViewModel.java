@@ -1,13 +1,15 @@
 package com.example.smartfarmandroidapp.viewmodel;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.example.smartfarmandroidapp.model.Movement;
 import com.example.smartfarmandroidapp.repository.MovementRepository;
 
 import java.util.List;
 
-public class MovementViewModel {
+public class MovementViewModel extends ViewModel {
+
     private MovementRepository movementRepository;
 
     public MovementViewModel() {

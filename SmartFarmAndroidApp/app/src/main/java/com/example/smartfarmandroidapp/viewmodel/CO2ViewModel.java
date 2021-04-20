@@ -11,9 +11,12 @@ import java.util.List;
 public class CO2ViewModel extends ViewModel {
 
     private CO2Repository CO2repository;
+    private int minCO2, maxCO2;
 
     public CO2ViewModel() {
         CO2repository = CO2Repository.getInstance();
+        minCO2 = 0;
+        maxCO2 = 0;
     }
 
     public LiveData<List<CO2>> getAllCO2Levels() {
