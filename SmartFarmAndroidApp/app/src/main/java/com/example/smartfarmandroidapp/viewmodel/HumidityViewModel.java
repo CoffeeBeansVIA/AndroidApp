@@ -3,7 +3,7 @@ package com.example.smartfarmandroidapp.viewmodel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.smartfarmandroidapp.model.Humidity;
+import com.example.smartfarmandroidapp.domain.Humidity;
 import com.example.smartfarmandroidapp.repository.HumidityRepository;
 
 import java.util.List;
@@ -30,4 +30,6 @@ public class HumidityViewModel extends ViewModel {
     public void deleteAllHumidityLevels() {
         humidityRepository.deleteAllHumidityLevels();
     }
+
+    public void updateThresholds(int humidityMin, int humidityMax) {}
 }

@@ -1,4 +1,4 @@
-package com.example.smartfarmandroidapp.model;
+package com.example.smartfarmandroidapp.domain;
 
 public class CO2 {
 

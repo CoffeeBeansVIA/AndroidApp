@@ -2,8 +2,8 @@ package com.example.smartfarmandroidapp.repository;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.smartfarmandroidapp.model.Movement;
-import com.example.smartfarmandroidapp.shared.MovementDAO;
+import com.example.smartfarmandroidapp.domain.Movement;
+import com.example.smartfarmandroidapp.model.MovementDAO;
 
 import java.util.List;
 

@@ -1,9 +1,9 @@
-package com.example.smartfarmandroidapp.shared;
+package com.example.smartfarmandroidapp.model;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.smartfarmandroidapp.model.CO2;
+import com.example.smartfarmandroidapp.domain.CO2;
 
 import java.util.ArrayList;
 import java.util.List;

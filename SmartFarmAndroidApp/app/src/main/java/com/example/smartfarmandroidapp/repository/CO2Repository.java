@@ -2,8 +2,8 @@ package com.example.smartfarmandroidapp.repository;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.smartfarmandroidapp.model.CO2;
-import com.example.smartfarmandroidapp.shared.CO2DAO;
+import com.example.smartfarmandroidapp.domain.CO2;
+import com.example.smartfarmandroidapp.model.CO2DAO;
 
 import java.util.List;
 

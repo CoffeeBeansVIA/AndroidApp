@@ -2,8 +2,8 @@ package com.example.smartfarmandroidapp.repository;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.smartfarmandroidapp.model.Humidity;
-import com.example.smartfarmandroidapp.shared.HumidityDAO;
+import com.example.smartfarmandroidapp.domain.Humidity;
+import com.example.smartfarmandroidapp.model.HumidityDAO;
 
 import java.util.List;
 

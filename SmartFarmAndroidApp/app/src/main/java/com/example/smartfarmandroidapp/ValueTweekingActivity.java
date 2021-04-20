@@ -13,14 +13,14 @@ import com.example.smartfarmandroidapp.viewmodel.MovementViewModel;
 import com.example.smartfarmandroidapp.viewmodel.TemperatureViewModel;
 
 public class ValueTweekingActivity extends AppCompatActivity {
-    private EditText co2Min, co2Max;
+    private EditText CO2Min, CO2Max;
     private EditText temperatureMin, temperatureMax;
     private EditText humidityMin, humidityMax;
     private Button saveButton, returnButton;
 
+    private CO2ViewModel CO2ViewModel;
     private TemperatureViewModel temperatureViewModel;
     private HumidityViewModel humidityViewModel;
-    private CO2ViewModel co2ViewModel;
     private MovementViewModel movementViewModel;
 
     @Override
@@ -28,8 +28,8 @@ public class ValueTweekingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_value_tweeking);
 
-        co2Min = findViewById(R.id.co2Min);
-        co2Max = findViewById(R.id.co2Max);
+        CO2Min = findViewById(R.id.co2Min);
+        CO2Max = findViewById(R.id.co2Max);
         temperatureMin = findViewById(R.id.temperatureMin);
         temperatureMax  = findViewById(R.id.temperatureMax);
         humidityMin = findViewById(R.id.humidityMin);
@@ -39,7 +39,9 @@ public class ValueTweekingActivity extends AppCompatActivity {
         returnButton = findViewById(R.id.returnFromTewakingButton);
 
         saveButton.setOnClickListener(v -> {
-
+            CO2ViewModel.updateThresholds(getNumber(CO2Min), getNumber(CO2Max));
+            temperatureViewModel.updateThresholds(getNumber(temperatureMin), getNumber(temperatureMax));
+            humidityViewModel.updateThresholds(getNumber(humidityMin), getNumber(humidityMax));
         });
 
         returnButton.setOnClickListener(v -> { finish(); });

@@ -3,7 +3,7 @@ package com.example.smartfarmandroidapp.viewmodel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.smartfarmandroidapp.model.Temperature;
+import com.example.smartfarmandroidapp.domain.Temperature;
 import com.example.smartfarmandroidapp.repository.TemperatureRepository;
 
 import java.util.List;
@@ -30,4 +30,6 @@ public class TemperatureViewModel extends ViewModel {
     public void deleteAllTemperatureLevels() {
         temperatureRepository.deleteAllTemperatureLevels();
     }
+
+    public void updateThresholds(int temperatureMin, int temperatureMax) {}
 }

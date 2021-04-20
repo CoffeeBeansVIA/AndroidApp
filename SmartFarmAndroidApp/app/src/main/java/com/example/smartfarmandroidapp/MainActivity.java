@@ -2,14 +2,13 @@ package com.example.smartfarmandroidapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.smartfarmandroidapp.model.Temperature;
+import com.example.smartfarmandroidapp.domain.Temperature;
 import com.example.smartfarmandroidapp.viewmodel.CO2ViewModel;
 import com.example.smartfarmandroidapp.viewmodel.HumidityViewModel;
 import com.example.smartfarmandroidapp.viewmodel.MovementViewModel;

@@ -2,8 +2,8 @@ package com.example.smartfarmandroidapp.repository;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.smartfarmandroidapp.model.Temperature;
-import com.example.smartfarmandroidapp.shared.TemperatureDAO;
+import com.example.smartfarmandroidapp.domain.Temperature;
+import com.example.smartfarmandroidapp.model.TemperatureDAO;
 
 import java.util.List;
 
