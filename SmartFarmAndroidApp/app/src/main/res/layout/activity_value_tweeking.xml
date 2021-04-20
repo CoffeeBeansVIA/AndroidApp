@@ -176,7 +176,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
             android:text="Return"
-            app:backgroundTint="#5499CC00"
+            app:backgroundTint="@android:color/holo_green_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
