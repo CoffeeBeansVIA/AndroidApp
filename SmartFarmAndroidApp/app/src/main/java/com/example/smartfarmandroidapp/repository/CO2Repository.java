@@ -20,12 +20,12 @@ import retrofit2.internal.EverythingIsNonNull;
 
 public class CO2Repository {
 
-    private CO2DAO CO2DAO;
+    private CO2DAO co2DAO;
     private static CO2Repository instance;
     private final MutableLiveData<CO2> currentCO2Level;
 
     private CO2Repository(){
-        CO2DAO = CO2DAO.getInstance();
+        co2DAO = CO2DAO.getInstance();
         currentCO2Level = new MutableLiveData<>();
     }
 
@@ -37,15 +37,15 @@ public class CO2Repository {
     }
 
     public LiveData<List<CO2>> getAllCO2Levels(){
-        return CO2DAO.getAllCO2Levels();
+        return co2DAO.getAllCO2Levels();
     }
 
     public void insert(CO2 CO2) {
-        CO2DAO.insert(CO2);
+        co2DAO.insert(CO2);
     }
 
     public void deleteAllCO2Levels(){
-        CO2DAO.deleteAllCO2Levels();
+        co2DAO.deleteAllCO2Levels();
     }
 
     public void retrieveCO2Level(int co2Level) {
