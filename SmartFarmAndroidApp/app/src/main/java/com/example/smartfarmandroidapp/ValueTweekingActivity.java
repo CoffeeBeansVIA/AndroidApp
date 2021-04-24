@@ -20,8 +20,7 @@ public class ValueTweekingActivity extends AppCompatActivity {
     private CO2ViewModel CO2ViewModel;
     private TemperatureViewModel temperatureViewModel;
     private HumidityViewModel humidityViewModel;
-    private MovementViewModel movementViewModel;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
