@@ -32,4 +32,9 @@ public class CO2ViewModel extends ViewModel {
     }
 
     public void updateThresholds(int CO2Min, int CO2Max) {}
+
+    public void retrieveCO2Level(int i) {
+        CO2repository.retrieveCO2Level(i);
+    }
+
 }

@@ -5,24 +5,23 @@ import androidx.lifecycle.Observer;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.smartfarmandroidapp.domain.Temperature;
 import com.example.smartfarmandroidapp.viewmodel.CO2ViewModel;
 import com.example.smartfarmandroidapp.viewmodel.HumidityViewModel;
-import com.example.smartfarmandroidapp.viewmodel.MovementViewModel;
 import com.example.smartfarmandroidapp.viewmodel.TemperatureViewModel;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    //TODO add viewmodels
+    // Viewmodels
     private TemperatureViewModel temperatureViewModel;
     private HumidityViewModel humidityViewModel;
     private CO2ViewModel co2ViewModel;
-    private MovementViewModel movementViewModel; //TODO if we decide that we don't need it, just delete it
 
     // CO2 Level ProgressBar
     TextView temperatureTextView;
@@ -53,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
 
         temperatureTextView = findViewById(R.id.temperatureTextView);
         textViewProgress = findViewById(R.id.textViewProgress);

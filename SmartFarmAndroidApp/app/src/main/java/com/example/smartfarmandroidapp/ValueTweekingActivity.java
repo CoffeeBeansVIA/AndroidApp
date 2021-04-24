@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.example.smartfarmandroidapp.viewmodel.CO2ViewModel;
 import com.example.smartfarmandroidapp.viewmodel.HumidityViewModel;
-import com.example.smartfarmandroidapp.viewmodel.MovementViewModel;
 import com.example.smartfarmandroidapp.viewmodel.TemperatureViewModel;
 
 public class ValueTweekingActivity extends AppCompatActivity {
