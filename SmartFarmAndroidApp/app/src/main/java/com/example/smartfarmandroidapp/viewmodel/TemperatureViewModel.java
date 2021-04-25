@@ -11,10 +11,11 @@ import java.util.List;
 public class TemperatureViewModel extends ViewModel {
 
     private TemperatureRepository temperatureRepository;
-    private int temperatureMin, temperatureMax;
+    private float desiredTemperature, temperatureMin, temperatureMax;
 
     public TemperatureViewModel() {
         temperatureRepository = TemperatureRepository.getInstance();
+        desiredTemperature = 0;
         temperatureMin = 0;
         temperatureMax = 0;
     }
@@ -31,5 +32,5 @@ public class TemperatureViewModel extends ViewModel {
         temperatureRepository.deleteAllTemperatureLevels();
     }
 
-    public void updateThresholds(int temperatureMin, int temperatureMax) {}
+    public void updateThresholds(float desiredTemperature, float temperatureMin, float temperatureMax) {}
 }

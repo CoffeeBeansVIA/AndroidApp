@@ -11,10 +11,11 @@ import java.util.List;
 public class HumidityViewModel extends ViewModel {
 
     private HumidityRepository humidityRepository;
-    private int humidityMin, humidityMax;
+    private float desiredHumidity, humidityMin, humidityMax;
 
     public HumidityViewModel() {
         humidityRepository = HumidityRepository.getInstance();
+        desiredHumidity = 0;
         humidityMin = 0;
         humidityMax = 0;
     }
@@ -31,5 +32,5 @@ public class HumidityViewModel extends ViewModel {
         humidityRepository.deleteAllHumidityLevels();
     }
 
-    public void updateThresholds(int humidityMin, int humidityMax) {}
+    public void updateThresholds(float desiredHumidity, float humidityMin, float humidityMax) {}
 }

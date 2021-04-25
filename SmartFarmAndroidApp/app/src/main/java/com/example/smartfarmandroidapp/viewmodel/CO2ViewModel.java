@@ -11,10 +11,11 @@ import java.util.List;
 public class CO2ViewModel extends ViewModel {
 
     private CO2Repository CO2repository;
-    private int CO2Min, CO2Max;
+    private float desiredCO2, CO2Min, CO2Max;
 
     public CO2ViewModel() {
         CO2repository = CO2Repository.getInstance();
+        desiredCO2 = 0;
         CO2Min = 0;
         CO2Max = 0;
     }
@@ -31,7 +32,7 @@ public class CO2ViewModel extends ViewModel {
         CO2repository.deleteAllCO2Levels();
     }
 
-    public void updateThresholds(int CO2Min, int CO2Max) {}
+    public void updateThresholds(float desiredCO2, float CO2Min, float CO2Max) {}
 
     public void retrieveCO2Level(int i) {
         CO2repository.retrieveCO2Level(i);
