@@ -32,14 +32,14 @@ public class MonitorActivity extends AppCompatActivity {
     TextView co2progress;
     ProgressBar co2ProgressBar;
 
-    private int progress = 0;
+    private int progress = 55;
 
-    private static final String TAG = "MonitorActivity";
+    private static final String MONITOR_ACTIVITY = "MonitorActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_monitor);
 
         humidityValue = findViewById(R.id.humValue);
         temperatureValue = findViewById(R.id.tempValue);
@@ -57,7 +57,9 @@ public class MonitorActivity extends AppCompatActivity {
         humidityViewModel = new ViewModelProvider(this).get(HumidityViewModel.class);
         co2ViewModel = new ViewModelProvider(this).get(CO2ViewModel.class);
 
-        temperatureViewModel.getAllTemperatureLevels().observe(this, new Observer<List<Temperature>>() {
+        Log.d(MONITOR_ACTIVITY, "onCreate was called");
+
+      /*  temperatureViewModel.getAllTemperatureLevels().observe(this, new Observer<List<Temperature>>() {
             @Override
             public void onChanged(List<Temperature> temperatures) {
                 if (!temperatures.isEmpty()) {
@@ -69,8 +71,6 @@ public class MonitorActivity extends AppCompatActivity {
                     temperatureTextView.setText("Empty");
                 }
             }
-        });
-
-        Log.d(TAG, "onCreate was called");
+        });*/
     }
 }

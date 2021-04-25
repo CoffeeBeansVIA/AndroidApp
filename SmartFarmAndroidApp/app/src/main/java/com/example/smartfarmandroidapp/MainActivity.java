@@ -1,6 +1,7 @@
 package com.example.smartfarmandroidapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,6 +14,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.smartfarmandroidapp.viewmodel.CO2ViewModel;
+import com.example.smartfarmandroidapp.viewmodel.HumidityViewModel;
+import com.example.smartfarmandroidapp.viewmodel.TemperatureViewModel;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText emailText;
@@ -21,7 +26,11 @@ public class MainActivity extends AppCompatActivity {
     TextView info;
     private int counter = 5;
 
-    private static final String TAG = "MainActivity";
+    CO2ViewModel co2ViewModel;
+    TemperatureViewModel temperatureViewModel;
+    HumidityViewModel humidityViewModel;
+
+    private static final String MAIN_ACTIVITY = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +42,11 @@ public class MainActivity extends AppCompatActivity {
         passText = findViewById(R.id.editTextPassword);
         loginButton = findViewById(R.id.loginButton);
 
-        Log.d(TAG, "onCreate was called");
+        temperatureViewModel = new ViewModelProvider(this).get(TemperatureViewModel.class);
+        humidityViewModel = new ViewModelProvider(this).get(HumidityViewModel.class);
+        co2ViewModel = new ViewModelProvider(this).get(CO2ViewModel.class);
+
+        Log.d(MAIN_ACTIVITY, "onCreate was called");
 
         loginButton.setOnClickListener(view -> onClick(info));
     }
@@ -46,15 +59,14 @@ public class MainActivity extends AppCompatActivity {
         String text = "Logging in...";
         int duration = Toast.LENGTH_SHORT;
         Toast.makeText(context, text, duration).show();
+        Intent intent = new Intent(MainActivity.this, MonitorActivity.class);
+        startActivity(intent);
     }
 
     @SuppressLint("SetTextI18n")
     //TODO user authentication, we must change this anyway
     private void validate(String email, String password){
-        if((email.equals("user@email.com")) && (password.equals("new"))){ // if new user, then set up conditions immediately
-            Intent intent = new Intent(MainActivity.this, FarmSettingsActivity.class);
-            startActivity(intent);
-        } else if((email.equals("user@gmail.com")) && (password.equals("logged"))){ // if registered user, then go to monitor view instantly
+        if((email.equals("user@email.com")) && (password.equals("new"))){
             Intent intent = new Intent(MainActivity.this, MonitorActivity.class);
             startActivity(intent);
         }

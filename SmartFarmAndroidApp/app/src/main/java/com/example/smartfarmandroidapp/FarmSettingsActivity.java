@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,9 +24,11 @@ public class FarmSettingsActivity extends AppCompatActivity {
     Button saveButton, returnButton;
     TextView info;
 
-    CO2ViewModel CO2ViewModel;
+    CO2ViewModel co2ViewModel;
     TemperatureViewModel temperatureViewModel;
     HumidityViewModel humidityViewModel;
+
+    private static final String FARM_SETTINGS_ACTIVITY = "FarmSettingsActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,8 @@ public class FarmSettingsActivity extends AppCompatActivity {
         saveButton.setOnClickListener(view -> onClick(info));
 
         returnButton.setOnClickListener(v -> { finish(); });
+
+        Log.d(FARM_SETTINGS_ACTIVITY, "onCreate was called");
     }
 
     @SuppressLint("SetTextI18n")
@@ -64,7 +69,7 @@ public class FarmSettingsActivity extends AppCompatActivity {
                 Float.parseFloat(temperatureMin.getText().toString()),
                 Float.parseFloat(temperatureMax.getText().toString()));
 
-        CO2ViewModel.updateThresholds(getNumber(desiredCO2), getNumber(CO2Min), getNumber(CO2Max));
+        co2ViewModel.updateThresholds(getNumber(desiredCO2), getNumber(CO2Min), getNumber(CO2Max));
         temperatureViewModel.updateThresholds(getNumber(desiredTemperature), getNumber(temperatureMin), getNumber(temperatureMax));
         humidityViewModel.updateThresholds(getNumber(desiredHumidity), getNumber(humidityMin), getNumber(humidityMax));
 
