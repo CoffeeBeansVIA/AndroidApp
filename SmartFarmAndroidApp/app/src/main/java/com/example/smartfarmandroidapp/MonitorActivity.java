@@ -2,10 +2,10 @@ package com.example.smartfarmandroidapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -18,15 +18,19 @@ import java.util.List;
 
 public class MonitorActivity extends AppCompatActivity {
 
-    // Viewmodels
     private TemperatureViewModel temperatureViewModel;
     private HumidityViewModel humidityViewModel;
     private CO2ViewModel co2ViewModel;
 
-    // CO2 Level ProgressBar
+    TextView humidityValue;
+    TextView humidityPercentage;
+    TextView humidityTextView;
+    TextView temperatureValue;
+    TextView temperatureCelsius;
     TextView temperatureTextView;
-    ProgressBar progressBar;
-    TextView textViewProgress;
+
+    TextView co2progress;
+    ProgressBar co2ProgressBar;
 
     private int progress = 0;
 
@@ -37,7 +41,21 @@ public class MonitorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //temperatureViewModel = new ViewModelProvider(this).get(TemperatureViewModel.class); //TODO
+        humidityValue = findViewById(R.id.humValue);
+        temperatureValue = findViewById(R.id.tempValue);
+
+        humidityTextView = findViewById(R.id.humidityTextView);
+        temperatureTextView = findViewById(R.id.temperatureTextView);
+
+        humidityPercentage = findViewById(R.id.humPercentage);
+        temperatureCelsius = findViewById(R.id.tempCelsius);
+
+        co2progress = findViewById(R.id.CO2progress);
+        co2ProgressBar = findViewById(R.id.progressBar);
+
+        temperatureViewModel = new ViewModelProvider(this).get(TemperatureViewModel.class);
+        humidityViewModel = new ViewModelProvider(this).get(HumidityViewModel.class);
+        co2ViewModel = new ViewModelProvider(this).get(CO2ViewModel.class);
 
         temperatureViewModel.getAllTemperatureLevels().observe(this, new Observer<List<Temperature>>() {
             @Override
@@ -52,10 +70,6 @@ public class MonitorActivity extends AppCompatActivity {
                 }
             }
         });
-
-        temperatureTextView = findViewById(R.id.temperatureTextView);
-        textViewProgress = findViewById(R.id.textViewProgress);
-        progressBar = findViewById(R.id.progressBar);
 
         Log.d(TAG, "onCreate was called");
     }
