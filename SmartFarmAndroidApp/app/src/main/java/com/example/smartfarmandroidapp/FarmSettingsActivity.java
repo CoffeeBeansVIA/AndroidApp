@@ -30,11 +30,11 @@ public class FarmSettingsActivity extends AppCompatActivity {
         CO2Min = findViewById(R.id.co2Min);
         CO2Max = findViewById(R.id.co2Max);
         desiredTemperature = findViewById(R.id.desiredTemperature);
-        temperatureMin = findViewById(R.id.temperatureMin);
-        temperatureMax  = findViewById(R.id.temperatureMax);
+        temperatureMin = findViewById(R.id.minTemperature);
+        temperatureMax  = findViewById(R.id.maxTemperature);
         desiredHumidity = findViewById(R.id.desiredHumidity);
-        humidityMin = findViewById(R.id.humidityMin);
-        humidityMax = findViewById(R.id.humidityMax);
+        humidityMin = findViewById(R.id.minHumidity);
+        humidityMax = findViewById(R.id.maxHumidity);
 
         saveButton = findViewById(R.id.saveThresholdButton);
         returnButton = findViewById(R.id.returnFromTweakingButton);

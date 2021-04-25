@@ -14,43 +14,121 @@
         tools:layout_editor_absoluteY="74dp">
 
         <EditText
-            android:id="@+id/desiredTemperature"
-            android:layout_width="40dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="104dp"
+            android:id="@+id/desiredCO2"
+            android:layout_width="41dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="176dp"
             android:layout_marginRight="176dp"
             android:ems="10"
-            android:inputType="number"
+            android:inputType="number|numberDecimal"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/desiredTextView" />
+
+        <EditText
+            android:id="@+id/co2Min"
+            android:layout_width="41dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="96dp"
+            android:layout_marginRight="96dp"
+            android:ems="10"
+            android:inputType="number|numberDecimal"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/minTextView" />
+
+        <EditText
+            android:id="@+id/co2Max"
+            android:layout_width="41dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginRight="36dp"
+            android:ems="10"
+            android:inputType="number|numberDecimal"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/maxTextView" />
+
+        <EditText
+            android:id="@+id/maxTemperature"
+            android:layout_width="41dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginRight="36dp"
+            android:ems="10"
+            android:inputType="number|numberDecimal"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/co2Max" />
+
+        <EditText
+            android:id="@+id/maxHumidity"
+            android:layout_width="41dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginRight="36dp"
+            android:ems="10"
+            android:inputType="number|numberDecimal"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/maxTemperature" />
+
+        <EditText
+            android:id="@+id/minTemperature"
+            android:layout_width="41dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="96dp"
+            android:layout_marginRight="96dp"
+            android:ems="10"
+            android:inputType="number|numberDecimal"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/co2Min" />
+
+        <EditText
+            android:id="@+id/minHumidity"
+            android:layout_width="41dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="96dp"
+            android:layout_marginRight="96dp"
+            android:ems="10"
+            android:inputType="number|numberDecimal"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/minTemperature" />
+
+        <EditText
+            android:id="@+id/desiredTemperature"
+            android:layout_width="41dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="176dp"
+            android:layout_marginRight="176dp"
+            android:ems="10"
+            android:inputType="number|numberDecimal"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/desiredCO2" />
 
         <EditText
             android:id="@+id/desiredHumidity"
-            android:layout_width="40dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="172dp"
+            android:layout_width="41dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="176dp"
             android:layout_marginRight="176dp"
             android:ems="10"
-            android:inputType="number"
+            android:inputType="number|numberDecimal"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/minTextView" />
-
-        <EditText
-            android:id="@+id/desiredCO2"
-            android:layout_width="40dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="176dp"
-            android:layout_marginRight="176dp"
-            android:ems="10"
-            android:inputType="number"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/minTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/desiredTemperature" />
 
         <TextView
             android:id="@+id/desiredTextView"
@@ -64,84 +142,6 @@
             android:textColor="@android:color/holo_green_dark"
             app:layout_constraintEnd_toStartOf="@+id/maxTextView"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/co2Max"
-            android:layout_width="40dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:ems="10"
-            android:inputType="number"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/maxTextView" />
-
-        <EditText
-            android:id="@+id/co2Min"
-            android:layout_width="40dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="100dp"
-            android:layout_marginRight="100dp"
-            android:ems="10"
-            android:inputType="number"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/minTextView" />
-
-        <EditText
-            android:id="@+id/temperatureMin"
-            android:layout_width="40dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="100dp"
-            android:layout_marginRight="100dp"
-            android:ems="10"
-            android:inputType="number"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/co2Min" />
-
-        <EditText
-            android:id="@+id/temperatureMax"
-            android:layout_width="40dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:ems="10"
-            android:inputType="number"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/co2Max" />
-
-        <EditText
-            android:id="@+id/humidityMax"
-            android:layout_width="40dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:ems="10"
-            android:inputType="number"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/temperatureMax" />
-
-        <EditText
-            android:id="@+id/humidityMin"
-            android:layout_width="40dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="100dp"
-            android:layout_marginRight="100dp"
-            android:ems="10"
-            android:inputType="number"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/temperatureMin" />
 
         <TextView
             android:id="@+id/CO2textView"
