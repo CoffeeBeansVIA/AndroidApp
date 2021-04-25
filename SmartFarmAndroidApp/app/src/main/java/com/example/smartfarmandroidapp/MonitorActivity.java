@@ -64,20 +64,6 @@ public class MonitorActivity extends AppCompatActivity {
         updateProgressBar();
 
         Log.d(MONITOR_ACTIVITY, "onCreate was called");
-
-      /*  temperatureViewModel.getAllTemperatureLevels().observe(this, new Observer<List<Temperature>>() {
-            @Override
-            public void onChanged(List<Temperature> temperatures) {
-                if (!temperatures.isEmpty()) {
-                    temperatureTextView.setText("");
-                    for (Temperature t : temperatures) {
-                        temperatureTextView.append(t.getTemperature() + "\n");
-                    }
-                } else {
-                    temperatureTextView.setText("Empty");
-                }
-            }
-        });*/
     }
 
     @SuppressLint("DefaultLocale")
