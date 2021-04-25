@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -15,6 +17,8 @@ import com.example.smartfarmandroidapp.viewmodel.HumidityViewModel;
 import com.example.smartfarmandroidapp.viewmodel.TemperatureViewModel;
 
 import java.util.List;
+
+import static java.lang.String.format;
 
 public class MonitorActivity extends AppCompatActivity {
 
@@ -32,7 +36,7 @@ public class MonitorActivity extends AppCompatActivity {
     TextView co2progress;
     ProgressBar co2ProgressBar;
 
-    private int progress = 55;
+    //private int progress = 0;
 
     private static final String MONITOR_ACTIVITY = "MonitorActivity";
 
@@ -57,6 +61,8 @@ public class MonitorActivity extends AppCompatActivity {
         humidityViewModel = new ViewModelProvider(this).get(HumidityViewModel.class);
         co2ViewModel = new ViewModelProvider(this).get(CO2ViewModel.class);
 
+        //updateProgressBar();
+
         Log.d(MONITOR_ACTIVITY, "onCreate was called");
 
       /*  temperatureViewModel.getAllTemperatureLevels().observe(this, new Observer<List<Temperature>>() {
@@ -73,4 +79,10 @@ public class MonitorActivity extends AppCompatActivity {
             }
         });*/
     }
+
+    /*@SuppressLint("DefaultLocale")
+    private void updateProgressBar(){
+        co2ProgressBar.setProgress(progress);
+        co2progress.setText(format("%d%s", progress));
+    }*/
 }

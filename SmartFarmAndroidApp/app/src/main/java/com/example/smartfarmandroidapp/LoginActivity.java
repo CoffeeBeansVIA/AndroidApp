@@ -18,7 +18,7 @@ import com.example.smartfarmandroidapp.viewmodel.CO2ViewModel;
 import com.example.smartfarmandroidapp.viewmodel.HumidityViewModel;
 import com.example.smartfarmandroidapp.viewmodel.TemperatureViewModel;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     EditText emailText;
     EditText passText;
@@ -30,12 +30,12 @@ public class MainActivity extends AppCompatActivity {
     TemperatureViewModel temperatureViewModel;
     HumidityViewModel humidityViewModel;
 
-    private static final String MAIN_ACTIVITY = "MainActivity";
+    private static final String MAIN_ACTIVITY = "LoginActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         info = findViewById(R.id.errorTextView);
         emailText = findViewById(R.id.editTextEmailAddress);
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         String text = "Logging in...";
         int duration = Toast.LENGTH_SHORT;
         Toast.makeText(context, text, duration).show();
-        Intent intent = new Intent(MainActivity.this, MonitorActivity.class);
+        Intent intent = new Intent(LoginActivity.this, MonitorActivity.class);
         startActivity(intent);
     }
 
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     //TODO user authentication, we must change this anyway
     private void validate(String email, String password){
         if((email.equals("user@email.com")) && (password.equals("new"))){
-            Intent intent = new Intent(MainActivity.this, MonitorActivity.class);
+            Intent intent = new Intent(LoginActivity.this, MonitorActivity.class);
             startActivity(intent);
         }
         else{
