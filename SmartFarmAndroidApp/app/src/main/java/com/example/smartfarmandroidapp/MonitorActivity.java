@@ -36,7 +36,7 @@ public class MonitorActivity extends AppCompatActivity {
     TextView co2progress;
     ProgressBar co2ProgressBar;
 
-    //private int progress = 0;
+    private int progress = 50;
 
     private static final String MONITOR_ACTIVITY = "MonitorActivity";
 
@@ -61,7 +61,7 @@ public class MonitorActivity extends AppCompatActivity {
         humidityViewModel = new ViewModelProvider(this).get(HumidityViewModel.class);
         co2ViewModel = new ViewModelProvider(this).get(CO2ViewModel.class);
 
-        //updateProgressBar();
+        updateProgressBar();
 
         Log.d(MONITOR_ACTIVITY, "onCreate was called");
 
@@ -80,9 +80,10 @@ public class MonitorActivity extends AppCompatActivity {
         });*/
     }
 
-    /*@SuppressLint("DefaultLocale")
+    @SuppressLint("DefaultLocale")
     private void updateProgressBar(){
+        String str = progress + "";
         co2ProgressBar.setProgress(progress);
-        co2progress.setText(format("%d%s", progress));
-    }*/
+        co2progress.setText(str);
+    }
 }

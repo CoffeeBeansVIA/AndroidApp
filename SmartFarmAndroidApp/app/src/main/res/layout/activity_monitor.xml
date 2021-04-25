@@ -23,8 +23,8 @@
 
     <TextView
         android:id="@+id/smartFarmTitle2"
-        android:layout_width="164dp"
-        android:layout_height="53dp"
+        android:layout_width="179dp"
+        android:layout_height="51dp"
         android:layout_marginTop="76dp"
         android:fontFamily="sans-serif-light"
         android:text="@string/smartfarm"
