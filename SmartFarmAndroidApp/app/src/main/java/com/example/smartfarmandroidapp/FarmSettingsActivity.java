@@ -74,6 +74,7 @@ public class FarmSettingsActivity extends AppCompatActivity {
         Toast.makeText(context, text, duration).show();
     }
 
+    //TODO fix this
     private void validateValues(float desiredCO2, float CO2Min, float CO2Max, float desiredHum, float humMin, float humMax, float desiredTemp, float minTemp, float maxTemp){
         if((desiredTemp > 10 && desiredTemp < 50) && (desiredHum > 5 && desiredHum < 95) && (desiredCO2 > 5 && desiredCO2 < 95)){
             Intent intent = new Intent(FarmSettingsActivity.this, MonitorActivity.class);
