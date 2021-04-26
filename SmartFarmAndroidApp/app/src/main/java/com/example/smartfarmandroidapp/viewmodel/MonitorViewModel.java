@@ -17,7 +17,7 @@ public class MonitorViewModel extends ViewModel
     }
 
   public void fetchMeasurementData(){
-
+     monitorModel.getCO2();
   }
 
 

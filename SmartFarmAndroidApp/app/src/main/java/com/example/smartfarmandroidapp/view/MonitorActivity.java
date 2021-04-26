@@ -54,7 +54,7 @@ public class MonitorActivity extends AppCompatActivity {
     @SuppressLint("DefaultLocale")
     private void updateProgressBar(){
         String str = progress + "";
-
+        monitorViewModel.fetchMeasurementData();
         co2ProgressBar.setProgress(progress);
         co2progress.setText(str);
     }
