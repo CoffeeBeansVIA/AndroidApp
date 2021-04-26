@@ -1,40 +1,26 @@
-package com.example.smartfarmandroidapp;
+package com.example.smartfarmandroidapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.smartfarmandroidapp.domain.Temperature;
-import com.example.smartfarmandroidapp.viewmodel.CO2ViewModel;
-import com.example.smartfarmandroidapp.viewmodel.HumidityViewModel;
-import com.example.smartfarmandroidapp.viewmodel.TemperatureViewModel;
-
-import java.util.List;
+import com.example.smartfarmandroidapp.R;
+import com.example.smartfarmandroidapp.viewmodel.MonitorViewModel;
 
 import static java.lang.String.format;
 
 public class MonitorActivity extends AppCompatActivity {
 
-    private TemperatureViewModel temperatureViewModel;
-    private HumidityViewModel humidityViewModel;
-    private CO2ViewModel co2ViewModel;
+    private MonitorViewModel monitorViewModel;
 
-    TextView humidityValue;
-    TextView humidityPercentage;
-    TextView humidityTextView;
-    TextView temperatureValue;
-    TextView temperatureCelsius;
-    TextView temperatureTextView;
+    private TextView humidityValue,humidityPercentage,humidityTextView,temperatureValue,temperatureCelsius,temperatureTextView,co2progress ;
 
-    TextView co2progress;
-    ProgressBar co2ProgressBar;
+    private ProgressBar co2ProgressBar;
 
     private int progress = 50;
 
@@ -44,6 +30,7 @@ public class MonitorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monitor);
+        monitorViewModel = new MonitorViewModel();
 
         humidityValue = findViewById(R.id.humValue);
         temperatureValue = findViewById(R.id.tempValue);
@@ -57,9 +44,7 @@ public class MonitorActivity extends AppCompatActivity {
         co2progress = findViewById(R.id.CO2progress);
         co2ProgressBar = findViewById(R.id.progressBar);
 
-        temperatureViewModel = new ViewModelProvider(this).get(TemperatureViewModel.class);
-        humidityViewModel = new ViewModelProvider(this).get(HumidityViewModel.class);
-        co2ViewModel = new ViewModelProvider(this).get(CO2ViewModel.class);
+
 
         updateProgressBar();
 
@@ -69,6 +54,7 @@ public class MonitorActivity extends AppCompatActivity {
     @SuppressLint("DefaultLocale")
     private void updateProgressBar(){
         String str = progress + "";
+
         co2ProgressBar.setProgress(progress);
         co2progress.setText(str);
     }

@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.smartfarmandroidapp.domain.Humidity;
-import com.example.smartfarmandroidapp.model.HumidityDAO;
 import com.example.smartfarmandroidapp.response.HumidityResponse;
 import com.example.smartfarmandroidapp.servicegenerator.FarmServiceGenerator;
 import com.example.smartfarmandroidapp.webapi.HumidityAPI;

@@ -2,13 +2,13 @@ package com.example.smartfarmandroidapp.domain;
 
 public class Temperature {
 
-    private int temperature;
+    private double temperature;
 
-    public Temperature(int temperature) {
+    public Temperature(double temperature) {
         this.temperature = temperature;
     }
 
-    public int getTemperature() {
+    public double getTemperature() {
         return temperature;
     }
 }

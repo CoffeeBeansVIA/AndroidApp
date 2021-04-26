@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.smartfarmandroidapp.domain.Temperature;
-import com.example.smartfarmandroidapp.model.TemperatureDAO;
 import com.example.smartfarmandroidapp.response.TemperatureResponse;
 import com.example.smartfarmandroidapp.servicegenerator.FarmServiceGenerator;
 import com.example.smartfarmandroidapp.webapi.TemperatureAPI;

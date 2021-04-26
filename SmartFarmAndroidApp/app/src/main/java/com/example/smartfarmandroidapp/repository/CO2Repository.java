@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.smartfarmandroidapp.domain.CO2;
-import com.example.smartfarmandroidapp.model.CO2DAO;
+import com.example.smartfarmandroidapp.model.MonitorModel;
 import com.example.smartfarmandroidapp.response.CO2Response;
 import com.example.smartfarmandroidapp.servicegenerator.FarmServiceGenerator;
 import com.example.smartfarmandroidapp.webapi.CO2API;
@@ -20,12 +20,12 @@ import retrofit2.internal.EverythingIsNonNull;
 
 public class CO2Repository {
 
-    private CO2DAO co2DAO;
+    private MonitorModel monitorModel;
     private static CO2Repository instance;
     private final MutableLiveData<CO2> currentCO2Level;
 
     private CO2Repository(){
-        co2DAO = CO2DAO.getInstance();
+        monitorModel = MonitorModel.getInstance();
         currentCO2Level = new MutableLiveData<>();
     }
 
@@ -37,15 +37,15 @@ public class CO2Repository {
     }
 
     public LiveData<List<CO2>> getAllCO2Levels(){
-        return co2DAO.getAllCO2Levels();
+        return monitorModel.getAllCO2Levels();
     }
 
     public void insert(CO2 CO2) {
-        co2DAO.insert(CO2);
+        monitorModel.insert(CO2);
     }
 
     public void deleteAllCO2Levels(){
-        co2DAO.deleteAllCO2Levels();
+        monitorModel.deleteAllCO2Levels();
     }
 
     public void retrieveCO2Level(int co2Level) {
