@@ -2,6 +2,9 @@ package com.example.smartfarmandroidapp.model;
 
 import android.util.Log;
 
+import com.example.smartfarmandroidapp.Events.CO2Event;
+import com.example.smartfarmandroidapp.Events.HumidityEvent;
+import com.example.smartfarmandroidapp.Events.TemperatureEvent;
 import com.example.smartfarmandroidapp.domain.CO2;
 import com.example.smartfarmandroidapp.domain.Humidity;
 import com.example.smartfarmandroidapp.domain.Temperature;
@@ -9,6 +12,8 @@ import com.example.smartfarmandroidapp.servicegenerator.FarmServiceGenerator;
 import com.example.smartfarmandroidapp.webapi.CO2API;
 import com.example.smartfarmandroidapp.webapi.HumidityAPI;
 import com.example.smartfarmandroidapp.webapi.TemperatureAPI;
+
+import org.greenrobot.eventbus.EventBus;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,7 +33,9 @@ public class MonitorModel {
             @Override
             public void onResponse(Call<CO2> call, Response<CO2> response) {
                 if (response.isSuccessful()) {
-                    Log.i("CO2", response.body().getValue()+"");
+                    CO2Event event = new CO2Event();
+                    event.setCO2(response.body().getValue()+"");
+                    EventBus.getDefault().post(event);
                 }
             }
 
@@ -49,7 +56,9 @@ public class MonitorModel {
             public void onResponse(Call<Humidity> call, Response<Humidity> response) {
                 if(response.isSuccessful())
                 {
-                    Log.i("Humidity", response.body().getValue()+"");
+                    HumidityEvent event = new HumidityEvent();
+                    event.setHumidity(response.body().getValue()+"");
+                    EventBus.getDefault().post(event);
                 }
             }
 
@@ -68,7 +77,9 @@ public class MonitorModel {
             public void onResponse(Call<Temperature> call, Response<Temperature> response) {
                 if(response.isSuccessful())
                 {
-                    Log.i("Temperature", response.body().getValue()+"");
+                    TemperatureEvent event = new TemperatureEvent();
+                    event.setTemperature(response.body().getValue()+"");
+                    EventBus.getDefault().post(event);
                 }
             }
 

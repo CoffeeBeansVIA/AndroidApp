@@ -30,7 +30,7 @@ public class MonitorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monitor);
-        monitorViewModel = new MonitorViewModel();
+        monitorViewModel = new ViewModelProvider(this).get(MonitorViewModel.class);
 
         humidityValue = findViewById(R.id.humValue);
         temperatureValue = findViewById(R.id.tempValue);
@@ -43,19 +43,45 @@ public class MonitorActivity extends AppCompatActivity {
 
         co2progress = findViewById(R.id.CO2progress);
         co2ProgressBar = findViewById(R.id.progressBar);
-
-
-
+        setUpObserver();
         updateProgressBar();
-
         Log.d(MONITOR_ACTIVITY, "onCreate was called");
     }
 
+
+
+
     @SuppressLint("DefaultLocale")
     private void updateProgressBar(){
-        String str = progress + "";
-        monitorViewModel.fetchMeasurementData();
-        co2ProgressBar.setProgress(progress);
-        co2progress.setText(str);
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (true) {
+                    monitorViewModel.fetchMeasurementData();
+                        try {
+                            Thread.sleep(5000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+            };
+        });
+        thread.start();
+    }
+
+    private void setUpObserver(){
+        monitorViewModel.getCO2Level().observe(this, CO2Level -> {
+            String progress = CO2Level + "";
+           int progressDigit =  (int)Double.parseDouble(CO2Level);
+            co2ProgressBar.setProgress(progressDigit);
+            co2progress.setText(progress);
+        });
+        monitorViewModel.getHumidity().observe(this, humidityLevel -> {
+           humidityValue.setText(humidityLevel);
+        });
+
+        monitorViewModel.getTemperature().observe(this, temperatureLevel -> {
+            temperatureValue.setText(temperatureLevel);
+        } );
     }
 }
