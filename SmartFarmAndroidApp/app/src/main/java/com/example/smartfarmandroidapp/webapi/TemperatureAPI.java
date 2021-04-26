@@ -7,6 +7,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface TemperatureAPI {
-    @GET("api/sensors/1/randomMeasurements")
-    Call<Temperature> getTemperature(@Path("value") int value);
+    @GET("api/sensors/{sensorId}/randomMeasurements")
+    Call<Temperature> getTemperature(@Path("sensorId") int id);
 }

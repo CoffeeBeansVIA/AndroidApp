@@ -3,8 +3,9 @@ import com.example.smartfarmandroidapp.domain.Humidity;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface HumidityAPI {
-    @GET("api/sensors/2/randomMeasurements")
-    Call<Humidity> getHumidity();
+    @GET("api/sensors/{sensorId}/randomMeasurements")
+    Call<Humidity> getHumidity(@Path("sensorId") int id);
 }
