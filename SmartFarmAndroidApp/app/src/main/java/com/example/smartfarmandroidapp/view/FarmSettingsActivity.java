@@ -1,4 +1,4 @@
-package com.example.smartfarmandroidapp;
+package com.example.smartfarmandroidapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,20 +13,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.smartfarmandroidapp.viewmodel.CO2ViewModel;
-import com.example.smartfarmandroidapp.viewmodel.HumidityViewModel;
-import com.example.smartfarmandroidapp.viewmodel.TemperatureViewModel;
+import com.example.smartfarmandroidapp.R;
 
 public class FarmSettingsActivity extends AppCompatActivity {
-    EditText desiredCO2, CO2Min, CO2Max;
-    EditText desiredTemperature, temperatureMin, temperatureMax;
-    EditText desiredHumidity, humidityMin, humidityMax;
-    Button saveButton, returnButton;
-    TextView info;
+    private EditText desiredCO2, CO2Min, CO2Max;
+    private EditText desiredTemperature, temperatureMin, temperatureMax;
+    private EditText desiredHumidity, humidityMin, humidityMax;
+    private Button saveButton, returnButton;
+    private TextView info;
 
-    CO2ViewModel co2ViewModel;
-    TemperatureViewModel temperatureViewModel;
-    HumidityViewModel humidityViewModel;
+
 
     private static final String FARM_SETTINGS_ACTIVITY = "FarmSettingsActivity";
 
@@ -58,7 +54,7 @@ public class FarmSettingsActivity extends AppCompatActivity {
     }
 
     @SuppressLint("SetTextI18n")
-    public void onClick(View view){
+    private void onClick(View view){
         validateValues(Float.parseFloat(desiredCO2.getText().toString()),
                 Float.parseFloat(CO2Min.getText().toString()),
                 Float.parseFloat(CO2Max.getText().toString()),
@@ -69,9 +65,6 @@ public class FarmSettingsActivity extends AppCompatActivity {
                 Float.parseFloat(temperatureMin.getText().toString()),
                 Float.parseFloat(temperatureMax.getText().toString()));
 
-        co2ViewModel.updateThresholds(getNumber(desiredCO2), getNumber(CO2Min), getNumber(CO2Max));
-        temperatureViewModel.updateThresholds(getNumber(desiredTemperature), getNumber(temperatureMin), getNumber(temperatureMax));
-        humidityViewModel.updateThresholds(getNumber(desiredHumidity), getNumber(humidityMin), getNumber(humidityMax));
 
         Context context = getApplicationContext();
         String text = "Update values...";

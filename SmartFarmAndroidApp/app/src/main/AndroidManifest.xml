@@ -11,9 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartFarmAndroidApp">
-        <activity android:name=".FarmSettingsActivity"></activity>
-        <activity android:name=".MonitorActivity"></activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".view.FarmSettingsActivity"></activity>
+        <activity android:name=".view.MonitorActivity"></activity>
+        <activity android:name=".view.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

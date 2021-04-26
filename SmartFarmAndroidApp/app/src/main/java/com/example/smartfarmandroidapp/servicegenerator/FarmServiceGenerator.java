@@ -1,5 +1,7 @@
 package com.example.smartfarmandroidapp.servicegenerator;
 
+
+
 import com.example.smartfarmandroidapp.webapi.CO2API;
 import com.example.smartfarmandroidapp.webapi.HumidityAPI;
 import com.example.smartfarmandroidapp.webapi.TemperatureAPI;
@@ -15,7 +17,7 @@ public class FarmServiceGenerator {
     public static CO2API getCO2API() {
         if (co2API == null) {
             co2API = new Retrofit.Builder()
-                    .baseUrl("https://localhost:5001/swagger/index.html")
+                    .baseUrl("https://sep4api.azurewebsites.net/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                     .create(CO2API.class);
@@ -26,7 +28,7 @@ public class FarmServiceGenerator {
     public static HumidityAPI getHumidityAPI() {
         if (humidityAPI == null) {
             humidityAPI = new Retrofit.Builder()
-                    .baseUrl("https://localhost:5001/swagger/index.html")
+                    .baseUrl("https://sep4api.azurewebsites.net/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                     .create(HumidityAPI.class);
@@ -37,7 +39,7 @@ public class FarmServiceGenerator {
     public static TemperatureAPI getTemperatureAPI() {
         if (temperatureAPI == null) {
             temperatureAPI = new Retrofit.Builder()
-                    .baseUrl("https://localhost:5001/swagger/index.html")
+                    .baseUrl("https://sep4api.azurewebsites.net/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                     .create(TemperatureAPI.class);

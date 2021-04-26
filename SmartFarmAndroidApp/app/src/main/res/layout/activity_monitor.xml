@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#474747"
-    tools:context=".MonitorActivity">
+    tools:context=".view.MonitorActivity">
 
     <TextView
         android:id="@+id/plantStatusTextView"
@@ -23,8 +23,8 @@
 
     <TextView
         android:id="@+id/smartFarmTitle2"
-        android:layout_width="164dp"
-        android:layout_height="53dp"
+        android:layout_width="179dp"
+        android:layout_height="51dp"
         android:layout_marginTop="76dp"
         android:fontFamily="sans-serif-light"
         android:text="@string/smartfarm"

@@ -2,13 +2,9 @@ package com.example.smartfarmandroidapp.domain;
 
 public class Humidity {
 
-    private int humidity;
+    private double value;
 
-    public Humidity(int humidity) {
-        this.humidity = humidity;
-    }
-
-    public int getHumidity() {
-        return humidity;
+    public double getValue() {
+        return value;
     }
 }
