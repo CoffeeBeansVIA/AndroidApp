@@ -17,6 +17,8 @@ public class MonitorViewModel extends ViewModel
 {
     private MonitorModel monitorModel;
     private MutableLiveData<String> CO2Level, humidity, temperature;
+    private MutableLiveData<Integer> CO2Preferred, CO2Deviation, humidityPreferred, humidityDeviation, temperaturePreferred, temperatureDeviation;
+
     public MonitorViewModel() {
         EventBus.getDefault().register(this);
           CO2Level = new MutableLiveData<>();
@@ -28,14 +30,19 @@ public class MonitorViewModel extends ViewModel
     public MutableLiveData<String> getCO2Level() {
         return CO2Level;
     }
-
     public MutableLiveData<String> getHumidity() {
         return humidity;
     }
-
     public MutableLiveData<String> getTemperature() {
         return temperature;
     }
+
+    public MutableLiveData<Integer> getCO2Preferred() { return CO2Preferred; }
+    public MutableLiveData<Integer> getCO2Deviation() { return CO2Deviation; }
+    public MutableLiveData<Integer> getHumidityPreferred() { return humidityPreferred; }
+    public MutableLiveData<Integer> getHumidityDeviation() { return humidityDeviation; }
+    public MutableLiveData<Integer> getTemperaturePreferred() { return temperaturePreferred; }
+    public MutableLiveData<Integer> getTemperatureDeviation() { return temperatureDeviation; }
 
     @Subscribe
     public void onCO2Event(CO2Event co2Event){
