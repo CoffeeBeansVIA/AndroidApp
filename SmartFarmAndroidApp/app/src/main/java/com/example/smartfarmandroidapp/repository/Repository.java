@@ -1,6 +1,4 @@
-package com.example.smartfarmandroidapp.model;
-
-import android.util.Log;
+package com.example.smartfarmandroidapp.repository;
 
 import com.example.smartfarmandroidapp.Events.CO2Event;
 import com.example.smartfarmandroidapp.Events.HumidityEvent;
@@ -20,11 +18,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.internal.EverythingIsNonNull;
 
-public class MonitorModel {
-    private String str = "";
-    public MonitorModel() {
-    }
-
+public class Repository {
     public void getCO2() {
         CO2API co2API = FarmServiceGenerator.getCO2API();
         Call<CO2> call = co2API.getCO2(3);

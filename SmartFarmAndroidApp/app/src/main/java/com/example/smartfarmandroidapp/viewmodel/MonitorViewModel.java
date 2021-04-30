@@ -8,23 +8,34 @@ import androidx.lifecycle.ViewModel;
 import com.example.smartfarmandroidapp.Events.CO2Event;
 import com.example.smartfarmandroidapp.Events.HumidityEvent;
 import com.example.smartfarmandroidapp.Events.TemperatureEvent;
-import com.example.smartfarmandroidapp.model.MonitorModel;
+import com.example.smartfarmandroidapp.repository.Repository;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 public class MonitorViewModel extends ViewModel
 {
-    private MonitorModel monitorModel;
+    private Repository repository;
     private MutableLiveData<String> CO2Level, humidity, temperature;
     private MutableLiveData<Integer> CO2Preferred, CO2Deviation, humidityPreferred, humidityDeviation, temperaturePreferred, temperatureDeviation;
 
     public MonitorViewModel() {
         EventBus.getDefault().register(this);
-          CO2Level = new MutableLiveData<>();
-          humidity = new MutableLiveData<>();
-          temperature = new MutableLiveData<>();
-          monitorModel = new MonitorModel();
+
+        // Monitor values
+        CO2Level = new MutableLiveData<>();
+        humidity = new MutableLiveData<>();
+        temperature = new MutableLiveData<>();
+
+        // Settings values
+        CO2Preferred = new MutableLiveData<>();
+        CO2Deviation = new MutableLiveData<>();
+        humidityPreferred = new MutableLiveData<>();
+        humidityDeviation = new MutableLiveData<>();
+        temperaturePreferred = new MutableLiveData<>();
+        temperatureDeviation = new MutableLiveData<>();
+
+        repository = new Repository();
     }
 
     public MutableLiveData<String> getCO2Level() {
@@ -64,10 +75,15 @@ public class MonitorViewModel extends ViewModel
         Log.i("Temperature", temperatureEvent.getTemperature());
     }
 
+    public void fetchMeasurementData(){
+        repository.getCO2();
+        repository.getHumidity();
+        repository.getTemperature();
+    }
 
-  public void fetchMeasurementData(){
-     monitorModel.getCO2();
-     monitorModel.getHumidity();
-     monitorModel.getTemperature();
-  }
+    public void defineSettings(MutableLiveData<Integer> CO2Preferred, MutableLiveData<Integer> CO2Deviation,
+                             MutableLiveData<Integer> humidityPreferred, MutableLiveData<Integer> humidityDeviation,
+                             MutableLiveData<Integer> temperaturePreferred, MutableLiveData<Integer> temperatureDeviation) {
+        //monitorModel.defineSettings();
+    }
 }
