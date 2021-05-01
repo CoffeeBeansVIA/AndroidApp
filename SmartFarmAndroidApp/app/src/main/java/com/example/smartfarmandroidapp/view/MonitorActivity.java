@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.example.smartfarmandroidapp.Events.CO2Event;
 import com.example.smartfarmandroidapp.R;
 import com.example.smartfarmandroidapp.domain.CO2;
+import com.example.smartfarmandroidapp.servicegenerator.DaggerFarmServiceComponent;
+import com.example.smartfarmandroidapp.servicegenerator.FarmServiceComponent;
 import com.example.smartfarmandroidapp.servicegenerator.FarmServiceGenerator;
 import com.example.smartfarmandroidapp.viewmodel.MonitorViewModel;
 import com.example.smartfarmandroidapp.webapi.ValueAPI;
@@ -28,7 +30,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.internal.EverythingIsNonNull;
 
-import static java.lang.String.format;
 
 public class MonitorActivity extends AppCompatActivity {
 
@@ -54,7 +55,8 @@ public class MonitorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monitor);
 
-        ((FarmServiceGenerator) getApplication()).getNetComponent().inject(this);
+       FarmServiceComponent component = ((FarmServiceGenerator) getApplication()).getNetComponent();
+       component.inject(this);
 
         monitorViewModel = new ViewModelProvider(this).get(MonitorViewModel.class);
 

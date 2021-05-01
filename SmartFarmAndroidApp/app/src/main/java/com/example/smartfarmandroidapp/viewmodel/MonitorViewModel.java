@@ -13,7 +13,6 @@ import com.example.smartfarmandroidapp.repository.MonitorRepository;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import javax.inject.Inject;
 
 public class MonitorViewModel extends ViewModel
 {
@@ -21,7 +20,6 @@ public class MonitorViewModel extends ViewModel
     private MutableLiveData<String> CO2Level, humidity, temperature;
     private MutableLiveData<Integer> CO2Preferred, CO2Deviation, humidityPreferred, humidityDeviation, temperaturePreferred, temperatureDeviation;
 
-    @Inject
     public MonitorViewModel() {
         EventBus.getDefault().register(this);
 

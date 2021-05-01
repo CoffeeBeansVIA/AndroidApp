@@ -14,9 +14,7 @@ public interface ValueAPI {
     @GET("api/sensors/{sensorId}/randomMeasurements")
     Call<CO2> getCO2(@Path("sensorId") int id);
 
-    @GET("api/sensors/{sensorId}/randomMeasurements")
-    Call<Humidity> getHumidity(@Path("sensorId") int id);
 
-    @GET("api/sensors/{sensorId}/randomMeasurements")
-    Call<Temperature> getTemperature(@Path("sensorId") int id);
+
+
 }

@@ -9,9 +9,6 @@ import com.example.smartfarmandroidapp.webapi.HumidityAPI;
 import com.example.smartfarmandroidapp.webapi.TemperatureAPI;
 
 public class FarmServiceGenerator extends Application {
-    private static ValueAPI valueAPI;
-    private static HumidityAPI humidityAPI;
-    private static TemperatureAPI temperatureAPI;
 
     private FarmServiceComponent mApiComponent;
 
