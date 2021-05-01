@@ -1,25 +1,30 @@
 package com.example.smartfarmandroidapp.viewmodel;
 
+import android.app.Application;
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.smartfarmandroidapp.Events.CO2Event;
 import com.example.smartfarmandroidapp.Events.HumidityEvent;
 import com.example.smartfarmandroidapp.Events.TemperatureEvent;
+import com.example.smartfarmandroidapp.domain.Preferences;
 import com.example.smartfarmandroidapp.repository.Repository;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.List;
+
 public class MonitorViewModel extends ViewModel
 {
     private Repository repository;
     private MutableLiveData<String> CO2Level, humidity, temperature;
-    private MutableLiveData<Integer> CO2Preferred, CO2Deviation, humidityPreferred, humidityDeviation, temperaturePreferred, temperatureDeviation;
+    private MutableLiveData<Integer> userID, CO2Preferred, CO2Deviation, humidityPreferred, humidityDeviation, temperaturePreferred, temperatureDeviation;
 
-    public MonitorViewModel() {
+    public MonitorViewModel(Application app) {
         EventBus.getDefault().register(this);
 
         // Monitor values
@@ -28,6 +33,7 @@ public class MonitorViewModel extends ViewModel
         temperature = new MutableLiveData<>();
 
         // Settings values
+        userID = new MutableLiveData<>(1234);
         CO2Preferred = new MutableLiveData<>();
         CO2Deviation = new MutableLiveData<>();
         humidityPreferred = new MutableLiveData<>();
@@ -35,7 +41,7 @@ public class MonitorViewModel extends ViewModel
         temperaturePreferred = new MutableLiveData<>();
         temperatureDeviation = new MutableLiveData<>();
 
-        repository = new Repository();
+        repository = Repository.getInstance(app);
     }
 
     public MutableLiveData<String> getCO2Level() {
@@ -81,9 +87,14 @@ public class MonitorViewModel extends ViewModel
         repository.getTemperature();
     }
 
-    public void defineSettings(MutableLiveData<Integer> CO2Preferred, MutableLiveData<Integer> CO2Deviation,
-                             MutableLiveData<Integer> humidityPreferred, MutableLiveData<Integer> humidityDeviation,
-                             MutableLiveData<Integer> temperaturePreferred, MutableLiveData<Integer> temperatureDeviation) {
-        //monitorModel.defineSettings();
+    public void savePreferences(int CO2Preferred, int CO2Deviation,
+                             int humidityPreferred, int humidityDeviation,
+                             int temperaturePreferred, int temperatureDeviation) {
+        repository.savePreferences(new Preferences(userID.getValue(),
+                                CO2Preferred, CO2Deviation,
+                                humidityPreferred, humidityDeviation,
+                                temperaturePreferred, temperatureDeviation));
     }
+
+    public LiveData<List<Preferences>> getPreferences() { return repository.getPreferences(userID.getValue()); }
 }
