@@ -1,49 +1,36 @@
 package com.example.smartfarmandroidapp.servicegenerator;
 
+import android.app.Application;
 
-
-import com.example.smartfarmandroidapp.webapi.CO2API;
+import com.example.smartfarmandroidapp.module.ApiModule;
+import com.example.smartfarmandroidapp.module.AppModule;
+import com.example.smartfarmandroidapp.webapi.ValueAPI;
 import com.example.smartfarmandroidapp.webapi.HumidityAPI;
 import com.example.smartfarmandroidapp.webapi.TemperatureAPI;
 
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-public class FarmServiceGenerator {
-    private static CO2API co2API;
+public class FarmServiceGenerator extends Application {
+    private static ValueAPI valueAPI;
     private static HumidityAPI humidityAPI;
     private static TemperatureAPI temperatureAPI;
 
-    public static CO2API getCO2API() {
-        if (co2API == null) {
-            co2API = new Retrofit.Builder()
-                    .baseUrl("https://sep4api.azurewebsites.net/")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build()
-                    .create(CO2API.class);
-        }
-        return co2API;
+    private FarmServiceComponent mApiComponent;
+
+    private static String url = "https://sep4api.azurewebsites.net/";
+
+    public FarmServiceGenerator() {
     }
 
-    public static HumidityAPI getHumidityAPI() {
-        if (humidityAPI == null) {
-            humidityAPI = new Retrofit.Builder()
-                    .baseUrl("https://sep4api.azurewebsites.net/")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build()
-                    .create(HumidityAPI.class);
-        }
-        return humidityAPI;
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+      mApiComponent = DaggerFarmServiceComponent.builder()
+                .appModule(new AppModule(this))
+                .apiModule(new ApiModule(url))
+                .build();
     }
 
-    public static TemperatureAPI getTemperatureAPI() {
-        if (temperatureAPI == null) {
-            temperatureAPI = new Retrofit.Builder()
-                    .baseUrl("https://sep4api.azurewebsites.net/")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build()
-                    .create(TemperatureAPI.class);
-        }
-        return temperatureAPI;
+    public FarmServiceComponent getNetComponent() {
+        return mApiComponent;
     }
 }

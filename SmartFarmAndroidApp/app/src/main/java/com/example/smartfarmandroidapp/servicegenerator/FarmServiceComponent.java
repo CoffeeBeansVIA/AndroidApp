@@ -1,15 +1,16 @@
 package com.example.smartfarmandroidapp.servicegenerator;
 
-import com.example.smartfarmandroidapp.webapi.CO2API;
-import com.example.smartfarmandroidapp.webapi.HumidityAPI;
-import com.example.smartfarmandroidapp.webapi.TemperatureAPI;
+import com.example.smartfarmandroidapp.module.ApiModule;
+import com.example.smartfarmandroidapp.module.AppModule;
+import com.example.smartfarmandroidapp.view.MonitorActivity;
+
+import javax.inject.Singleton;
 
 import dagger.Component;
 
 // Definition of the Application graph
-@Component
+@Singleton
+@Component(modules = {AppModule.class, ApiModule.class})
 public interface FarmServiceComponent {
-    CO2API getCO2API();
-    HumidityAPI getHumidityAPI();
-    TemperatureAPI getTemperatureAPI();
+    void inject(MonitorActivity activity);
 }

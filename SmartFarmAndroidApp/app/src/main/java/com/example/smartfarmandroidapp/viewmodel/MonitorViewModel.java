@@ -8,17 +8,20 @@ import androidx.lifecycle.ViewModel;
 import com.example.smartfarmandroidapp.Events.CO2Event;
 import com.example.smartfarmandroidapp.Events.HumidityEvent;
 import com.example.smartfarmandroidapp.Events.TemperatureEvent;
-import com.example.smartfarmandroidapp.repository.Repository;
+import com.example.smartfarmandroidapp.repository.MonitorRepository;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import javax.inject.Inject;
+
 public class MonitorViewModel extends ViewModel
 {
-    private Repository repository;
+    private MonitorRepository monitorRepository;
     private MutableLiveData<String> CO2Level, humidity, temperature;
     private MutableLiveData<Integer> CO2Preferred, CO2Deviation, humidityPreferred, humidityDeviation, temperaturePreferred, temperatureDeviation;
 
+    @Inject
     public MonitorViewModel() {
         EventBus.getDefault().register(this);
 
@@ -35,7 +38,11 @@ public class MonitorViewModel extends ViewModel
         temperaturePreferred = new MutableLiveData<>();
         temperatureDeviation = new MutableLiveData<>();
 
-        repository = new Repository();
+        monitorRepository = new MonitorRepository();
+    }
+
+    public MonitorViewModel(MonitorRepository monitorRepository){
+        this.monitorRepository = monitorRepository;
     }
 
     public MutableLiveData<String> getCO2Level() {
@@ -76,9 +83,9 @@ public class MonitorViewModel extends ViewModel
     }
 
     public void fetchMeasurementData(){
-        repository.getCO2();
-        repository.getHumidity();
-        repository.getTemperature();
+        monitorRepository.getCO2();
+//        monitorRepository.getHumidity();
+//        monitorRepository.getTemperature();
     }
 
     public void defineSettings(MutableLiveData<Integer> CO2Preferred, MutableLiveData<Integer> CO2Deviation,
