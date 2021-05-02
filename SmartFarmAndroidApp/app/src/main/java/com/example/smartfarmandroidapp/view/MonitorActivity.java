@@ -1,18 +1,15 @@
 package com.example.smartfarmandroidapp.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.smartfarmandroidapp.R;
 import com.example.smartfarmandroidapp.viewmodel.MonitorViewModel;
-
-import static java.lang.String.format;
 
 public class MonitorActivity extends AppCompatActivity {
 
@@ -30,7 +27,7 @@ public class MonitorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monitor);
-        monitorViewModel = new ViewModelProvider(this).get(MonitorViewModel.class);
+        monitorViewModel = new MonitorViewModel(getApplication());
 
         humidityValue = findViewById(R.id.humValue);
         temperatureValue = findViewById(R.id.tempValue);

@@ -1,10 +1,7 @@
 package com.example.smartfarmandroidapp.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,15 +10,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.smartfarmandroidapp.R;
+import com.example.smartfarmandroidapp.domain.Preferences;
+import com.example.smartfarmandroidapp.viewmodel.MonitorViewModel;
 
 public class FarmSettingsActivity extends AppCompatActivity {
-    private EditText desiredCO2, CO2Min, CO2Max;
-    private EditText desiredTemperature, temperatureMin, temperatureMax;
-    private EditText desiredHumidity, humidityMin, humidityMax;
+    private EditText CO2Desired, CO2Deviation;
+    private EditText temperatureDesired, temperatureDeviation;
+    private EditText humidityDesired, humidityDeviation;
     private Button saveButton, returnButton;
     private TextView info;
-    // trying somthing
+    private MonitorViewModel viewModel;
 
 
 
@@ -31,57 +32,51 @@ public class FarmSettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_farm_settings);
+        viewModel = new MonitorViewModel(getApplication());
 
-        desiredCO2 = findViewById(R.id.desiredCO2);
-        CO2Min = findViewById(R.id.co2Min);
-        CO2Max = findViewById(R.id.co2Max);
-        desiredTemperature = findViewById(R.id.desiredTemperature);
-        temperatureMin = findViewById(R.id.minTemperature);
-        temperatureMax  = findViewById(R.id.maxTemperature);
-        desiredHumidity = findViewById(R.id.desiredHumidity);
-        humidityMin = findViewById(R.id.minHumidity);
-        humidityMax = findViewById(R.id.maxHumidity);
+        CO2Desired = findViewById(R.id.desiredCO2);
+        CO2Deviation = findViewById(R.id.maxCO2Dev);
+        temperatureDesired = findViewById(R.id.desiredTemperature);
+        temperatureDeviation = findViewById(R.id.maxTemperatureDev);
+        humidityDesired = findViewById(R.id.desiredHumidity);
+        humidityDeviation = findViewById(R.id.maxHumidityDev);
+
+        loadValues();
 
         saveButton = findViewById(R.id.saveThresholdButton);
         returnButton = findViewById(R.id.returnFromTweakingButton);
 
         info = findViewById(R.id.errorTextView);
 
-        saveButton.setOnClickListener(view -> onClick(info));
+        saveButton.setOnClickListener(view -> onClickSave(info));
 
         returnButton.setOnClickListener(v -> { finish(); });
 
         Log.d(FARM_SETTINGS_ACTIVITY, "onCreate was called");
     }
 
-    @SuppressLint("SetTextI18n")
-    private void onClick(View view){
-        validateValues(Float.parseFloat(desiredCO2.getText().toString()),
-                Float.parseFloat(CO2Min.getText().toString()),
-                Float.parseFloat(CO2Max.getText().toString()),
-                Float.parseFloat(desiredHumidity.getText().toString()),
-                Float.parseFloat(humidityMin.getText().toString()),
-                Float.parseFloat(humidityMax.getText().toString()),
-                Float.parseFloat(desiredTemperature.getText().toString()),
-                Float.parseFloat(temperatureMin.getText().toString()),
-                Float.parseFloat(temperatureMax.getText().toString()));
+    private void loadValues(){
+        Preferences preferences = viewModel.getPreferences().getValue().get(0);
+        CO2Desired.setText(preferences.getDesiredCO2());
+        CO2Deviation.setText(preferences.getDeviationCO2());
+        temperatureDesired.setText(preferences.getDesiredTemperature());
+        temperatureDeviation.setText(preferences.getDeviationTemperature());
+        humidityDesired.setText(preferences.getDesiredHumidity());
+        humidityDeviation.setText(preferences.getDeviationHumidity());
+    }
 
+    @SuppressLint("SetTextI18n")
+    private void onClickSave(View view){
+        viewModel.savePreferences(Integer.parseInt(CO2Desired.getText().toString()),
+                Integer.parseInt(CO2Deviation.getText().toString()),
+                Integer.parseInt(humidityDesired.getText().toString()),
+                Integer.parseInt(humidityDeviation.getText().toString()),
+                Integer.parseInt(temperatureDesired.getText().toString()),
+                Integer.parseInt(temperatureDeviation.getText().toString()));
 
         Context context = getApplicationContext();
         String text = "Update values...";
         int duration = Toast.LENGTH_SHORT;
         Toast.makeText(context, text, duration).show();
     }
-
-    //TODO fix this
-    private void validateValues(float desiredCO2, float CO2Min, float CO2Max, float desiredHum, float humMin, float humMax, float desiredTemp, float minTemp, float maxTemp){
-        if((desiredTemp > 10 && desiredTemp < 50) && (desiredHum > 5 && desiredHum < 95) && (desiredCO2 > 5 && desiredCO2 < 95)){
-            Intent intent = new Intent(FarmSettingsActivity.this, MonitorActivity.class);
-            startActivity(intent);
-        } else {
-            info.setText("Something went wrong");
-        }
-    }
-
-    private float getNumber(TextView textView) { return Float.parseFloat(textView.getText().toString()); }
 }
