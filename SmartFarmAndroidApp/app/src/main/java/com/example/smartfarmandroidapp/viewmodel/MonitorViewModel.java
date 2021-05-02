@@ -24,7 +24,7 @@ public class MonitorViewModel extends ViewModel
     private MutableLiveData<String> CO2Level, humidity, temperature;
     private MutableLiveData<Integer> userID, CO2Preferred, CO2Deviation, humidityPreferred, humidityDeviation, temperaturePreferred, temperatureDeviation;
 
-    public MonitorViewModel(Application app) {
+    public MonitorViewModel() {
         EventBus.getDefault().register(this);
 
         // Monitor values
@@ -41,7 +41,7 @@ public class MonitorViewModel extends ViewModel
         temperaturePreferred = new MutableLiveData<>();
         temperatureDeviation = new MutableLiveData<>();
 
-        repository = Repository.getInstance(app);
+        repository = Repository.getInstance();
     }
 
     public MutableLiveData<String> getCO2Level() {

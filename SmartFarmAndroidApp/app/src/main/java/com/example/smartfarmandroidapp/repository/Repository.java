@@ -33,14 +33,17 @@ public class Repository {
     private PreferencesDatabase preferencesDatabase;
     private PreferencesDAO preferencesDAO;
 
-    private Repository(Application application){
-        preferencesDatabase = PreferencesDatabase.getInstance(application);
-        preferencesDAO = preferencesDatabase.preferencesDAO();
+    public Repository() {
     }
 
-    public static synchronized Repository getInstance(Application application){
+    private Repository(Application application){
+//        preferencesDatabase = PreferencesDatabase.getInstance(application);
+//        preferencesDAO = preferencesDatabase.preferencesDAO();
+    }
+
+    public static synchronized Repository getInstance(){
         if(instance == null)
-            instance = new Repository(application);
+            instance = new Repository();
         return instance;
     }
 

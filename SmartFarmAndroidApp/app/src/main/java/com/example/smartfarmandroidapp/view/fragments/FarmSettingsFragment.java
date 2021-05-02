@@ -1,59 +1,75 @@
-package com.example.smartfarmandroidapp.view;
+package com.example.smartfarmandroidapp.view.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.smartfarmandroidapp.R;
 import com.example.smartfarmandroidapp.domain.Preferences;
 import com.example.smartfarmandroidapp.viewmodel.MonitorViewModel;
 
-public class FarmSettingsActivity extends AppCompatActivity {
+public class FarmSettingsFragment extends Fragment {
+
     private EditText CO2Desired, CO2Deviation;
     private EditText temperatureDesired, temperatureDeviation;
     private EditText humidityDesired, humidityDeviation;
     private Button saveButton, returnButton;
     private TextView info;
+    private View farmSettingsView;
     private MonitorViewModel viewModel;
 
 
 
-    private static final String FARM_SETTINGS_ACTIVITY = "FarmSettingsActivity";
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_farm_settings);
-        viewModel = new MonitorViewModel(getApplication());
+    }
 
-        CO2Desired = findViewById(R.id.desiredCO2);
-        CO2Deviation = findViewById(R.id.maxCO2Dev);
-        temperatureDesired = findViewById(R.id.desiredTemperature);
-        temperatureDeviation = findViewById(R.id.maxTemperatureDev);
-        humidityDesired = findViewById(R.id.desiredHumidity);
-        humidityDeviation = findViewById(R.id.maxHumidityDev);
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+      farmSettingsView = inflater.inflate(R.layout.fragment_farm_settings,container,false);
+        initializeFragmentsValues();
+
+
+        return farmSettingsView;
+    }
+
+    private void initializeFragmentsValues() {
+        viewModel = new ViewModelProvider(this).get(MonitorViewModel.class);
+
+        CO2Desired =  farmSettingsView.findViewById(R.id.desiredCO2);
+        CO2Deviation = farmSettingsView.findViewById(R.id.maxCO2Dev);
+        temperatureDesired = farmSettingsView.findViewById(R.id.desiredTemperature);
+        temperatureDeviation = farmSettingsView.findViewById(R.id.maxTemperatureDev);
+        humidityDesired = farmSettingsView.findViewById(R.id.desiredHumidity);
+        humidityDeviation = farmSettingsView.findViewById(R.id.maxHumidityDev);
 
         loadValues();
 
-        saveButton = findViewById(R.id.saveThresholdButton);
-        returnButton = findViewById(R.id.returnFromTweakingButton);
+        saveButton = farmSettingsView.findViewById(R.id.saveThresholdButton);
+        returnButton = farmSettingsView.findViewById(R.id.returnFromTweakingButton);
 
-        info = findViewById(R.id.errorTextView);
+        info = farmSettingsView.findViewById(R.id.errorTextView);
 
         saveButton.setOnClickListener(view -> onClickSave(info));
-
-        returnButton.setOnClickListener(v -> { finish(); });
-
-        Log.d(FARM_SETTINGS_ACTIVITY, "onCreate was called");
     }
+
 
     private void loadValues(){
         Preferences preferences = viewModel.getPreferences().getValue().get(0);
@@ -74,9 +90,10 @@ public class FarmSettingsActivity extends AppCompatActivity {
                 Integer.parseInt(temperatureDesired.getText().toString()),
                 Integer.parseInt(temperatureDeviation.getText().toString()));
 
-        Context context = getApplicationContext();
+
         String text = "Update values...";
         int duration = Toast.LENGTH_SHORT;
-        Toast.makeText(context, text, duration).show();
+        Toast.makeText(getContext(), text, duration).show();
     }
+
 }
