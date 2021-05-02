@@ -118,7 +118,11 @@ public class Repository {
 
     public void savePreferences(Preferences prefs) { new UpdatePreferencesAsync(preferencesDAO).execute(prefs); }
 
-    public LiveData<List<Preferences>> getPreferences(int id) { return preferencesDAO.getPreferences(id); }
+    public LiveData<List<Preferences>> getPreferences(int id) {
+        LiveData<List<Preferences>> preferences = preferencesDAO.getPreferences(id);
+        if (preferences != null) { return preferences; }
+        return null;
+    }
 
     // Inner classes
 

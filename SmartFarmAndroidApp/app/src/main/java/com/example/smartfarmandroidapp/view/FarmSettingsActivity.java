@@ -24,8 +24,6 @@ public class FarmSettingsActivity extends AppCompatActivity {
     private TextView info;
     private MonitorViewModel viewModel;
 
-
-
     private static final String FARM_SETTINGS_ACTIVITY = "FarmSettingsActivity";
 
     @Override
@@ -57,12 +55,12 @@ public class FarmSettingsActivity extends AppCompatActivity {
 
     private void loadValues(){
         Preferences preferences = viewModel.getPreferences().getValue().get(0);
-        CO2Desired.setText(preferences.getDesiredCO2());
-        CO2Deviation.setText(preferences.getDeviationCO2());
-        temperatureDesired.setText(preferences.getDesiredTemperature());
-        temperatureDeviation.setText(preferences.getDeviationTemperature());
-        humidityDesired.setText(preferences.getDesiredHumidity());
-        humidityDeviation.setText(preferences.getDeviationHumidity());
+        CO2Desired.setText(preferences.getDesiredCO2() + "");
+        CO2Deviation.setText(preferences.getDeviationCO2() + "");
+        temperatureDesired.setText(preferences.getDesiredTemperature() + "");
+        temperatureDeviation.setText(preferences.getDeviationTemperature() + "");
+        humidityDesired.setText(preferences.getDesiredHumidity() + "");
+        humidityDeviation.setText(preferences.getDeviationHumidity() + "");
     }
 
     @SuppressLint("SetTextI18n")

@@ -1,8 +1,10 @@
 package com.example.smartfarmandroidapp.view;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -43,6 +45,12 @@ public class MonitorActivity extends AppCompatActivity {
         setUpObserver();
         updateProgressBar();
         Log.d(MONITOR_ACTIVITY, "onCreate was called");
+
+        Button testButton = findViewById(R.id.testButton);
+        testButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MonitorActivity.this, FarmSettingsActivity.class);
+            startActivity(intent);
+        });
     }
 
 
