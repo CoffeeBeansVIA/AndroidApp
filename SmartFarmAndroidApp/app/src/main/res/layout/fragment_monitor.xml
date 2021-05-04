@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#474747"
-    tools:context=".view.activities.MonitorActivity">
+    tools:context=".MVVM.View.Activities.MonitorActivity">
 
     <TextView
         android:id="@+id/plantStatusTextView"
