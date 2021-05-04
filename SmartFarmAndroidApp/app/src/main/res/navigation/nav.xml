@@ -6,7 +6,7 @@
     app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.smartfarmandroidapp.view.fragments.LoginFragment"
+        android:name="com.example.smartfarmandroidapp.MVVM.View.Fragments.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login"
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/farmSettingsFragment"
-        android:name="com.example.smartfarmandroidapp.view.fragments.FarmSettingsFragment"
+        android:name="com.example.smartfarmandroidapp.MVVM.View.Fragments.FarmSettingsFragment"
         android:label="FarmSettingsFragment"
         tools:layout="@layout/fragment_farm_settings">
         <action
@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/monitorFragment"
-        android:name="com.example.smartfarmandroidapp.view.fragments.MonitorFragment"
+        android:name="com.example.smartfarmandroidapp.MVVM.View.Fragments.MonitorFragment"
         android:label="MonitorFragment"
         tools:layout="@layout/fragment_monitor">
         <action
