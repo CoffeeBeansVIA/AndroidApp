@@ -1,13 +1,19 @@
-package com.example.smartfarmandroidapp.model;
+package com.example.smartfarmandroidapp.repository;
 
-import android.util.Log;
+import android.app.Application;
+import android.os.AsyncTask;
+
+import androidx.lifecycle.LiveData;
 
 import com.example.smartfarmandroidapp.Events.CO2Event;
 import com.example.smartfarmandroidapp.Events.HumidityEvent;
 import com.example.smartfarmandroidapp.Events.TemperatureEvent;
 import com.example.smartfarmandroidapp.domain.CO2;
 import com.example.smartfarmandroidapp.domain.Humidity;
+import com.example.smartfarmandroidapp.domain.Preferences;
 import com.example.smartfarmandroidapp.domain.Temperature;
+import com.example.smartfarmandroidapp.model.PreferencesDAO;
+import com.example.smartfarmandroidapp.model.PreferencesDatabase;
 import com.example.smartfarmandroidapp.servicegenerator.FarmServiceGenerator;
 import com.example.smartfarmandroidapp.webapi.CO2API;
 import com.example.smartfarmandroidapp.webapi.HumidityAPI;
@@ -15,15 +21,34 @@ import com.example.smartfarmandroidapp.webapi.TemperatureAPI;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.internal.EverythingIsNonNull;
 
-public class MonitorModel {
-    private String str = "";
-    public MonitorModel() {
+public class Repository {
+    private static Repository instance;
+    private PreferencesDatabase preferencesDatabase;
+    private PreferencesDAO preferencesDAO;
+
+    public Repository() {
     }
+
+    private Repository(Application application){
+//        preferencesDatabase = PreferencesDatabase.getInstance(application);
+//        preferencesDAO = preferencesDatabase.preferencesDAO();
+    }
+
+    public static synchronized Repository getInstance(){
+        if(instance == null)
+            instance = new Repository();
+        return instance;
+    }
+
+
+    // API methods
 
     public void getCO2() {
         CO2API co2API = FarmServiceGenerator.getCO2API();
@@ -89,4 +114,30 @@ public class MonitorModel {
             }
         });
     }
+
+    // Model methods
+
+    public void createPreferences(Preferences prefs) { new InsertPreferencesAsync(preferencesDAO).execute(prefs); }
+
+    public void savePreferences(Preferences prefs) { new UpdatePreferencesAsync(preferencesDAO).execute(prefs); }
+
+    public LiveData<List<Preferences>> getPreferences(int id) { return preferencesDAO.getPreferences(id); }
+
+    // Inner classes
+
+    private static class InsertPreferencesAsync extends AsyncTask<Preferences,Void,Void> {
+        private PreferencesDAO preferencesDAO;
+        public InsertPreferencesAsync(PreferencesDAO preferencesDAO) { this.preferencesDAO = preferencesDAO; }
+        @Override
+        protected Void doInBackground(Preferences... preferences) {
+            preferencesDAO.createPreferences(preferences[0]);
+            return null; }}
+
+    public static class UpdatePreferencesAsync extends AsyncTask<Preferences,Void,Void> {
+        private PreferencesDAO preferencesDAO;
+        public UpdatePreferencesAsync(PreferencesDAO preferencesDAO) { this.preferencesDAO = preferencesDAO; }
+        @Override
+        protected Void doInBackground(Preferences... preferences) {
+            preferencesDAO.savePreferences(preferences[0]);
+            return null; }}
 }
