@@ -1,6 +1,6 @@
-package com.example.smartfarmandroidapp.Domain;
+package com.example.smartfarmandroidapp.Domain.WebApi;
 
-public class CO2 {
+public class Humidity {
 
     private double value;
 

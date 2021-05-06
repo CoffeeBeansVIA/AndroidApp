@@ -1,6 +1,6 @@
 package com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.Endpoints;
 
-import com.example.smartfarmandroidapp.Domain.Temperature;
+import com.example.smartfarmandroidapp.Domain.WebApi.Temperature;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
