@@ -1,8 +1,8 @@
 package com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.MonitorRemouteSource;
 
-import com.example.smartfarmandroidapp.Domain.CO2;
-import com.example.smartfarmandroidapp.Domain.Humidity;
-import com.example.smartfarmandroidapp.Domain.Temperature;
+import com.example.smartfarmandroidapp.Domain.WebApi.CO2;
+import com.example.smartfarmandroidapp.Domain.WebApi.Humidity;
+import com.example.smartfarmandroidapp.Domain.WebApi.Temperature;
 import com.example.smartfarmandroidapp.EventsBusObject.CO2Event;
 import com.example.smartfarmandroidapp.EventsBusObject.HumidityEvent;
 import com.example.smartfarmandroidapp.EventsBusObject.TemperatureEvent;
@@ -29,7 +29,7 @@ public class MonitorRemoteDataSource implements IMonitorRemoteDataSource {
 
     @Override
     public void getCO2() {
-        CO2API co2API =monitorGenerator.getCo2API();
+        CO2API co2API = monitorGenerator.getCo2API();
         Call<CO2> call = co2API.getCO2(3);
         call.enqueue(new Callback<CO2>() {
             @EverythingIsNonNull

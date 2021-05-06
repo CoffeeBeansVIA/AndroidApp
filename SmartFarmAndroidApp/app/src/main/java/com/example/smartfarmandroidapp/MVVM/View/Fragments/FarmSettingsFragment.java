@@ -15,10 +15,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.smartfarmandroidapp.MVVM.Viewmodel.FarmSettingsViewModel;
 import com.example.smartfarmandroidapp.MVVM.Viewmodel.MonitorViewModel;
 import com.example.smartfarmandroidapp.R;
 
 public class FarmSettingsFragment extends Fragment {
+    private FarmSettingsViewModel farmSettingsViewModel;
 
     private EditText CO2Desired, CO2Deviation;
     private EditText temperatureDesired, temperatureDeviation;
