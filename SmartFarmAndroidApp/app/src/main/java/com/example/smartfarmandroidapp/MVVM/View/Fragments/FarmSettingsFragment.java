@@ -15,8 +15,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.smartfarmandroidapp.MVVM.Viewmodel.MonitorViewModel;
+import com.example.smartfarmandroidapp.MVVM.Viewmodel.FarmSettingsViewModel;
 import com.example.smartfarmandroidapp.R;
+import com.example.smartfarmandroidapp.Domain.Preferences;
 
 public class FarmSettingsFragment extends Fragment {
 
@@ -26,7 +27,7 @@ public class FarmSettingsFragment extends Fragment {
     private Button saveButton, returnButton;
     private TextView info;
     private View farmSettingsView;
-    private MonitorViewModel viewModel;
+    private FarmSettingsViewModel viewModel;
 
 
 
@@ -47,7 +48,7 @@ public class FarmSettingsFragment extends Fragment {
     }
 
     private void initializeFragmentsValues() {
-        viewModel = new ViewModelProvider(this).get(MonitorViewModel.class);
+        viewModel = new ViewModelProvider(this).get(FarmSettingsViewModel.class);
 
         CO2Desired =  farmSettingsView.findViewById(R.id.desiredCO2);
         CO2Deviation = farmSettingsView.findViewById(R.id.maxCO2Dev);
@@ -68,25 +69,23 @@ public class FarmSettingsFragment extends Fragment {
 
 
     private void loadValues(){
-       // Preferences preferences = viewModel.getPreferences().getValue().get(0);
-//        CO2Desired.setText(preferences.getDesiredCO2());
-//        CO2Deviation.setText(preferences.getDeviationCO2());
-//        temperatureDesired.setText(preferences.getDesiredTemperature());
-//        temperatureDeviation.setText(preferences.getDeviationTemperature());
-//        humidityDesired.setText(preferences.getDesiredHumidity());
-//        humidityDeviation.setText(preferences.getDeviationHumidity());
+        Preferences preferences = viewModel.getPreferences().getValue().get(0);
+        CO2Desired.setText(preferences.getDesiredCO2());
+        CO2Deviation.setText(preferences.getDeviationCO2());
+        temperatureDesired.setText(preferences.getDesiredTemperature());
+        temperatureDeviation.setText(preferences.getDeviationTemperature());
+        humidityDesired.setText(preferences.getDesiredHumidity());
+        humidityDeviation.setText(preferences.getDeviationHumidity());
     }
 
     @SuppressLint("SetTextI18n")
     private void onClickSave(View view){
-//        viewModel.savePreferences(Integer.parseInt(CO2Desired.getText().toString()),
-//                Integer.parseInt(CO2Deviation.getText().toString()),
-//                Integer.parseInt(humidityDesired.getText().toString()),
-//                Integer.parseInt(humidityDeviation.getText().toString()),
-//                Integer.parseInt(temperatureDesired.getText().toString()),
-//                Integer.parseInt(temperatureDeviation.getText().toString()));
-
-
+        viewModel.savePreferences(Integer.parseInt(CO2Desired.getText().toString()),
+                Integer.parseInt(CO2Deviation.getText().toString()),
+                Integer.parseInt(humidityDesired.getText().toString()),
+                Integer.parseInt(humidityDeviation.getText().toString()),
+                Integer.parseInt(temperatureDesired.getText().toString()),
+                Integer.parseInt(temperatureDeviation.getText().toString()));
         String text = "Update values...";
         int duration = Toast.LENGTH_SHORT;
         Toast.makeText(getContext(), text, duration).show();
