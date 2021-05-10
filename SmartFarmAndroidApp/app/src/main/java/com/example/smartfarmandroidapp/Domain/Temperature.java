@@ -1,4 +1,4 @@
-package com.example.smartfarmandroidapp.Domain;
+package com.example.smartfarmandroidapp.domain;
 
 public class Temperature {
 
