@@ -1,8 +1,8 @@
 package com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.MonitorRemouteSource;
 
-import com.example.smartfarmandroidapp.Domain.CO2;
-import com.example.smartfarmandroidapp.Domain.Humidity;
-import com.example.smartfarmandroidapp.Domain.Temperature;
+import com.example.smartfarmandroidapp.domain.CO2;
+import com.example.smartfarmandroidapp.domain.Humidity;
+import com.example.smartfarmandroidapp.domain.Temperature;
 import com.example.smartfarmandroidapp.EventsBusObject.CO2Event;
 import com.example.smartfarmandroidapp.EventsBusObject.HumidityEvent;
 import com.example.smartfarmandroidapp.EventsBusObject.TemperatureEvent;

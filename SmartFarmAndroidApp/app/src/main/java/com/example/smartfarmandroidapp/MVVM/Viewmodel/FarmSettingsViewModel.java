@@ -7,7 +7,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.smartfarmandroidapp.Domain.Preferences;
+import com.example.smartfarmandroidapp.MVVM.Repository.Monitor.SettingsRepository;
+import com.example.smartfarmandroidapp.domain.Preferences;
 import com.example.smartfarmandroidapp.MVVM.Repository.Monitor.ISettingsRepository;
 
 import java.util.List;
@@ -18,6 +19,8 @@ public class FarmSettingsViewModel extends AndroidViewModel {
 
     public FarmSettingsViewModel(@NonNull Application application) {
         super(application);
+
+        repository = new SettingsRepository(application);
 
         userID = new MutableLiveData<>(1234);
         CO2Preferred = new MutableLiveData<>();

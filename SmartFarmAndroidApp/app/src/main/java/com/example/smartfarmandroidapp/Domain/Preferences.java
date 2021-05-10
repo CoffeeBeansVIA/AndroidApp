@@ -1,4 +1,4 @@
-package com.example.smartfarmandroidapp.Domain;
+package com.example.smartfarmandroidapp.domain;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

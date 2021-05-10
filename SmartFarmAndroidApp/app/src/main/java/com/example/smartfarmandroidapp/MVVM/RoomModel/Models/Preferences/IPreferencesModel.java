@@ -2,7 +2,7 @@ package com.example.smartfarmandroidapp.MVVM.RoomModel.Models.Preferences;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.smartfarmandroidapp.Domain.Preferences;
+import com.example.smartfarmandroidapp.domain.Preferences;
 
 import java.util.List;
 

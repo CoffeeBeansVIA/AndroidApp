@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.smartfarmandroidapp.Domain.Preferences;
+import com.example.smartfarmandroidapp.domain.Preferences;
 import com.example.smartfarmandroidapp.MVVM.RoomModel.DAO.PreferencesDAO;
 import com.example.smartfarmandroidapp.MVVM.RoomModel.Database.PreferencesDatabase;
 
