@@ -17,7 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.smartfarmandroidapp.MVVM.Viewmodel.FarmSettingsViewModel;
 import com.example.smartfarmandroidapp.R;
-import com.example.smartfarmandroidapp.domain.Preferences;
+import com.example.smartfarmandroidapp.Domain.Preferences;
 
 public class FarmSettingsFragment extends Fragment {
 
@@ -42,6 +42,8 @@ public class FarmSettingsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
       farmSettingsView = inflater.inflate(R.layout.fragment_farm_settings,container,false);
         initializeFragmentsValues();
+
+
         return farmSettingsView;
     }
 
