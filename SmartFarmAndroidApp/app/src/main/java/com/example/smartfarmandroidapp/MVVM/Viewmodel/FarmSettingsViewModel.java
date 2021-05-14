@@ -40,12 +40,12 @@ public class FarmSettingsViewModel extends AndroidViewModel {
     public MutableLiveData<Integer> getTemperatureDeviation() { return temperatureDeviation; }
 
     public void savePreferences(int CO2Preferred, int CO2Deviation,
-                             int humidityPreferred, int humidityDeviation,
-                             int temperaturePreferred, int temperatureDeviation) {
+                                int temperaturePreferred, int temperatureDeviation,
+                                int humidityPreferred, int humidityDeviation) {
         repository.savePreferences(new Preferences(userID.getValue(),
                                 CO2Preferred, CO2Deviation,
-                                humidityPreferred, humidityDeviation,
-                                temperaturePreferred, temperatureDeviation));
+                                temperaturePreferred, temperatureDeviation,
+                                humidityPreferred, humidityDeviation));
     }
 
     public Flowable<List<Preferences>> getPreferences() { return repository.getPreferences(userID.getValue()); }
