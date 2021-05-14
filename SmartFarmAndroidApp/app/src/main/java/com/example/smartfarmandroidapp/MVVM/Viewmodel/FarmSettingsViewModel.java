@@ -4,14 +4,15 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.smartfarmandroidapp.MVVM.Repository.Monitor.ISettingsRepository;
 import com.example.smartfarmandroidapp.MVVM.Repository.Monitor.SettingsRepository;
 import com.example.smartfarmandroidapp.domain.Preferences;
-import com.example.smartfarmandroidapp.MVVM.Repository.Monitor.ISettingsRepository;
 
 import java.util.List;
+
+import io.reactivex.Flowable;
 
 public class FarmSettingsViewModel extends AndroidViewModel {
     private MutableLiveData<Integer> userID, CO2Preferred, CO2Deviation, humidityPreferred, humidityDeviation, temperaturePreferred, temperatureDeviation;
@@ -47,5 +48,5 @@ public class FarmSettingsViewModel extends AndroidViewModel {
                                 temperaturePreferred, temperatureDeviation));
     }
 
-    public LiveData<List<Preferences>> getPreferences() { return repository.getPreferences(userID.getValue()); }
+    public Flowable<List<Preferences>> getPreferences() { return repository.getPreferences(userID.getValue()); }
 }

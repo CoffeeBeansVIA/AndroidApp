@@ -1,12 +1,12 @@
 package com.example.smartfarmandroidapp.MVVM.Repository.Monitor;
 
-import androidx.lifecycle.LiveData;
-
 import com.example.smartfarmandroidapp.domain.Preferences;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
+
 public interface ISettingsRepository {
     void savePreferences(Preferences preferences);
-    LiveData<List<Preferences>> getPreferences(int userID);
+    Flowable<List<Preferences>> getPreferences(int userID);
 }

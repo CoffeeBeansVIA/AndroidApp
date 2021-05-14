@@ -2,36 +2,34 @@ package com.example.smartfarmandroidapp.MVVM.Repository.Monitor;
 
 import android.app.Application;
 
-import androidx.lifecycle.LiveData;
-
+import com.example.smartfarmandroidapp.MVVM.RoomModel.Models.Preferences.IPreferencesModel;
+import com.example.smartfarmandroidapp.MVVM.RoomModel.Models.Preferences.PreferencesModel;
 import com.example.smartfarmandroidapp.domain.Preferences;
-import com.example.smartfarmandroidapp.MVVM.RoomModel.DAO.PreferencesDAO;
-import com.example.smartfarmandroidapp.MVVM.RoomModel.Database.PreferencesDatabase;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
+
 public class SettingsRepository implements ISettingsRepository {
-    private PreferencesDatabase database;
-    private PreferencesDAO preferencesDAO;
-    private LiveData<List<Preferences>> preferences;
+    private IPreferencesModel preferencesModel;
 
     public SettingsRepository(Application application) {
-        database = PreferencesDatabase.getInstance(application);
-        preferencesDAO = database.preferencesDAO();
-        preferences = preferencesDAO.getPreferences(1234);
-        if (preferences == null) {
-            preferencesDAO.createPreferences(new Preferences(1234,0,0,0,0,0,0));
-            preferences = preferencesDAO.getPreferences(1234);
-        }
+        preferencesModel = new PreferencesModel(application);
     }
 
     @Override
     public void savePreferences(Preferences preferences) {
-        preferencesDAO.savePreferences(preferences);
+        preferencesModel.savePreferences(preferences);
     }
 
     @Override
-    public LiveData<List<Preferences>> getPreferences(int userID) {
+    public Flowable<List<Preferences>> getPreferences(int userID) {
+        Flowable<List<Preferences>> preferences = preferencesModel.getPreferences(1234);
+        if (preferences == null || preferences.blockingFirst().size() == 0) {
+            preferencesModel.createPreferences(new Preferences(1234,0,0,0,0,0,0));
+            preferences = preferencesModel.getPreferences(1234);
+        }
+        while (preferences.blockingFirst().size() == 0) {}
         return preferences;
     }
 }

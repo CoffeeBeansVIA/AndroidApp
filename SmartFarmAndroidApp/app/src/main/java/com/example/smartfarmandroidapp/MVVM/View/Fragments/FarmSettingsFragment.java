@@ -67,13 +67,13 @@ public class FarmSettingsFragment extends Fragment {
 
 
     private void loadValues(){
-        Preferences preferences = viewModel.getPreferences().getValue().get(0);
-        CO2Desired.setText(preferences.getDesiredCO2());
-        CO2Deviation.setText(preferences.getDeviationCO2());
-        temperatureDesired.setText(preferences.getDesiredTemperature());
-        temperatureDeviation.setText(preferences.getDeviationTemperature());
-        humidityDesired.setText(preferences.getDesiredHumidity());
-        humidityDeviation.setText(preferences.getDeviationHumidity());
+        Preferences preferences = viewModel.getPreferences().blockingFirst().get(0);
+        CO2Desired.setText(preferences.getDesiredCO2() + "");
+        CO2Deviation.setText(preferences.getDeviationCO2() + "");
+        temperatureDesired.setText(preferences.getDesiredTemperature() + "");
+        temperatureDeviation.setText(preferences.getDeviationTemperature() + "");
+        humidityDesired.setText(preferences.getDesiredHumidity() + "");
+        humidityDeviation.setText(preferences.getDeviationHumidity() + "");
     }
 
     @SuppressLint("SetTextI18n")

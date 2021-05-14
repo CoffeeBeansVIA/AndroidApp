@@ -3,15 +3,15 @@ package com.example.smartfarmandroidapp.MVVM.RoomModel.Models.Preferences;
 import android.app.Application;
 import android.os.AsyncTask;
 
-import androidx.lifecycle.LiveData;
-
-import com.example.smartfarmandroidapp.domain.Preferences;
 import com.example.smartfarmandroidapp.MVVM.RoomModel.DAO.PreferencesDAO;
 import com.example.smartfarmandroidapp.MVVM.RoomModel.Database.PreferencesDatabase;
+import com.example.smartfarmandroidapp.domain.Preferences;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import io.reactivex.Flowable;
 
 public class PreferencesModel implements IPreferencesModel {
 
@@ -35,22 +35,17 @@ public class PreferencesModel implements IPreferencesModel {
 
     @Override
     public void createPreferences(Preferences prefs) {
-        executorService.execute(() ->
-                new InsertPreferencesAsync(preferencesDAO).execute(prefs));
+        executorService.execute(() -> new InsertPreferencesAsync(preferencesDAO).execute(prefs));
     }
 
     @Override
     public void savePreferences(Preferences prefs) {
-        executorService.execute(() ->
-                new UpdatePreferencesAsync(preferencesDAO).execute(prefs));
+        executorService.execute(() -> new UpdatePreferencesAsync(preferencesDAO).execute(prefs));
     }
 
     @Override
-    public LiveData<List<Preferences>> getPreferences(int id) {
-        //TODO must have an executorAsync as well
+    public Flowable<List<Preferences>> getPreferences(int id) {
         return preferencesDAO.getPreferences(id);
-//        executorService.execute(() -> preferencesDAO.getPreferences(id));
-//        return null;
     }
 
 
