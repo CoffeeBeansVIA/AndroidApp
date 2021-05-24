@@ -2,6 +2,7 @@ package com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGener
 
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.Endpoints.CO2API;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.Endpoints.HumidityAPI;
+import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.Endpoints.PreferencesAPI;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.Endpoints.TemperatureAPI;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.ServiceGenerator.ServiceGenerator;
 
@@ -11,6 +12,7 @@ public class MonitorGenerator implements IMonitorGenerator{
     private static CO2API co2API;
     private static HumidityAPI humidityAPI;
     private static TemperatureAPI temperatureAPI;
+    private static PreferencesAPI preferencesAPI;
     private Retrofit.Builder baseRetrofitBuilder;
 
     public MonitorGenerator() {
@@ -45,5 +47,15 @@ public class MonitorGenerator implements IMonitorGenerator{
                     .create(TemperatureAPI.class);
         }
         return temperatureAPI;
+    }
+
+    @Override
+    public PreferencesAPI getPreferencesAPI() {
+        if (preferencesAPI == null) {
+            preferencesAPI = baseRetrofitBuilder
+                    .build()
+                    .create(PreferencesAPI.class);
+        }
+        return preferencesAPI;
     }
 }
