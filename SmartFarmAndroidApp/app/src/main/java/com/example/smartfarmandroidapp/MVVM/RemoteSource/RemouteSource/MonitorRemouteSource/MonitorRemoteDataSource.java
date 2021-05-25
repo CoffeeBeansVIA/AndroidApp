@@ -1,12 +1,5 @@
 package com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.MonitorRemouteSource;
 
-import com.example.smartfarmandroidapp.EventsBusObject.PreferencesEvent;
-import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.Endpoints.PreferencesAPI;
-import com.example.smartfarmandroidapp.domain.CO2;
-import com.example.smartfarmandroidapp.domain.Farm;
-import com.example.smartfarmandroidapp.domain.Humidity;
-import com.example.smartfarmandroidapp.domain.Preferences;
-import com.example.smartfarmandroidapp.domain.Temperature;
 import com.example.smartfarmandroidapp.EventsBusObject.CO2Event;
 import com.example.smartfarmandroidapp.EventsBusObject.HumidityEvent;
 import com.example.smartfarmandroidapp.EventsBusObject.TemperatureEvent;
@@ -15,6 +8,9 @@ import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenera
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.Endpoints.TemperatureAPI;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.IMonitorGenerator;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.MonitorGenerator;
+import com.example.smartfarmandroidapp.domain.CO2;
+import com.example.smartfarmandroidapp.domain.Humidity;
+import com.example.smartfarmandroidapp.domain.Temperature;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -93,34 +89,6 @@ public class MonitorRemoteDataSource implements IMonitorRemoteDataSource {
 
             @Override
             public void onFailure(Call<Temperature> call, Throwable t) {
-
-            }
-        });
-    }
-
-    @Override
-    public void getPreferences() {
-        PreferencesAPI preferencesAPI = monitorGenerator.getPreferencesAPI();
-        Call<Farm> call = preferencesAPI.getPreferences(1);
-        call.enqueue(new Callback<Farm>() {
-            @Override
-            public void onResponse(Call<Farm> call, Response<Farm> response) {
-                if(response.isSuccessful()) {
-                    Farm responseFarm = response.body();
-                    PreferencesEvent event = new PreferencesEvent();
-                    event.setPreferences(new Preferences(1,
-                            responseFarm.getSensors().get(1).getSensorSettings().get(1),
-                            responseFarm.getSensors().get(1).getSensorSettings().get(2),
-                            responseFarm.getSensors().get(2).getSensorSettings().get(1),
-                            responseFarm.getSensors().get(2).getSensorSettings().get(2),
-                            responseFarm.getSensors().get(3).getSensorSettings().get(1),
-                            responseFarm.getSensors().get(3).getSensorSettings().get(2)));
-                    EventBus.getDefault().post(event);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Farm> call, Throwable t) {
 
             }
         });

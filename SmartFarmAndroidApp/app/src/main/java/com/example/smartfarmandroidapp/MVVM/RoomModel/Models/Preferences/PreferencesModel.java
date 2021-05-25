@@ -62,6 +62,7 @@ public class PreferencesModel implements IPreferencesModel {
             return null;
         }
     }
+
     public static class UpdatePreferencesAsync extends AsyncTask<Preferences,Void,Void> {
         private PreferencesDAO preferencesDAO;
         public UpdatePreferencesAsync(PreferencesDAO preferencesDAO) { this.preferencesDAO = preferencesDAO; }

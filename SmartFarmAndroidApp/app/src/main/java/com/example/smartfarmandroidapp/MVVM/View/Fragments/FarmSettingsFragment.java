@@ -17,7 +17,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.smartfarmandroidapp.MVVM.Viewmodel.FarmSettingsViewModel;
 import com.example.smartfarmandroidapp.R;
-import com.example.smartfarmandroidapp.domain.Preferences;
 
 public class FarmSettingsFragment extends Fragment {
 
@@ -63,17 +62,20 @@ public class FarmSettingsFragment extends Fragment {
         info = farmSettingsView.findViewById(R.id.errorTextView);
 
         saveButton.setOnClickListener(view -> onClickSave(info));
+
+        setUpObserver();
     }
 
 
     private void loadValues(){
+        /*
         Preferences preferences = viewModel.getPreferences().blockingFirst().get(0);
         CO2Desired.setText(preferences.getDesiredCO2() + "");
         CO2Deviation.setText(preferences.getDeviationCO2() + "");
         temperatureDesired.setText(preferences.getDesiredTemperature() + "");
         temperatureDeviation.setText(preferences.getDeviationTemperature() + "");
         humidityDesired.setText(preferences.getDesiredHumidity() + "");
-        humidityDeviation.setText(preferences.getDeviationHumidity() + "");
+        humidityDeviation.setText(preferences.getDeviationHumidity() + "");*/
     }
 
     @SuppressLint("SetTextI18n")
@@ -89,4 +91,29 @@ public class FarmSettingsFragment extends Fragment {
         Toast.makeText(getContext(), text, duration).show();
     }
 
+    private void setUpObserver() {
+        viewModel.getCO2Preferred().observe(getViewLifecycleOwner(), co2Desired -> {
+            CO2Desired.setText(co2Desired);
+        });
+
+        viewModel.getCO2Deviation().observe(getViewLifecycleOwner(), co2Deviation -> {
+            CO2Deviation.setText(co2Deviation);
+        } );
+
+        viewModel.getTemperaturePreferred().observe(getViewLifecycleOwner(), temperatureDesiredValue -> {
+            temperatureDesired.setText(temperatureDesiredValue);
+        });
+
+        viewModel.getTemperatureDeviation().observe(getViewLifecycleOwner(), temperatureDeviationValue -> {
+            temperatureDeviation.setText(temperatureDeviationValue);
+        } );
+
+        viewModel.getHumidityPreferred().observe(getViewLifecycleOwner(), humidityDesiredValue -> {
+            humidityDesired.setText(humidityDesiredValue);
+        });
+
+        viewModel.getHumidityDeviation().observe(getViewLifecycleOwner(), humidityDeviationValue -> {
+            humidityDeviation.setText(humidityDeviationValue);
+        } );
+    }
 }

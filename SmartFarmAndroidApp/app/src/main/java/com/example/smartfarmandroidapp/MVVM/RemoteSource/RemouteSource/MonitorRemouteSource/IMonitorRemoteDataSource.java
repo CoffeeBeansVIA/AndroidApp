@@ -6,6 +6,4 @@ public interface IMonitorRemoteDataSource {
     void getHumidity();
 
     void getTemperature();
-
-    void getPreferences();
 }
