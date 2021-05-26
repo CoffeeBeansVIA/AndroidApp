@@ -18,11 +18,13 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
@@ -49,18 +51,19 @@ public class LoginFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
+        FirebaseApp.initializeApp(getActivity());
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        loginView = inflater.inflate(R.layout.fragment_login,container,false);
+        FacebookSdk.sdkInitialize(getActivity().getApplicationContext());
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
         mCallbackManager = CallbackManager.Factory.create();
-        loginButton = loginView.findViewById(R.id.button_sign_in);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        loginButton = (LoginButton) loginView.findViewById(R.id.button_sign_in);
         loginButton.setReadPermissions("email", "public_profile");
         loginButton.setFragment(this);
         loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
@@ -84,7 +87,12 @@ public class LoginFragment extends Fragment {
         onStart();
 
         Log.d(LOGIN_FRAGMENT, "onCreate was called");
+    }
 
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        loginView = inflater.inflate(R.layout.fragment_login, container, false);
         return loginView;
     }
 
