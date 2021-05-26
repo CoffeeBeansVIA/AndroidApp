@@ -5,84 +5,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#474747"
-    tools:context=".MVVM.View.Activities.LoginActivity">
+    tools:context=".MVVM.View.Fragments.LoginFragment">
 
-    <EditText
-        android:id="@+id/editTextPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="Password"
-        android:text="new"
-        android:inputType="textPassword"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#ACACAC"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddress"
-        app:layout_constraintVertical_bias="0.017" />
-
-    <EditText
-        android:id="@+id/editTextEmailAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="224dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:text="user@email.com"
-        android:hint="Email address"
-        android:inputType="textEmailAddress"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#ACACAC"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:onClick="onClick"
-        android:text="Login"
-        app:backgroundTint="@android:color/holo_green_light"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/button_sign_in"
+        android:layout_width="179dp"
+        android:layout_height="55dp"
+        android:layout_gravity="start"
+        android:layout_marginTop="56dp"
+        android:enabled="true"
+        android:onClick="signIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <TextView
         android:id="@+id/smartFarmTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="116dp"
         android:fontFamily="sans-serif-light"
-        android:text="SmartFarm"
+        android:text="@string/smartfarm"
         android:textColor="#FFFFFF"
-        android:textSize="36sp"
+        android:textSize="45sp"
         android:textStyle="italic"
         android:typeface="normal"
-        app:layout_constraintBottom_toTopOf="@+id/editTextEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="204dp"
+        android:layout_height="177dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.687" />
-
-    <TextView
-        android:id="@+id/errorTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#C84F4F"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/loginButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/smartFarmTitle"
+        app:srcCompat="@drawable/androidlogo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
