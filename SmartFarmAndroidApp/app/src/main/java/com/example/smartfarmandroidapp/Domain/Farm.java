@@ -61,9 +61,14 @@ public class Farm {
         public void setSensorSettings(SensorSettings sensorSetting) { this.sensorSetting = sensorSetting; }
     }
 
-    public class SensorSettings {
+    public static class SensorSettings {
         private int desiredValue;
         private int deviationValue;
+
+        public SensorSettings(int desiredValue, int deviationValue) {
+            this.desiredValue = desiredValue;
+            this.deviationValue = deviationValue;
+        }
 
         public int getDesiredValue() { return desiredValue; }
         public void setDesiredValue(int desiredValue) { this.desiredValue = desiredValue; }

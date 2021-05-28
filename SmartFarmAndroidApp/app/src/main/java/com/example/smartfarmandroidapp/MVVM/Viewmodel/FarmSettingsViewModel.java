@@ -47,9 +47,9 @@ public class FarmSettingsViewModel extends AndroidViewModel {
                                 int temperaturePreferred, int temperatureDeviation,
                                 int humidityPreferred, int humidityDeviation) {
         repository.savePreferences(new Preferences(userID.getValue(),
-                                CO2Preferred, CO2Deviation,
-                                temperaturePreferred, temperatureDeviation,
-                                humidityPreferred, humidityDeviation));
+                                1,CO2Preferred, CO2Deviation,
+                                2,temperaturePreferred, temperatureDeviation,
+                                3,humidityPreferred, humidityDeviation));
     }
 
     @Subscribe
