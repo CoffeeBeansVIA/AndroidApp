@@ -13,6 +13,6 @@ public interface PreferencesAPI {
     @GET("api/farms/{farmID}")
     Call<Farm> getPreferences(@Path("farmID") int farmID);
 
-    @PUT("api/sensors/{sensorID}/settings")
-    Call<ResponseBody> savePreferences(@Body InformationToBeSaved information);
+    @PUT("api/farms/{farmId}/sensors/{sensorId}/settings")
+    Call<ResponseBody> savePreferences(@Path("farmId") int farmId, @Path("sensorId") int sensorId, @Body Farm.SensorSettings sensorSetting);
 }
