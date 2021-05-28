@@ -1,17 +1,14 @@
-package com.example.smartfarmandroidapp.MVVM.View.Fragments;
+package com.example.smartfarmandroidapp.MVVM.View.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartfarmandroidapp.R;
 import com.facebook.AccessToken;
@@ -19,6 +16,7 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.firebase.ui.auth.AuthUI;
@@ -34,10 +32,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Arrays;
 import java.util.List;
 
-import static android.app.Activity.RESULT_OK;
-
-public class LoginFragment extends Fragment {
-    private View loginView;
+public class LoginActivity extends AppCompatActivity {
 
     private LoginButton loginButton;
 
@@ -46,54 +41,47 @@ public class LoginFragment extends Fragment {
     private FirebaseAuth mAuth;
     private CallbackManager mCallbackManager;
 
-    private static final String LOGIN_FRAGMENT = "LoginFragment";
+    private static final String TAG = "LoginActivity";
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FirebaseApp.initializeApp(getActivity());
 
-        FacebookSdk.sdkInitialize(getActivity().getApplicationContext());
+        FirebaseApp.initializeApp(this);
+        FacebookSdk.sdkInitialize(this.getApplicationContext());
+        AppEventsLogger.activateApp(this);
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-
         mCallbackManager = CallbackManager.Factory.create();
+
+        setContentView(R.layout.activity_login);
+        initializeFragmentsValues();
+
+        Log.d(TAG, "onCreate was called");
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        loginButton = (LoginButton) loginView.findViewById(R.id.button_sign_in);
-        loginButton.setReadPermissions("email", "public_profile");
-        loginButton.setFragment(this);
+    private void initializeFragmentsValues() {
+        loginButton = (LoginButton) findViewById(R.id.button_sign_in);
+
+        loginButton.setPermissions("email", "public_profile");
         loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Log.d(LOGIN_FRAGMENT, "facebook:onSuccess:" + loginResult);
+                Log.d(TAG, "facebook:onSuccess:" + loginResult);
                 handleFacebookAccessToken(loginResult.getAccessToken());
             }
 
             @Override
             public void onCancel() {
-                Log.d(LOGIN_FRAGMENT, "facebook:onCancel");
+                Log.d(TAG, "facebook:onCancel");
             }
 
             @Override
             public void onError(FacebookException error) {
-                Log.d(LOGIN_FRAGMENT, "facebook:onError", error);
+                Log.d(TAG, "facebook:onError", error);
             }
         });
-
-        onStart();
-
-        Log.d(LOGIN_FRAGMENT, "onCreate was called");
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        loginView = inflater.inflate(R.layout.fragment_login, container, false);
-        return loginView;
     }
 
     @Override
@@ -102,19 +90,21 @@ public class LoginFragment extends Fragment {
 
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser user = mAuth.getCurrentUser();
-        if (user != null)
+
+        if (user != null) {
+            Log.d("state", " = definitely signed out");
             updateUI(user);
+        } else {
+            Log.d("state", " = definitely signed in");
+        }
+
     }
 
     private void goToMainActivity() {
-
-        loginButton.setOnClickListener(view -> {
-            Navigation.findNavController(loginView).navigate(R.id.action_loginFragment_to_monitorFragment);
-        });
-
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 
-    //TODO now this cannot be found, but it supposed to be an onClick behaviour for the loginButton
     public void signIn(View v) {
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.FacebookBuilder().build());
@@ -142,26 +132,26 @@ public class LoginFragment extends Fragment {
         if (resultCode == RESULT_OK)
             goToMainActivity();
         else
-            Toast.makeText(getActivity(), "SIGN IN CANCELLED", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "SIGN IN CANCELLED", Toast.LENGTH_SHORT).show();
     }
 
     private void handleFacebookAccessToken(AccessToken token) {
-        Log.d(LOGIN_FRAGMENT, "handleFacebookAccessToken:" + token);
+        Log.d(TAG, "handleFacebookAccessToken:" + token);
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d(LOGIN_FRAGMENT, "signInWithCredential:success");
+                            Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w(LOGIN_FRAGMENT, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(getActivity(), "Authentication failed.",
+                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }

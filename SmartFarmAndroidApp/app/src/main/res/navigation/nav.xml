@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav"
-    app:startDestination="@id/loginFragment">
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.smartfarmandroidapp.MVVM.View.Fragments.LoginFragment"
-        android:label="LoginFragment"
-        tools:layout="@layout/fragment_login"
+    app:startDestination="@id/monitorFragment">
+<!--    <fragment-->
+<!--        android:id="@+id/loginFragment"-->
+<!--        android:name="com.example.smartfarmandroidapp.MVVM.View.Fragments.LoginFragment"-->
+<!--        android:label="LoginFragment"-->
+<!--        tools:layout="@layout/fragment_login"-->
 
-        >
-        <action
-            android:id="@+id/action_loginFragment_to_monitorFragment"
-            app:destination="@id/monitorFragment" />
-    </fragment>
+<!--        >-->
+<!--        <action-->
+<!--            android:id="@+id/action_loginFragment_to_monitorFragment"-->
+<!--            app:destination="@id/monitorFragment" />-->
+<!--    </fragment>-->
     <fragment
         android:id="@+id/farmSettingsFragment"
         android:name="com.example.smartfarmandroidapp.MVVM.View.Fragments.FarmSettingsFragment"

@@ -67,7 +67,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:20.0.0'
 
     //Firebase Facebook Authentication
-    implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
+    implementation 'com.facebook.android:facebook-android-sdk:5.15.3'
 
     def nav_version = "2.2.2"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
