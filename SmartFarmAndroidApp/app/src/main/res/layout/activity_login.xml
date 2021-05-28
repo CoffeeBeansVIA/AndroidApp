@@ -7,15 +7,21 @@
     android:background="#474747"
     tools:context=".MVVM.View.Activities.LoginActivity">
 
-
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/button_sign_in"
-        android:layout_width="179dp"
-        android:layout_height="55dp"
+    <Button
+        android:id="@+id/signInButton"
+        android:layout_width="195dp"
+        android:layout_height="67dp"
         android:layout_gravity="start"
-        android:layout_marginTop="56dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="48dp"
+        android:background="@color/common_google_signin_btn_text_light_pressed"
         android:enabled="true"
         android:onClick="signIn"
+        android:text="@string/sign_in_register"
+        android:textColor="@color/design_default_color_background"
+        android:textStyle="bold|italic"
+        app:backgroundTint="@android:color/holo_green_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo" />

@@ -14,4 +14,6 @@
     <string name="fblogo">fblogo</string>
     <string name="facebook_app_id">897519090826446</string>
     <string name="fb_login_protocol_scheme">fb897519090826446</string>
+    <string name="android_studio">Android Studio</string>
+    <string name="android_studio_android_com">android.studio@android.com</string>
 </resources>

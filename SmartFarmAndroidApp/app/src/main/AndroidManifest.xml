@@ -3,9 +3,10 @@
     package="com.example.smartfarmandroidapp"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <queries>
-        <package android:name="com.facebook.katana" />
-    </queries>
+<!--    <queries>-->
+<!--        <package android:name="com.facebook.katana" />-->
+<!--    </queries>-->
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -15,25 +16,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartFarmAndroidApp">
-        <activity android:name=".MVVM.View.Activities.LoginActivity"/>
-        <activity android:name=".MVVM.View.Activities.MainActivity">
+        <activity
+            android:name=".MVVM.View.Activities.DrawerActivity"
+            android:label="Drawer Activity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".MVVM.View.Activities.MainActivity" />
+        <activity android:name=".MVVM.View.Activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!--For Facebook authentication-->
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
+<!--        &lt;!&ndash;For Facebook authentication&ndash;&gt;-->
+<!--        <meta-data android:name="com.facebook.sdk.ApplicationId"-->
+<!--            android:value="@string/facebook_app_id"/>-->
 
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name" />
+<!--        <activity android:name="com.facebook.FacebookActivity"-->
+<!--            android:configChanges=-->
+<!--                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"-->
+<!--            android:label="@string/app_name" />-->
 
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>
