@@ -1,6 +1,7 @@
 package com.example.smartfarmandroidapp.MVVM.Viewmodel;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -22,7 +23,6 @@ public class FarmSettingsViewModel extends AndroidViewModel {
         super(application);
         EventBus.getDefault().register(this);
 
-        repository = new SettingsRepository(application);
         userID = new MutableLiveData<>();
         CO2Preferred = new MutableLiveData<>();
         CO2Deviation = new MutableLiveData<>();
@@ -30,6 +30,10 @@ public class FarmSettingsViewModel extends AndroidViewModel {
         humidityDeviation = new MutableLiveData<>();
         temperaturePreferred = new MutableLiveData<>();
         temperatureDeviation = new MutableLiveData<>();
+
+        userID.setValue(1);
+
+        repository = new SettingsRepository(application);
     }
 
     public MutableLiveData<Integer> getCO2Preferred() { return CO2Preferred; }
@@ -56,6 +60,7 @@ public class FarmSettingsViewModel extends AndroidViewModel {
         humidityDeviation.postValue(preferencesEvent.getPreferences().getDeviationHumidity());
         temperaturePreferred.postValue(preferencesEvent.getPreferences().getDesiredTemperature());
         temperatureDeviation.postValue(preferencesEvent.getPreferences().getDesiredTemperature());
+        Log.i("Preferences", "Preferences updated");
     }
 
     public void getPreferences() { repository.getPreferences(userID.getValue()); }

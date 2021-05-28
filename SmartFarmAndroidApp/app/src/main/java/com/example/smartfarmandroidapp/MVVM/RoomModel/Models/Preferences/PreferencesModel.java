@@ -69,5 +69,6 @@ public class PreferencesModel implements IPreferencesModel {
         @Override
         protected Void doInBackground(Preferences... preferences) {
             preferencesDAO.savePreferences(preferences[0]);
-            return null; }}
+            return null;
+        }}
 }

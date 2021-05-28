@@ -30,13 +30,13 @@ public class SettingsRemoteData implements ISettingsRemoteData{
                 if(response.isSuccessful()) {
                     Farm responseFarm = response.body();
                     PreferencesEvent event = new PreferencesEvent();
-                    event.setPreferences(new Preferences(responseFarm.getPlantKeepers().get(1).getId(),
-                            responseFarm.getSensors().get(1).getSensorSettings().get(1),
-                            responseFarm.getSensors().get(1).getSensorSettings().get(2),
-                            responseFarm.getSensors().get(2).getSensorSettings().get(1),
-                            responseFarm.getSensors().get(2).getSensorSettings().get(2),
-                            responseFarm.getSensors().get(3).getSensorSettings().get(1),
-                            responseFarm.getSensors().get(3).getSensorSettings().get(2)));
+                    event.setPreferences(new Preferences(responseFarm.getPlantKeepers().get(0).getId(),
+                            response.body().getSensors().get(0).getSensorSettings().getDesiredValue(),
+                            response.body().getSensors().get(0).getSensorSettings().getDeviationValue(),
+                            0,//response.body().getSensors().get(1).getSensorSettings().getDesiredValue(),
+                            0,//response.body().getSensors().get(1).getSensorSettings().getDeviationValue(),
+                            response.body().getSensors().get(2).getSensorSettings().getDesiredValue(),
+                            response.body().getSensors().get(2).getSensorSettings().getDeviationValue()));
                     EventBus.getDefault().post(event);
                 }
             }

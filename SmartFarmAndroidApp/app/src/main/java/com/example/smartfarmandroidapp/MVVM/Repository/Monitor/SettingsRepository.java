@@ -5,7 +5,6 @@ import android.app.Application;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.MonitorRemouteSource.ISettingsRemoteData;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.MonitorRemouteSource.SettingsRemoteData;
 import com.example.smartfarmandroidapp.MVVM.RoomModel.Models.Preferences.IPreferencesModel;
-import com.example.smartfarmandroidapp.MVVM.RoomModel.Models.Preferences.PreferencesModel;
 import com.example.smartfarmandroidapp.domain.Preferences;
 
 public class SettingsRepository implements ISettingsRepository {
@@ -13,7 +12,7 @@ public class SettingsRepository implements ISettingsRepository {
     private ISettingsRemoteData remoteData;
 
     public SettingsRepository(Application application) {
-        model = new PreferencesModel(application);
+        //model = new PreferencesModel(application);
         remoteData = new SettingsRemoteData();
     }
 
@@ -23,8 +22,5 @@ public class SettingsRepository implements ISettingsRepository {
     }
 
     @Override
-    public void getPreferences(int userID) {
-        //model.getPreferences(userID);
-        remoteData.getPreferences(userID);
-    }
+    public void getPreferences(int userID) { remoteData.getPreferences(userID); }
 }

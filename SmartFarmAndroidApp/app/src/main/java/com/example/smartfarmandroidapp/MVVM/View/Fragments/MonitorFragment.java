@@ -84,6 +84,7 @@ public class MonitorFragment extends Fragment {
         });
         thread.start();
     }
+
     private void setUpObserver() {
         monitorViewModel.getCO2Level().observe(getViewLifecycleOwner(), CO2Level -> {
             String progress = CO2Level + "";

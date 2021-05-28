@@ -40,8 +40,8 @@ public class FarmSettingsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
       farmSettingsView = inflater.inflate(R.layout.fragment_farm_settings,container,false);
-        initializeFragmentsValues();
-        return farmSettingsView;
+      initializeFragmentsValues();
+      return farmSettingsView;
     }
 
     private void initializeFragmentsValues() {
@@ -54,28 +54,60 @@ public class FarmSettingsFragment extends Fragment {
         humidityDesired = farmSettingsView.findViewById(R.id.desiredHumidity);
         humidityDeviation = farmSettingsView.findViewById(R.id.maxHumidityDev);
 
-        loadValues();
-
         saveButton = farmSettingsView.findViewById(R.id.saveThresholdButton);
         returnButton = farmSettingsView.findViewById(R.id.returnFromTweakingButton);
 
         info = farmSettingsView.findViewById(R.id.errorTextView);
 
         saveButton.setOnClickListener(view -> onClickSave(info));
+        returnButton.setOnClickListener(v -> onClickReturn());
 
         setUpObserver();
+        loadValues();
     }
 
 
     private void loadValues(){
-        /*
-        Preferences preferences = viewModel.getPreferences().blockingFirst().get(0);
-        CO2Desired.setText(preferences.getDesiredCO2() + "");
-        CO2Deviation.setText(preferences.getDeviationCO2() + "");
-        temperatureDesired.setText(preferences.getDesiredTemperature() + "");
-        temperatureDeviation.setText(preferences.getDeviationTemperature() + "");
-        humidityDesired.setText(preferences.getDesiredHumidity() + "");
-        humidityDeviation.setText(preferences.getDeviationHumidity() + "");*/
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    viewModel.getPreferences();
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        thread.start();
+    }
+
+    private void setUpObserver() {
+        viewModel.getCO2Preferred().observe(getViewLifecycleOwner(), co2Desired -> {
+            CO2Desired.setText(co2Desired+"");
+        });
+
+        viewModel.getCO2Deviation().observe(getViewLifecycleOwner(), co2Deviation -> {
+            CO2Deviation.setText(co2Deviation+"");
+        } );
+
+        viewModel.getTemperaturePreferred().observe(getViewLifecycleOwner(), temperatureDesiredValue -> {
+            temperatureDesired.setText(temperatureDesiredValue+"");
+        });
+
+        viewModel.getTemperatureDeviation().observe(getViewLifecycleOwner(), temperatureDeviationValue -> {
+            temperatureDeviation.setText(temperatureDeviationValue+"");
+        } );
+
+        viewModel.getHumidityPreferred().observe(getViewLifecycleOwner(), humidityDesiredValue -> {
+            humidityDesired.setText(humidityDesiredValue+"");
+        });
+
+        viewModel.getHumidityDeviation().observe(getViewLifecycleOwner(), humidityDeviationValue -> {
+            humidityDeviation.setText(humidityDeviationValue+"");
+        } );
     }
 
     @SuppressLint("SetTextI18n")
@@ -91,29 +123,7 @@ public class FarmSettingsFragment extends Fragment {
         Toast.makeText(getContext(), text, duration).show();
     }
 
-    private void setUpObserver() {
-        viewModel.getCO2Preferred().observe(getViewLifecycleOwner(), co2Desired -> {
-            CO2Desired.setText(co2Desired);
-        });
+    private void onClickReturn() {
 
-        viewModel.getCO2Deviation().observe(getViewLifecycleOwner(), co2Deviation -> {
-            CO2Deviation.setText(co2Deviation);
-        } );
-
-        viewModel.getTemperaturePreferred().observe(getViewLifecycleOwner(), temperatureDesiredValue -> {
-            temperatureDesired.setText(temperatureDesiredValue);
-        });
-
-        viewModel.getTemperatureDeviation().observe(getViewLifecycleOwner(), temperatureDeviationValue -> {
-            temperatureDeviation.setText(temperatureDeviationValue);
-        } );
-
-        viewModel.getHumidityPreferred().observe(getViewLifecycleOwner(), humidityDesiredValue -> {
-            humidityDesired.setText(humidityDesiredValue);
-        });
-
-        viewModel.getHumidityDeviation().observe(getViewLifecycleOwner(), humidityDeviationValue -> {
-            humidityDeviation.setText(humidityDeviationValue);
-        } );
     }
 }
