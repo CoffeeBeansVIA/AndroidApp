@@ -5,10 +5,10 @@
     tools:showIn="navigation_view">
 
     <item
-        android:id="@+id/fragment_monitor"
+        android:id="@+id/monitorFragment"
         android:title="Front Page" />
 
     <item
-        android:id="@+id/fragment_farm_settings"
+        android:id="@+id/farmSettingsFragment"
         android:title="Settings" />
 </menu>

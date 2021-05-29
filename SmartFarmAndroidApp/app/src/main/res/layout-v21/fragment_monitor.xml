@@ -169,7 +169,6 @@
         android:layout_marginBottom="60dp"
         android:backgroundTint="@android:color/holo_green_dark"
         android:text="@string/add_settings"
-        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"

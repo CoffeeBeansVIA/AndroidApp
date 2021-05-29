@@ -40,7 +40,7 @@ public class DrawerActivity extends AppCompatActivity {
 
         // Passing each menu ID as a set of ID-s because each menu should be considered as top level destinations
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.fragment_monitor, R.id.fragment_farm_settings)
+                R.id.monitorFragment, R.id.farmSettingsFragment)
                 .setDrawerLayout(drawer)
                 .build();
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
