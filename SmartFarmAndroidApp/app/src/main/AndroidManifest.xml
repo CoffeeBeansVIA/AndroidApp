@@ -11,14 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartFarmAndroidApp">
-
-        <activity android:name=".MVVM.View.Activities.MainActivity">
+        <activity
+            android:name=".MVVM.View.Activities.DrawerActivity"
+            android:label="Menu"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".MVVM.View.Activities.MainActivity" />
+        <activity android:name=".MVVM.View.Activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
