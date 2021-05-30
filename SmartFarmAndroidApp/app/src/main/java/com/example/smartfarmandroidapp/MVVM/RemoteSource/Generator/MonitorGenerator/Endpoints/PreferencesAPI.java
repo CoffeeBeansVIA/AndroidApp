@@ -10,7 +10,7 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface PreferencesAPI {
-    @GET("api/farms/{farmID}")
+    @GET("api/farms/{farmId}/sensors")
     Call<Farm> getPreferences(@Path("farmID") int farmID);
 
     @PUT("api/farms/{farmId}/sensors/{sensorId}/settings")
