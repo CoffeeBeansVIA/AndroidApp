@@ -1,5 +1,8 @@
 package com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.MonitorRemouteSource;
 
+import com.example.smartfarmandroidapp.Domain.CO2;
+import com.example.smartfarmandroidapp.Domain.Humidity;
+import com.example.smartfarmandroidapp.Domain.Temperature;
 import com.example.smartfarmandroidapp.EventsBusObject.CO2Event;
 import com.example.smartfarmandroidapp.EventsBusObject.HumidityEvent;
 import com.example.smartfarmandroidapp.EventsBusObject.TemperatureEvent;
@@ -8,9 +11,6 @@ import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenera
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.Endpoints.TemperatureAPI;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.IMonitorGenerator;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.MonitorGenerator;
-import com.example.smartfarmandroidapp.domain.CO2;
-import com.example.smartfarmandroidapp.domain.Humidity;
-import com.example.smartfarmandroidapp.domain.Temperature;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -37,6 +37,7 @@ public class MonitorRemoteDataSource implements IMonitorRemoteDataSource {
             public void onResponse(Call<CO2> call, Response<CO2> response) {
                 if (response.isSuccessful()) {
                     CO2Event event = new CO2Event();
+                    System.out.println(response.body()+"");
                     event.setCO2(response.body().getValue()+"");
                     EventBus.getDefault().post(event);
                 }

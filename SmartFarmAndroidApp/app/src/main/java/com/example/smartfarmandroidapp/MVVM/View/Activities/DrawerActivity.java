@@ -1,6 +1,7 @@
 package com.example.smartfarmandroidapp.MVVM.View.Activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,7 +21,9 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class DrawerActivity extends AppCompatActivity {
+import org.jetbrains.annotations.NotNull;
+
+public class DrawerActivity extends AppCompatActivity implements MenuItem.OnMenuItemClickListener {
     private AppBarConfiguration mAppBarConfiguration;
     private NavController navController;
     private DrawerLayout drawer;
@@ -36,13 +39,15 @@ public class DrawerActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
+
         navigationView = findViewById(R.id.nav_view);
 
         // Passing each menu ID as a set of ID-s because each menu should be considered as top level destinations
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.monitorFragment, R.id.farmSettingsFragment)
+                R.id.monitorFragment, R.id.farmSettingsFragment, R.id.historyMeasurmentFragment)
                 .setDrawerLayout(drawer)
                 .build();
+
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
@@ -51,6 +56,7 @@ public class DrawerActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        System.out.println("Item is created");
         switch (item.getItemId()) {
             case R.id.action_settings:
                 FirebaseAuth.getInstance().signOut();
@@ -98,5 +104,12 @@ public class DrawerActivity extends AppCompatActivity {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        System.out.println("This shit work");
+        return true;
     }
 }

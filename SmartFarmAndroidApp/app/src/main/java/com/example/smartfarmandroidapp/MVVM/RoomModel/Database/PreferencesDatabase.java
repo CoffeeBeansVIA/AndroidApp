@@ -6,8 +6,8 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.example.smartfarmandroidapp.Domain.Preferences;
 import com.example.smartfarmandroidapp.MVVM.RoomModel.DAO.PreferencesDAO;
-import com.example.smartfarmandroidapp.domain.Preferences;
 
 @Database(entities = {Preferences.class}, version = 1, exportSchema = false)
 public abstract class PreferencesDatabase extends RoomDatabase {

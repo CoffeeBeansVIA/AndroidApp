@@ -11,4 +11,7 @@
     <item
         android:id="@+id/farmSettingsFragment"
         android:title="Settings" />
+    <item
+        android:id="@+id/historyMeasurmentFragment"
+        android:title="Measurment History" />
 </menu>

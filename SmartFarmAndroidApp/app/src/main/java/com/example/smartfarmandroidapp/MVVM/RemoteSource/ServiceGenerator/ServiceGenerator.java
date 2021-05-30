@@ -11,7 +11,7 @@ public class ServiceGenerator {
         if(retrofitBuilder == null)
         {
             retrofitBuilder = new Retrofit.Builder()
-                    .baseUrl("https://20.67.215.100")
+                    .baseUrl("http://20.54.57.253")
                     .addConverterFactory(GsonConverterFactory.create());
         }
         return retrofitBuilder;

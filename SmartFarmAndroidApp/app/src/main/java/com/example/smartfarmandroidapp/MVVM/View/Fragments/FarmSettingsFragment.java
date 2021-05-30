@@ -1,6 +1,8 @@
 package com.example.smartfarmandroidapp.MVVM.View.Fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,11 +29,17 @@ public class FarmSettingsFragment extends Fragment {
     private TextView info;
     private View farmSettingsView;
     private FarmSettingsViewModel viewModel;
+    private SharedPreferences updateValuesPrefs;
+    private SharedPreferences.Editor editor;
 
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        updateValuesPrefs = requireActivity().getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+        editor = updateValuesPrefs.edit();
+        editor.putString("isNeededToUpdate", "false");
+        editor.apply();
         super.onCreate(savedInstanceState);
     }
 

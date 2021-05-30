@@ -1,4 +1,5 @@
-package com.example.smartfarmandroidapp.domain;
+package com.example.smartfarmandroidapp.Domain;
+
 
 public class CO2 {
 
@@ -7,4 +8,11 @@ public class CO2 {
     public double getValue() {
         return value;
     }
+
+    private String time;
+    public String getTime()
+    {
+        return time;
+    }
+
 }

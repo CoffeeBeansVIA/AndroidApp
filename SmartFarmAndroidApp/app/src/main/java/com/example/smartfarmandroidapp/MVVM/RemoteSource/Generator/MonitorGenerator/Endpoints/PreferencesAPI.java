@@ -1,6 +1,6 @@
 package com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.Endpoints;
 
-import com.example.smartfarmandroidapp.domain.Sensors;
+import com.example.smartfarmandroidapp.Domain.Sensors;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;

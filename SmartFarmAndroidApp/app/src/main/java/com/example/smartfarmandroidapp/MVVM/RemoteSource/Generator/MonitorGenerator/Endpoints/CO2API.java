@@ -1,6 +1,11 @@
 package com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.Endpoints;
 
-import com.example.smartfarmandroidapp.domain.CO2;
+
+
+
+import com.example.smartfarmandroidapp.Domain.CO2;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

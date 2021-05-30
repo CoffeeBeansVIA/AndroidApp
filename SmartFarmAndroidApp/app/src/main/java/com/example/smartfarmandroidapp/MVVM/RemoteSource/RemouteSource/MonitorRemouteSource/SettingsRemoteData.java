@@ -1,12 +1,11 @@
 package com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.MonitorRemouteSource;
 
+import com.example.smartfarmandroidapp.Domain.Preferences;
+import com.example.smartfarmandroidapp.Domain.Sensors;
 import com.example.smartfarmandroidapp.EventsBusObject.PreferencesEvent;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.Endpoints.PreferencesAPI;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.ISettingsGenerator;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.SettingsGenerator;
-import com.example.smartfarmandroidapp.domain.Farm;
-import com.example.smartfarmandroidapp.domain.Preferences;
-import com.example.smartfarmandroidapp.domain.Sensors;
 
 import org.greenrobot.eventbus.EventBus;
 

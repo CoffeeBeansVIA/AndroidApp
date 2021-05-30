@@ -7,10 +7,10 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.smartfarmandroidapp.Domain.Preferences;
 import com.example.smartfarmandroidapp.EventsBusObject.PreferencesEvent;
 import com.example.smartfarmandroidapp.MVVM.Repository.Monitor.ISettingsRepository;
 import com.example.smartfarmandroidapp.MVVM.Repository.Monitor.SettingsRepository;
-import com.example.smartfarmandroidapp.domain.Preferences;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

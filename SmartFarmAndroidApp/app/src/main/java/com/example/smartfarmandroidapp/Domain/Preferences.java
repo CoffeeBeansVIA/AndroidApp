@@ -1,4 +1,4 @@
-package com.example.smartfarmandroidapp.domain;
+package com.example.smartfarmandroidapp.Domain;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

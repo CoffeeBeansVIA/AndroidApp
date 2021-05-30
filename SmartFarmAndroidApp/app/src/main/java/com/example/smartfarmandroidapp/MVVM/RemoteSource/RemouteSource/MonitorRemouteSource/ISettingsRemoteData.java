@@ -1,6 +1,6 @@
 package com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.MonitorRemouteSource;
 
-import com.example.smartfarmandroidapp.domain.Sensors;
+import com.example.smartfarmandroidapp.Domain.Sensors;
 
 public interface ISettingsRemoteData {
     void getPreferences(int userID);

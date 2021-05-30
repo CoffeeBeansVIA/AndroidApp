@@ -6,7 +6,8 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.smartfarmandroidapp.domain.Preferences;
+
+import com.example.smartfarmandroidapp.Domain.Preferences;
 
 import java.util.List;
 
