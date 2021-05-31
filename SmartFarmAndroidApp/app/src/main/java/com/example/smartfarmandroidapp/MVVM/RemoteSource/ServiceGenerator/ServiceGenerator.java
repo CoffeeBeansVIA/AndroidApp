@@ -11,9 +11,10 @@ public class ServiceGenerator {
         if(retrofitBuilder == null)
         {
             retrofitBuilder = new Retrofit.Builder()
-                    .baseUrl("https://sep4api.azurewebsites.net/")
+                    .baseUrl("http://20.54.57.253")
                     .addConverterFactory(GsonConverterFactory.create());
         }
         return retrofitBuilder;
     }
+    //https://sep4api.azurewebsites.net/
 }

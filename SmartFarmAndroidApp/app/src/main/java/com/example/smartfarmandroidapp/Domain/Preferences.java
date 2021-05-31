@@ -1,6 +1,5 @@
-package com.example.smartfarmandroidapp.domain;
+package com.example.smartfarmandroidapp.Domain;
 
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -8,25 +7,25 @@ import androidx.room.PrimaryKey;
 public class Preferences {
     @PrimaryKey
     int userID;
-    @ColumnInfo(defaultValue = "0")
+    int co2ID;
     int desiredCO2;
-    @ColumnInfo(defaultValue = "0")
     int deviationCO2;
-    @ColumnInfo(defaultValue = "0")
+    int temperatureID;
     int desiredTemperature;
-    @ColumnInfo(defaultValue = "0")
     int deviationTemperature;
-    @ColumnInfo(defaultValue = "0")
+    int humidityID;
     int desiredHumidity;
-    @ColumnInfo(defaultValue = "0")
     int deviationHumidity;
 
-    public Preferences(int userID, int desiredCO2, int deviationCO2, int desiredTemperature, int deviationTemperature, int desiredHumidity, int deviationHumidity) {
+    public Preferences(int userID, int co2ID, int desiredCO2, int deviationCO2, int temperatureID, int desiredTemperature, int deviationTemperature, int humidityID, int desiredHumidity, int deviationHumidity) {
         this.userID = userID;
+        this.co2ID = co2ID;
         this.desiredCO2 = desiredCO2;
         this.deviationCO2 = deviationCO2;
+        this.temperatureID = temperatureID;
         this.desiredTemperature = desiredTemperature;
         this.deviationTemperature = deviationTemperature;
+        this.humidityID = humidityID;
         this.desiredHumidity = desiredHumidity;
         this.deviationHumidity = deviationHumidity;
     }
@@ -37,6 +36,14 @@ public class Preferences {
 
     public void setUserID(int userID) {
         this.userID = userID;
+    }
+
+    public int getCo2ID() {
+        return co2ID;
+    }
+
+    public void setCo2ID(int co2ID) {
+        this.co2ID = co2ID;
     }
 
     public int getDesiredCO2() {
@@ -55,6 +62,14 @@ public class Preferences {
         this.deviationCO2 = deviationCO2;
     }
 
+    public int getTemperatureID() {
+        return temperatureID;
+    }
+
+    public void setTemperatureID(int temperatureID) {
+        this.temperatureID = temperatureID;
+    }
+
     public int getDesiredTemperature() {
         return desiredTemperature;
     }
@@ -69,6 +84,14 @@ public class Preferences {
 
     public void setDeviationTemperature(int deviationTemperature) {
         this.deviationTemperature = deviationTemperature;
+    }
+
+    public int getHumidityID() {
+        return humidityID;
+    }
+
+    public void setHumidityID(int humidityID) {
+        this.humidityID = humidityID;
     }
 
     public int getDesiredHumidity() {

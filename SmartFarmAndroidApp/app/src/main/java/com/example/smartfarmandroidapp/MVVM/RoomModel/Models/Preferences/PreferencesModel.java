@@ -3,9 +3,9 @@ package com.example.smartfarmandroidapp.MVVM.RoomModel.Models.Preferences;
 import android.app.Application;
 import android.os.AsyncTask;
 
+import com.example.smartfarmandroidapp.Domain.Preferences;
 import com.example.smartfarmandroidapp.MVVM.RoomModel.DAO.PreferencesDAO;
 import com.example.smartfarmandroidapp.MVVM.RoomModel.Database.PreferencesDatabase;
-import com.example.smartfarmandroidapp.domain.Preferences;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -62,11 +62,13 @@ public class PreferencesModel implements IPreferencesModel {
             return null;
         }
     }
+
     public static class UpdatePreferencesAsync extends AsyncTask<Preferences,Void,Void> {
         private PreferencesDAO preferencesDAO;
         public UpdatePreferencesAsync(PreferencesDAO preferencesDAO) { this.preferencesDAO = preferencesDAO; }
         @Override
         protected Void doInBackground(Preferences... preferences) {
             preferencesDAO.savePreferences(preferences[0]);
-            return null; }}
+            return null;
+        }}
 }

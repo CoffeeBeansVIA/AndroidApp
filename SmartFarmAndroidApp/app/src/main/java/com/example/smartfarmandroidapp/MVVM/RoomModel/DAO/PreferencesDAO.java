@@ -2,10 +2,12 @@ package com.example.smartfarmandroidapp.MVVM.RoomModel.DAO;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.smartfarmandroidapp.domain.Preferences;
+
+import com.example.smartfarmandroidapp.Domain.Preferences;
 
 import java.util.List;
 
@@ -13,7 +15,7 @@ import io.reactivex.Flowable;
 
 @Dao
 public interface PreferencesDAO {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void createPreferences(Preferences prefs);
 
     @Update

@@ -1,5 +1,7 @@
 package com.example.smartfarmandroidapp.MVVM.View.Fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,13 +19,17 @@ import androidx.navigation.Navigation;
 import com.example.smartfarmandroidapp.MVVM.Viewmodel.MonitorViewModel;
 import com.example.smartfarmandroidapp.R;
 
+import java.util.Objects;
+
 public class MonitorFragment extends Fragment {
 
     private MonitorViewModel monitorViewModel;
 
-    private TextView humidityValue,humidityPercentage,humidityTextView,temperatureValue,temperatureCelsius,temperatureTextView,co2progress ;
+    private TextView humidityValue, humidityPercentage, humidityTextView, temperatureValue, temperatureCelsius, temperatureTextView, co2progress;
 
     private ProgressBar co2ProgressBar;
+    private SharedPreferences updateValuesPrefs;
+    private SharedPreferences.Editor editor;
 
     private int progress = 50;
     private View monitorView;
@@ -36,9 +42,13 @@ public class MonitorFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        monitorView = inflater.inflate(R.layout.fragment_monitor,container,false);
-        initializeFragmentsValues();
+        monitorView = inflater.inflate(R.layout.fragment_monitor, container, false);
 
+        updateValuesPrefs = requireActivity().getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+        editor = updateValuesPrefs.edit();
+        editor.putString("isNeededToUpdate", "true");
+        editor.apply();
+        initializeFragmentsValues();
         return monitorView;
     }
 
@@ -59,35 +69,38 @@ public class MonitorFragment extends Fragment {
         co2ProgressBar = monitorView.findViewById(R.id.progressBar);
 
         Button button = monitorView.findViewById(R.id.testButton);
-        button.setOnClickListener(v -> Navigation.findNavController(monitorView).navigate(R.id.action_monitorFragment_to_farmSettingsFragment));
+        button.setOnClickListener(v ->
+        {
+            editor.putString("isNeededToUpdate", "false");
+            editor.apply();
+            Navigation.findNavController(monitorView).navigate(R.id.action_monitorFragment_to_farmSettingsFragment);
+        });
 
         setUpObserver();
+
         updateProgressBar();
 
     }
 
 
-
-    private void updateProgressBar(){
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    monitorViewModel.fetchMeasurementData();
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+    private void updateProgressBar() {
+        Thread thread = new Thread(() -> {
+            while (updateValuesPrefs.getString("isNeededToUpdate", "false").equals("true")) {
+                monitorViewModel.fetchMeasurementData();
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-            };
+            }
         });
         thread.start();
     }
+
     private void setUpObserver() {
         monitorViewModel.getCO2Level().observe(getViewLifecycleOwner(), CO2Level -> {
             String progress = CO2Level + "";
-            int progressDigit =  (int)Double.parseDouble(CO2Level);
+            int progressDigit = (int) Double.parseDouble(CO2Level);
             co2ProgressBar.setProgress(progressDigit);
             co2progress.setText(progress);
         });
@@ -97,6 +110,6 @@ public class MonitorFragment extends Fragment {
 
         monitorViewModel.getTemperature().observe(getViewLifecycleOwner(), temperatureLevel -> {
             temperatureValue.setText(temperatureLevel);
-        } );
+        });
     }
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SmartFarmAndroidApp</string>
+    <string name="app_name">SmartFarm</string>
     <string name="_599">599</string>
     <string name="c">°C</string>
     <string name="your_plant_s_status">Your plant\'s status</string>
@@ -10,4 +10,11 @@
     <string name="_60">60</string>
     <string name="temperature">Temperature</string>
     <string name="co2_ppm">CO2 (ppm)</string>
+    <string name="sign_in_register">Sign in / Register</string>
+    <string name="fblogo">fblogo</string>
+    <string name="facebook_app_id">897519090826446</string>
+    <string name="fb_login_protocol_scheme">fb897519090826446</string>
+    <string name="android_studio">Android Studio</string>
+    <string name="android_studio_android_com">android.studio@android.com</string>
+    <string name="add_settings">ADD SETTINGS</string>
 </resources>

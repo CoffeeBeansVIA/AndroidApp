@@ -1,4 +1,4 @@
-package com.example.smartfarmandroidapp.domain;
+package com.example.smartfarmandroidapp.Domain;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,7 @@ public class Farm {
     private String name;
     private String location;
     private ArrayList<PlantKeeper> plantKeepers;
-    private ArrayList<Sensor> Sensors;
+    private ArrayList<Sensor> sensors;
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
@@ -17,8 +17,8 @@ public class Farm {
     public void setLocation(String location) { this.location = location; }
     public ArrayList<PlantKeeper> getPlantKeepers() { return plantKeepers; }
     public void setPlantKeepers(ArrayList<PlantKeeper> plantKeepers) { this.plantKeepers = plantKeepers; }
-    public ArrayList<Sensor> getSensors() { return Sensors; }
-    public void setSensors(ArrayList<Sensor> sensors) { Sensors = sensors; }
+    public ArrayList<Sensor> getSensors() { return sensors; }
+    public void setSensors(ArrayList<Sensor> sensors) { this.sensors = sensors; }
 
     public class PlantKeeper {
         private int id;
@@ -47,7 +47,7 @@ public class Farm {
         private String model;
         private String type;
         private String unit;
-        private ArrayList<Integer> sensorSettings;
+        private SensorSettings sensorSetting;
 
         public int getId() { return id; }
         public void setId(int id) { this.id = id; }
@@ -57,7 +57,22 @@ public class Farm {
         public void setType(String type) { this.type = type; }
         public String getUnit() { return unit; }
         public void setUnit(String unit) { this.unit = unit; }
-        public ArrayList<Integer> getSensorSettings() { return sensorSettings; }
-        public void setSensorSettings(ArrayList<Integer> sensorSettings) { this.sensorSettings = sensorSettings; }
+        public SensorSettings getSensorSettings() { return sensorSetting; }
+        public void setSensorSettings(SensorSettings sensorSetting) { this.sensorSetting = sensorSetting; }
+    }
+
+    public static class SensorSettings {
+        private int desiredValue;
+        private int deviationValue;
+
+        public SensorSettings(int desiredValue, int deviationValue) {
+            this.desiredValue = desiredValue;
+            this.deviationValue = deviationValue;
+        }
+
+        public int getDesiredValue() { return desiredValue; }
+        public void setDesiredValue(int desiredValue) { this.desiredValue = desiredValue; }
+        public int getDeviationValue() { return deviationValue; }
+        public void setDeviationValue(int deviationValue) { this.deviationValue = deviationValue; }
     }
 }

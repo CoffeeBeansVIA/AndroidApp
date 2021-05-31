@@ -1,6 +1,7 @@
 package com.example.smartfarmandroidapp.MVVM.RoomModel.Models.Preferences;
 
-import com.example.smartfarmandroidapp.domain.Preferences;
+
+import com.example.smartfarmandroidapp.Domain.Preferences;
 
 import java.util.List;
 
