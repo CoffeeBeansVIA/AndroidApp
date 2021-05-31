@@ -1,5 +1,6 @@
 package com.example.smartfarmandroidapp.MVVM.View.Fragments;
 
+import android.app.Notification;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -21,15 +24,21 @@ import com.example.smartfarmandroidapp.R;
 
 import java.util.Objects;
 
+import static com.example.smartfarmandroidapp.App.App.CHANNEL_ID;
+
 public class MonitorFragment extends Fragment {
 
     private MonitorViewModel monitorViewModel;
 
-    private TextView humidityValue, humidityPercentage, humidityTextView, temperatureValue, temperatureCelsius, temperatureTextView, co2progress;
+    private NotificationManagerCompat notificationManager;
+
+    private TextView info, humidityValue, humidityPercentage, humidityTextView, temperatureValue, temperatureCelsius, temperatureTextView, co2progress;
 
     private ProgressBar co2ProgressBar;
     private SharedPreferences updateValuesPrefs;
     private SharedPreferences.Editor editor;
+
+    private Button notificationButton;
 
     private int progress = 50;
     private View monitorView;
@@ -80,8 +89,35 @@ public class MonitorFragment extends Fragment {
 
         updateProgressBar();
 
+        // For passing notifications
+        notificationManager = NotificationManagerCompat.from(requireActivity());
+
+        notificationButton = monitorView.findViewById(R.id.testNotificationButton);
+        notificationButton.setOnClickListener(v -> checkIfValueIsValid());
+
+        info = monitorView.findViewById(R.id.notificationTextView);
     }
 
+    // Notification Channel
+    public void sendOnChannel(View v){
+        Notification notification = new NotificationCompat.Builder(requireContext(), CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_warning)
+                .setContentTitle(getString(R.string.channel_name))
+                .setContentText(getString(R.string.channel_description))
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setCategory(NotificationCompat.CATEGORY_ALARM)
+                .build();
+
+        notificationManager.notify(1, notification);
+
+        info.setVisibility(View.VISIBLE);
+    }
+
+    public void checkIfValueIsValid(){
+        //TODO to pass notifications when the plant's environment reaches dangerous levels
+
+        sendOnChannel(info);
+    }
 
     private void updateProgressBar() {
         Thread thread = new Thread(() -> {
