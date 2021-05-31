@@ -1,15 +1,14 @@
-package com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.MonitorRemouteSource;
+package com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.FarmSettingsRemouteSource;
 
 import com.example.smartfarmandroidapp.Domain.FarmSettings.SensorSettings;
 import com.example.smartfarmandroidapp.Domain.FarmSettings.FarmSettingPreferences;
 import com.example.smartfarmandroidapp.EventsBusObject.PreferencesEvent;
-import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.Endpoints.PreferencesAPI;
-import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.ISettingsGenerator;
-import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.SettingsGenerator;
+import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.FarmSettingsGenerator.Endpoints.PreferencesAPI;
+import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.FarmSettingsGenerator.ISettingsGenerator;
+import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.FarmSettingsGenerator.SettingsGenerator;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.ResponseBody;
