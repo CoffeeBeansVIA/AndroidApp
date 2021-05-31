@@ -1,4 +1,4 @@
-package com.example.smartfarmandroidapp.Domain;
+package com.example.smartfarmandroidapp.Domain.Measurments;
 
 public class Measurement {
     private int id;

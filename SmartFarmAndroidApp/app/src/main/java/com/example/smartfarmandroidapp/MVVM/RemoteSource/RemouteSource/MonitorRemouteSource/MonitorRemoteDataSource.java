@@ -1,6 +1,6 @@
 package com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.MonitorRemouteSource;
 
-import com.example.smartfarmandroidapp.Domain.Measurement;
+import com.example.smartfarmandroidapp.Domain.Measurments.Measurement;
 import com.example.smartfarmandroidapp.EventsBusObject.LastMeasurementsEvent;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.Endpoints.LastMeasurementsAPI;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.IMonitorGenerator;

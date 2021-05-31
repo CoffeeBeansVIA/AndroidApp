@@ -1,20 +1,15 @@
 package com.example.smartfarmandroidapp.EventsBusObject;
 
 
-import com.example.smartfarmandroidapp.Domain.Preferences;
+import com.example.smartfarmandroidapp.Domain.FarmSettings.FarmSettingPreferences;
+import com.example.smartfarmandroidapp.Domain.Preferences.Preferences_ROOM;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PreferencesEvent {
-    private Preferences preferences;
-    private ArrayList<Preferences> preferencesArrayList;
+    private List<FarmSettingPreferences> preferencesArrayList;
 
-    public Preferences getPreferences() {
-        return preferences;
-    }
-    public ArrayList<Preferences> getPreferencesArrayList() { return preferencesArrayList; }
-    public void setPreferences(Preferences preferences) {
-        this.preferences = preferences;
-    }
-    public void setPreferencesList(ArrayList<Preferences> preferencesArrayList) { this.preferencesArrayList = preferencesArrayList; }
+    public List<FarmSettingPreferences> getPreferencesArrayList() { return preferencesArrayList; }
+    public void setPreferencesList(List<FarmSettingPreferences> farmSettingPreferences) { this.preferencesArrayList = farmSettingPreferences; }
 }

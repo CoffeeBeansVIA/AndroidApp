@@ -1,12 +1,11 @@
 package com.example.smartfarmandroidapp.MVVM.Viewmodel;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.smartfarmandroidapp.Domain.Measurement;
+import com.example.smartfarmandroidapp.Domain.Measurments.Measurement;
 import com.example.smartfarmandroidapp.EventsBusObject.LastMeasurementsEvent;
 import com.example.smartfarmandroidapp.MVVM.Repository.Monitor.IMonitorRepository;
 import com.example.smartfarmandroidapp.MVVM.Repository.Monitor.MonitorRepository;

@@ -1,6 +1,6 @@
 package com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.Endpoints;
 
-import com.example.smartfarmandroidapp.Domain.Measurement;
+import com.example.smartfarmandroidapp.Domain.Measurments.Measurement;
 
 import java.util.List;
 

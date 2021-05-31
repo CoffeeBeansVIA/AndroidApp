@@ -3,7 +3,7 @@ package com.example.smartfarmandroidapp.MVVM.RoomModel.Models.Preferences;
 import android.app.Application;
 import android.os.AsyncTask;
 
-import com.example.smartfarmandroidapp.Domain.Preferences;
+import com.example.smartfarmandroidapp.Domain.Preferences.Preferences_ROOM;
 import com.example.smartfarmandroidapp.MVVM.RoomModel.DAO.PreferencesDAO;
 import com.example.smartfarmandroidapp.MVVM.RoomModel.Database.PreferencesDatabase;
 
@@ -34,22 +34,22 @@ public class PreferencesModel implements IPreferencesModel {
 
 
     @Override
-    public void createPreferences(Preferences prefs) {
+    public void createPreferences(Preferences_ROOM prefs) {
         executorService.execute(() -> new InsertPreferencesAsync(preferencesDAO).execute(prefs));
     }
 
     @Override
-    public void savePreferences(Preferences prefs) {
+    public void savePreferences(Preferences_ROOM prefs) {
         executorService.execute(() -> new UpdatePreferencesAsync(preferencesDAO).execute(prefs));
     }
 
     @Override
-    public Flowable<List<Preferences>> getPreferences(int id) {
+    public Flowable<List<Preferences_ROOM>> getPreferences(int id) {
         return preferencesDAO.getPreferences(id);
     }
 
 
-    private static class InsertPreferencesAsync extends AsyncTask<Preferences, Void, Void> {
+    private static class InsertPreferencesAsync extends AsyncTask<Preferences_ROOM, Void, Void> {
         private PreferencesDAO preferencesDAO;
 
         public InsertPreferencesAsync(PreferencesDAO preferencesDAO) {
@@ -57,17 +57,17 @@ public class PreferencesModel implements IPreferencesModel {
         }
 
         @Override
-        protected Void doInBackground(Preferences... preferences) {
+        protected Void doInBackground(Preferences_ROOM... preferences) {
             preferencesDAO.createPreferences(preferences[0]);
             return null;
         }
     }
 
-    public static class UpdatePreferencesAsync extends AsyncTask<Preferences,Void,Void> {
+    public static class UpdatePreferencesAsync extends AsyncTask<Preferences_ROOM,Void,Void> {
         private PreferencesDAO preferencesDAO;
         public UpdatePreferencesAsync(PreferencesDAO preferencesDAO) { this.preferencesDAO = preferencesDAO; }
         @Override
-        protected Void doInBackground(Preferences... preferences) {
+        protected Void doInBackground(Preferences_ROOM... preferences) {
             preferencesDAO.savePreferences(preferences[0]);
             return null;
         }}

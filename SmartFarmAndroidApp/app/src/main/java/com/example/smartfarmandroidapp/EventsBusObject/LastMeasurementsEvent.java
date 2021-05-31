@@ -1,6 +1,6 @@
 package com.example.smartfarmandroidapp.EventsBusObject;
 
-import com.example.smartfarmandroidapp.Domain.Measurement;
+import com.example.smartfarmandroidapp.Domain.Measurments.Measurement;
 
 import java.util.ArrayList;
 import java.util.List;
