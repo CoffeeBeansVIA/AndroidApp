@@ -1,14 +1,12 @@
 package com.example.smartfarmandroidapp.MVVM.Viewmodel;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.smartfarmandroidapp.EventsBusObject.CO2Event;
-import com.example.smartfarmandroidapp.EventsBusObject.HumidityEvent;
-import com.example.smartfarmandroidapp.EventsBusObject.TemperatureEvent;
+import com.example.smartfarmandroidapp.Domain.Measurments.Measurement;
+import com.example.smartfarmandroidapp.EventsBusObject.LastMeasurementsEvent;
 import com.example.smartfarmandroidapp.MVVM.Repository.Monitor.IMonitorRepository;
 import com.example.smartfarmandroidapp.MVVM.Repository.Monitor.MonitorRepository;
 
@@ -44,29 +42,47 @@ public class MonitorViewModel extends AndroidViewModel
     }
 
     @Subscribe
-    public void onCO2Event(CO2Event co2Event){
-        CO2Level.postValue(co2Event.getCO2());
-        Log.i("CO2", co2Event.getCO2());
+    public void onLastMeasurementsEvent(LastMeasurementsEvent lastMeasurementsEvent)
+    {
+        for (Measurement measurement: lastMeasurementsEvent.getLastMeasurements()){
+            if(measurement.getMeasurementSensor().getType().equals("Temperature"))
+            {
+                temperature.postValue(measurement.getValue()+"");
+            }
+            else if (measurement.getMeasurementSensor().getType().equals("Humidity"))
+            {
+                humidity.postValue(measurement.getValue()+"");
+            }
+            else
+            {
+                CO2Level.postValue(measurement.getValue()+"");
+            }
+        }
+        System.out.println(lastMeasurementsEvent.getLastMeasurements().size());
     }
 
-    @Subscribe
-    public void onHumidityEvent(HumidityEvent humidityEvent)
-    {
-        humidity.postValue(humidityEvent.getHumidity());
-        Log.i("HumidityEvent", humidityEvent.getHumidity());
-    }
-
-    @Subscribe
-    public void onTemperature(TemperatureEvent temperatureEvent)
-    {
-        temperature.postValue(temperatureEvent.getTemperature());
-        Log.i("Temperature", temperatureEvent.getTemperature());
-    }
+//    @Subscribe
+//    public void onCO2Event(CO2Event co2Event){
+//        CO2Level.postValue(co2Event.getCO2());
+//        Log.i("CO2", co2Event.getCO2());
+//    }
+//
+//    @Subscribe
+//    public void onHumidityEvent(HumidityEvent humidityEvent)
+//    {
+//        humidity.postValue(humidityEvent.getHumidity());
+//        Log.i("HumidityEvent", humidityEvent.getHumidity());
+//    }
+//
+//    @Subscribe
+//    public void onTemperature(TemperatureEvent temperatureEvent)
+//    {
+//        temperature.postValue(temperatureEvent.getTemperature());
+//        Log.i("Temperature", temperatureEvent.getTemperature());
+//    }
 
     public void fetchMeasurementData(){
-        monitorRepository.getCO2();
-        monitorRepository.getHumidity();
-        monitorRepository.getTemperature();
+       monitorRepository.getLastMeasurements();
     }
 
 

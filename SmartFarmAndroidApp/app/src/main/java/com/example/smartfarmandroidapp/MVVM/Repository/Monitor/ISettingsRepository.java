@@ -1,9 +1,9 @@
 package com.example.smartfarmandroidapp.MVVM.Repository.Monitor;
 
 
-import com.example.smartfarmandroidapp.Domain.Preferences;
+import com.example.smartfarmandroidapp.Domain.Preferences.Preferences_ROOM;
 
 public interface ISettingsRepository {
-    void savePreferences(Preferences preferences);
+    void savePreferences(Preferences_ROOM preferences);
     void getPreferences(int userID);
 }

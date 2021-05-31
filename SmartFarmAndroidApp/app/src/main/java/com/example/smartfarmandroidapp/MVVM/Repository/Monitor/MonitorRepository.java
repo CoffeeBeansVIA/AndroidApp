@@ -16,17 +16,7 @@ public class MonitorRepository implements IMonitorRepository{
     }
 
     @Override
-    public void getCO2() {
-         monitorRemoteDataSource.getCO2();
-    }
-
-    @Override
-    public void getHumidity() {
-         monitorRemoteDataSource.getHumidity();
-    }
-
-    @Override
-    public void getTemperature() {
-       monitorRemoteDataSource.getTemperature();
+    public void getLastMeasurements() {
+        monitorRemoteDataSource.getLastMeasurements();
     }
 }

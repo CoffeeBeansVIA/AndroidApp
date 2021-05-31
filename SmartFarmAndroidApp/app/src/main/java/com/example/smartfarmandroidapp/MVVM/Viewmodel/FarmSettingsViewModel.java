@@ -7,7 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.smartfarmandroidapp.Domain.Preferences;
+import com.example.smartfarmandroidapp.Domain.FarmSettings.FarmSettingPreferences;
+import com.example.smartfarmandroidapp.Domain.Preferences.Preferences_ROOM;
 import com.example.smartfarmandroidapp.EventsBusObject.PreferencesEvent;
 import com.example.smartfarmandroidapp.MVVM.Repository.Monitor.ISettingsRepository;
 import com.example.smartfarmandroidapp.MVVM.Repository.Monitor.SettingsRepository;
@@ -36,32 +37,60 @@ public class FarmSettingsViewModel extends AndroidViewModel {
         repository = new SettingsRepository(application);
     }
 
-    public MutableLiveData<Integer> getCO2Preferred() { return CO2Preferred; }
-    public MutableLiveData<Integer> getCO2Deviation() { return CO2Deviation; }
-    public MutableLiveData<Integer> getHumidityPreferred() { return humidityPreferred; }
-    public MutableLiveData<Integer> getHumidityDeviation() { return humidityDeviation; }
-    public MutableLiveData<Integer> getTemperaturePreferred() { return temperaturePreferred; }
-    public MutableLiveData<Integer> getTemperatureDeviation() { return temperatureDeviation; }
+    public MutableLiveData<Integer> getCO2Preferred() {
+        return CO2Preferred;
+    }
 
+    public MutableLiveData<Integer> getCO2Deviation() {
+        return CO2Deviation;
+    }
+
+    public MutableLiveData<Integer> getHumidityPreferred() {
+        return humidityPreferred;
+    }
+
+    public MutableLiveData<Integer> getHumidityDeviation() {
+        return humidityDeviation;
+    }
+
+    public MutableLiveData<Integer> getTemperaturePreferred() {
+        return temperaturePreferred;
+    }
+
+    public MutableLiveData<Integer> getTemperatureDeviation() {
+        return temperatureDeviation;
+    }
+
+
+    //TODO Bernardo, please create a wrapper
     public void savePreferences(int CO2Preferred, int CO2Deviation,
                                 int temperaturePreferred, int temperatureDeviation,
                                 int humidityPreferred, int humidityDeviation) {
-        repository.savePreferences(new Preferences(userID.getValue(),
-                                1,CO2Preferred, CO2Deviation,
-                                2,temperaturePreferred, temperatureDeviation,
-                                3,humidityPreferred, humidityDeviation));
+        repository.savePreferences(new Preferences_ROOM(userID.getValue(),
+                1, CO2Preferred, CO2Deviation,
+                2, temperaturePreferred, temperatureDeviation,
+                3, humidityPreferred, humidityDeviation));
     }
 
     @Subscribe
-    public void onPreferencesEvent(PreferencesEvent preferencesEvent){
-        CO2Preferred.postValue(preferencesEvent.getPreferences().getDesiredCO2());
-        CO2Deviation.postValue(preferencesEvent.getPreferences().getDeviationCO2());
-        humidityPreferred.postValue(preferencesEvent.getPreferences().getDesiredHumidity());
-        humidityDeviation.postValue(preferencesEvent.getPreferences().getDeviationHumidity());
-        temperaturePreferred.postValue(preferencesEvent.getPreferences().getDesiredTemperature());
-        temperatureDeviation.postValue(preferencesEvent.getPreferences().getDesiredTemperature());
+    public void onPreferencesEvent(PreferencesEvent preferencesEvent) {
+        for (FarmSettingPreferences farmSettingPreference : preferencesEvent.getPreferencesArrayList()) {
+            if (farmSettingPreference.getType().equals("Temperature")) {
+                temperaturePreferred.postValue(farmSettingPreference.getSensorSetting().getPreferredValue());
+                temperatureDeviation.postValue(farmSettingPreference.getSensorSetting().getDeviationValue());
+            } else if (farmSettingPreference.getType().equals("Humidity")) {
+                humidityPreferred.postValue(farmSettingPreference.getSensorSetting().getPreferredValue());
+                humidityDeviation.postValue(farmSettingPreference.getSensorSetting().getDeviationValue());
+            }
+            else{
+                CO2Preferred.postValue(farmSettingPreference.getSensorSetting().getPreferredValue());
+                CO2Deviation.postValue(farmSettingPreference.getSensorSetting().getDeviationValue());
+            }
+        }
         Log.i("Preferences", "Preferences updated");
     }
 
-    public void getPreferences() { repository.getPreferences(userID.getValue()); }
+    public void getPreferences() {
+        repository.getPreferences(userID.getValue());
+    }
 }
