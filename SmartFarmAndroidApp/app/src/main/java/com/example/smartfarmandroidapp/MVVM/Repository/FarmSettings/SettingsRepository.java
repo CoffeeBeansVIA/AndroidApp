@@ -1,10 +1,11 @@
-package com.example.smartfarmandroidapp.MVVM.Repository.Monitor;
+package com.example.smartfarmandroidapp.MVVM.Repository.FarmSettings;
 
 import android.app.Application;
 
 import com.example.smartfarmandroidapp.Domain.Preferences.Preferences_ROOM;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.FarmSettingsRemouteSource.ISettingsRemoteData;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.FarmSettingsRemouteSource.SettingsRemoteData;
+import com.example.smartfarmandroidapp.MVVM.Repository.FarmSettings.ISettingsRepository;
 import com.example.smartfarmandroidapp.MVVM.RoomModel.Models.Preferences.IPreferencesModel;
 
 public class SettingsRepository implements ISettingsRepository {

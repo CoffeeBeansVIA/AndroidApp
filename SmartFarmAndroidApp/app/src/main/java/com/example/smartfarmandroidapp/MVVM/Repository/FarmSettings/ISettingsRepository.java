@@ -1,4 +1,4 @@
-package com.example.smartfarmandroidapp.MVVM.Repository.Monitor;
+package com.example.smartfarmandroidapp.MVVM.Repository.FarmSettings;
 
 
 import com.example.smartfarmandroidapp.Domain.Preferences.Preferences_ROOM;
