@@ -2,6 +2,7 @@ package com.example.smartfarmandroidapp.MVVM.Repository.Monitor;
 
 import android.app.Application;
 
+import com.example.smartfarmandroidapp.Domain.FarmSettings.SensorSettings;
 import com.example.smartfarmandroidapp.Domain.Preferences.Preferences_ROOM;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.MonitorRemouteSource.ISettingsRemoteData;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.MonitorRemouteSource.SettingsRemoteData;
@@ -17,9 +18,9 @@ public class SettingsRepository implements ISettingsRepository {
 
     @Override
     public void savePreferences(Preferences_ROOM preferences) {
-//        remoteData.savePreferences(preferences.getCo2ID(), new SensorSettings(preferences.getDesiredCO2(), preferences.getDeviationCO2()));
-//        remoteData.savePreferences(preferences.getTemperatureID(), new Sensors.SensorSettings(preferences.getDesiredTemperature(), preferences.getDeviationTemperature()));
-//        remoteData.savePreferences(preferences.getHumidityID(), new Sensors.SensorSettings(preferences.getDesiredHumidity(), preferences.getDeviationHumidity()));
+        remoteData.savePreferences(3, new SensorSettings(preferences.getDesiredCO2(), preferences.getDeviationCO2()));
+        remoteData.savePreferences(2, new SensorSettings(preferences.getDesiredTemperature(), preferences.getDeviationTemperature()));
+        remoteData.savePreferences(1, new SensorSettings(preferences.getDesiredHumidity(), preferences.getDeviationHumidity()));
     }
 
     @Override
