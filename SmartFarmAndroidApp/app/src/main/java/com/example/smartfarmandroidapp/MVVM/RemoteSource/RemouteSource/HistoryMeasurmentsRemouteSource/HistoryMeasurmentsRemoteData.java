@@ -2,15 +2,13 @@ package com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.HistoryM
 
 import com.example.smartfarmandroidapp.Domain.Measurments.Measurement;
 import com.example.smartfarmandroidapp.Enums.SensorEnum;
-import com.example.smartfarmandroidapp.EventsBusObject.HistoryMeasurmentEvent;
-import com.example.smartfarmandroidapp.EventsBusObject.LastMeasurementsEvent;
+import com.example.smartfarmandroidapp.EventsBusObject.HistoryMeasurementEvent;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.HistoryMeasurmentGenerator.Endpoints.HistoryMeasurementAPI;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.HistoryMeasurmentGenerator.HistoryMeasurementGenerator;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.HistoryMeasurmentGenerator.IHistoryMeasurementGenerator;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.internal.annotations.EverythingIsNonNull;
@@ -36,9 +34,9 @@ public class HistoryMeasurmentsRemoteData implements IHistoryMeasurementsRemoteD
             public void onResponse(Call<List<Measurement>> call, Response<List<Measurement>> response) {
                 if(response.isSuccessful())
                 {
-                    HistoryMeasurmentEvent historyMeasurmentEvent = new HistoryMeasurmentEvent();
-                    historyMeasurmentEvent.setHistoryMeasurements(response.body());
-                    EventBus.getDefault().post(historyMeasurmentEvent);
+                    HistoryMeasurementEvent historyMeasurementEvent = new HistoryMeasurementEvent();
+                    historyMeasurementEvent.setMeasurements(response.body());
+                    EventBus.getDefault().post(historyMeasurementEvent);
                 }
             }
 

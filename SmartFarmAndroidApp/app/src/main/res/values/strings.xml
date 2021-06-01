@@ -17,4 +17,12 @@
     <string name="android_studio">Android Studio</string>
     <string name="android_studio_android_com">android.studio@android.com</string>
     <string name="add_settings">ADD SETTINGS</string>
+    <string name="choose_the_measurement_you_want_to_see_fragment_measurement_history">Choose the measurement you want to see</string>
+    <string name="text_value_measurmentItem">Value:</string>
+    <string name="measured_at">Measured at:</string>
+    <string-array name="history_data_array">
+        <item>Temperature</item>
+        <item>Humidity</item>
+        <item>CO2</item>
+    </string-array>
 </resources>
