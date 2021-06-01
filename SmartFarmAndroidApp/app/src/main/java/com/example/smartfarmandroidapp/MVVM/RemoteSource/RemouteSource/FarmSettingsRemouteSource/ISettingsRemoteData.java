@@ -2,7 +2,9 @@ package com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.FarmSett
 
 import com.example.smartfarmandroidapp.Domain.FarmSettings.SensorSettings;
 
+import java.util.List;
+
 public interface ISettingsRemoteData {
     void getPreferences(int userID);
-    void savePreferences(int sensorID, SensorSettings sensorSetting);
+    void savePreferences(List<SensorSettings> sensorSettings);
 }

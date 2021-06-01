@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import io.reactivex.Flowable;
-
 public class PreferencesModel implements IPreferencesModel {
 
     private static PreferencesModel instance;
@@ -33,36 +31,34 @@ public class PreferencesModel implements IPreferencesModel {
     }
 
 
-    @Override
-    public void createPreferences(Preferences_ROOM prefs) {
-        executorService.execute(() -> new InsertPreferencesAsync(preferencesDAO).execute(prefs));
-    }
+
 
     @Override
     public void savePreferences(Preferences_ROOM prefs) {
+        Preferences_ROOM pref = prefs;
         executorService.execute(() -> new UpdatePreferencesAsync(preferencesDAO).execute(prefs));
     }
 
     @Override
-    public Flowable<List<Preferences_ROOM>> getPreferences(int id) {
-        return preferencesDAO.getPreferences(id);
+    public void getPreferences(int id) {
+        executorService.execute(() -> new GetPreferencesAsync(preferencesDAO).execute(id) );
     }
 
 
-    private static class InsertPreferencesAsync extends AsyncTask<Preferences_ROOM, Void, Void> {
+    public static class GetPreferencesAsync extends AsyncTask<Integer,Void,Void> {
         private PreferencesDAO preferencesDAO;
 
-        public InsertPreferencesAsync(PreferencesDAO preferencesDAO) {
+        public GetPreferencesAsync(PreferencesDAO preferencesDAO) {
             this.preferencesDAO = preferencesDAO;
         }
 
         @Override
-        protected Void doInBackground(Preferences_ROOM... preferences) {
-            preferencesDAO.createPreferences(preferences[0]);
+        protected Void doInBackground(Integer... integers) {
+            List<Preferences_ROOM> preferences_rooms = preferencesDAO.getPreferences(integers[0]);
+            System.out.println(preferences_rooms.size());
             return null;
         }
     }
-
     public static class UpdatePreferencesAsync extends AsyncTask<Preferences_ROOM,Void,Void> {
         private PreferencesDAO preferencesDAO;
         public UpdatePreferencesAsync(PreferencesDAO preferencesDAO) { this.preferencesDAO = preferencesDAO; }
