@@ -10,8 +10,8 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.smartfarmandroidapp.Domain.FarmSettings.FarmSettingPreferences;
 import com.example.smartfarmandroidapp.Domain.Preferences.Preferences_ROOM;
 import com.example.smartfarmandroidapp.EventsBusObject.PreferencesEvent;
-import com.example.smartfarmandroidapp.MVVM.Repository.Monitor.ISettingsRepository;
-import com.example.smartfarmandroidapp.MVVM.Repository.Monitor.SettingsRepository;
+import com.example.smartfarmandroidapp.MVVM.Repository.FarmSettings.ISettingsRepository;
+import com.example.smartfarmandroidapp.MVVM.Repository.FarmSettings.SettingsRepository;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

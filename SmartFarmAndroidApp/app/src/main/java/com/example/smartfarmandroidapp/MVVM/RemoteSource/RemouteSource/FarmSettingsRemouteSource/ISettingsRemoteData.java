@@ -1,4 +1,4 @@
-package com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.MonitorRemouteSource;
+package com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.FarmSettingsRemouteSource;
 
 import com.example.smartfarmandroidapp.Domain.FarmSettings.SensorSettings;
 

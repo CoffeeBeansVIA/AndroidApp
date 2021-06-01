@@ -61,25 +61,6 @@ public class MonitorViewModel extends AndroidViewModel
         System.out.println(lastMeasurementsEvent.getLastMeasurements().size());
     }
 
-//    @Subscribe
-//    public void onCO2Event(CO2Event co2Event){
-//        CO2Level.postValue(co2Event.getCO2());
-//        Log.i("CO2", co2Event.getCO2());
-//    }
-//
-//    @Subscribe
-//    public void onHumidityEvent(HumidityEvent humidityEvent)
-//    {
-//        humidity.postValue(humidityEvent.getHumidity());
-//        Log.i("HumidityEvent", humidityEvent.getHumidity());
-//    }
-//
-//    @Subscribe
-//    public void onTemperature(TemperatureEvent temperatureEvent)
-//    {
-//        temperature.postValue(temperatureEvent.getTemperature());
-//        Log.i("Temperature", temperatureEvent.getTemperature());
-//    }
 
     public void fetchMeasurementData(){
        monitorRepository.getLastMeasurements();
