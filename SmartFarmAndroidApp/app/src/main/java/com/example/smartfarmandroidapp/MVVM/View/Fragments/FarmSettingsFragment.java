@@ -106,12 +106,14 @@ public class FarmSettingsFragment extends Fragment {
 
     @SuppressLint("SetTextI18n")
     private void onClickSave(View view) {
-        viewModel.savePreferences(Integer.parseInt(CO2Desired.getText().toString()),
+        viewModel.savePreferences(
+                Integer.parseInt(CO2Desired.getText().toString()),
                 Integer.parseInt(CO2Deviation.getText().toString()),
-                Integer.parseInt(humidityDesired.getText().toString()),
-                Integer.parseInt(humidityDeviation.getText().toString()),
                 Integer.parseInt(temperatureDesired.getText().toString()),
-                Integer.parseInt(temperatureDeviation.getText().toString()));
+                Integer.parseInt(temperatureDeviation.getText().toString()),
+                Integer.parseInt(humidityDesired.getText().toString()),
+                Integer.parseInt(humidityDeviation.getText().toString())
+              );
         String text = "Update values...";
         int duration = Toast.LENGTH_SHORT;
         Toast.makeText(getContext(), text, duration).show();

@@ -81,8 +81,7 @@ public class FarmSettingsViewModel extends AndroidViewModel {
             } else if (farmSettingPreference.getType().equals("Humidity")) {
                 humidityPreferred.postValue(farmSettingPreference.getSensorSetting().getPreferredValue());
                 humidityDeviation.postValue(farmSettingPreference.getSensorSetting().getDeviationValue());
-            }
-            else{
+            } else {
                 CO2Preferred.postValue(farmSettingPreference.getSensorSetting().getPreferredValue());
                 CO2Deviation.postValue(farmSettingPreference.getSensorSetting().getDeviationValue());
             }
