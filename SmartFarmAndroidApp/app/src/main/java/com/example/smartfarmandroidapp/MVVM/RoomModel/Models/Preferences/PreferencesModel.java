@@ -41,7 +41,6 @@ public class PreferencesModel implements IPreferencesModel {
 
     @Override
     public void savePreferences(Preferences_ROOM prefs) {
-        Preferences_ROOM pref = prefs;
         executorService.execute(() -> new UpdatePreferencesAsync(preferencesDAO).execute(prefs));
     }
 
