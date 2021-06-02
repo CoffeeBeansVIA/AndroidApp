@@ -79,23 +79,27 @@ public class SettingsRemoteData implements ISettingsRemoteData{
 
 
     @Override
-    public void savePreferences(List<SensorSettings> sensorSettings) {
-        int counter = 0;
+    public void savePreferences(List<FarmSettingPreferences> sensorSettings) {
         PreferencesAPI preferencesAPI = settingsGenerator.getPreferencesAPI();
         for (int i = 0; i <sensorSettings.size() ; i++) {
-            Call<ResponseBody> call = preferencesAPI.savePreferences(1, sensorSettings.get(i).getSensorId() , sensorSettings.get(i));
+            Call<ResponseBody> call = preferencesAPI.savePreferences(1, sensorSettings);
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    System.out.println(response.code());
                     if(response.isSuccessful())
                     {
-
+                        PreferencesEvent preferencesEvent = new PreferencesEvent();
+                        preferencesEvent.setPreferencesList(sensorSettings);
+                        EventBus.getDefault().post(preferencesEvent);
                     }
-                    System.out.println(response.body());
+                    System.out.println(response.code());
                 }
 
                 @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {}
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    System.out.println(t);
+                }
             });
         }
 

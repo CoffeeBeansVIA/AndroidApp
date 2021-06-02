@@ -90,6 +90,6 @@ public class FarmSettingsViewModel extends AndroidViewModel {
     }
 
     public void getPreferences() {
-    //    repository.getPreferences(userID.getValue());
+        repository.getPreferences(userID.getValue());
     }
 }

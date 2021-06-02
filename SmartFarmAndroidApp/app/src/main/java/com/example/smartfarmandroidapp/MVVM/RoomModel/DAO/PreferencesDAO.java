@@ -1,6 +1,8 @@
 package com.example.smartfarmandroidapp.MVVM.RoomModel.DAO;
 
 import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -10,7 +12,7 @@ import java.util.List;
 
 @Dao
 public interface PreferencesDAO {
-    @Update
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void savePreferences(Preferences_ROOM prefs);
 
     @Query("SELECT * FROM preferences_table WHERE userID = :id;")

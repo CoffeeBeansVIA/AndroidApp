@@ -3,10 +3,16 @@ package com.example.smartfarmandroidapp.MVVM.RoomModel.Models.Preferences;
 import android.app.Application;
 import android.os.AsyncTask;
 
+import com.example.smartfarmandroidapp.Domain.FarmSettings.FarmSettingPreferences;
+import com.example.smartfarmandroidapp.Domain.FarmSettings.SensorSettings;
 import com.example.smartfarmandroidapp.Domain.Preferences.Preferences_ROOM;
+import com.example.smartfarmandroidapp.EventsBusObject.PreferencesEvent;
 import com.example.smartfarmandroidapp.MVVM.RoomModel.DAO.PreferencesDAO;
 import com.example.smartfarmandroidapp.MVVM.RoomModel.Database.PreferencesDatabase;
 
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -55,7 +61,15 @@ public class PreferencesModel implements IPreferencesModel {
         @Override
         protected Void doInBackground(Integer... integers) {
             List<Preferences_ROOM> preferences_rooms = preferencesDAO.getPreferences(integers[0]);
-            System.out.println(preferences_rooms.size());
+            Preferences_ROOM preferences_room = preferences_rooms.get(0);
+
+            List<FarmSettingPreferences> farmSettingPreferences = new ArrayList<>();
+            farmSettingPreferences.add(new FarmSettingPreferences(preferences_room.getCo2ID(), "CO2", new SensorSettings(preferences_room.getDesiredCO2(), preferences_room.getDeviationCO2())));
+            farmSettingPreferences.add(new FarmSettingPreferences(preferences_room.getTemperatureID(), "Temperature", new SensorSettings(preferences_room.getDesiredTemperature(), preferences_room.getDeviationTemperature())));
+            farmSettingPreferences.add(new FarmSettingPreferences(preferences_room.getHumidityID(), "Humidity", new SensorSettings(preferences_room.getDesiredHumidity(), preferences_room.getDeviationHumidity())));
+            PreferencesEvent preferencesEvent = new PreferencesEvent();
+            preferencesEvent.setPreferencesList(farmSettingPreferences);
+            EventBus.getDefault().post(preferencesEvent);
             return null;
         }
     }

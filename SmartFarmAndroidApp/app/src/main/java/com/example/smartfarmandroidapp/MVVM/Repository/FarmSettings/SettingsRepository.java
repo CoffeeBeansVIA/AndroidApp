@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SettingsRepository implements ISettingsRepository {
+    private static boolean isFirstTime = true;
     private IPreferencesModel model;
     private ISettingsRemoteData remoteData;
     private int userID, CO2Preferred, CO2Deviation,
@@ -37,10 +38,11 @@ public class SettingsRepository implements ISettingsRepository {
 
     @Override
     public void savePreferences(Preferences_ROOM preferences) {
-        List<SensorSettings> sensorSettingsList = new ArrayList<>();
-        sensorSettingsList.add(new SensorSettings(preferences.getDesiredCO2(), preferences.getDeviationCO2(), SensorEnum.C02.getmValue()));
-        sensorSettingsList.add(new SensorSettings(preferences.getDesiredTemperature(), preferences.getDeviationTemperature(), SensorEnum.TEMPERATURE.getmValue()));
-        sensorSettingsList.add(new SensorSettings(preferences.getDesiredHumidity(), preferences.getDeviationHumidity(), SensorEnum.HUMIDITY.getmValue()));
+        List<FarmSettingPreferences> sensorSettingsList = new ArrayList<>();
+        System.out.println(preferences.getDesiredCO2());
+        sensorSettingsList.add(new FarmSettingPreferences(SensorEnum.C02.getmValue(), SensorEnum.C02.getName(), new SensorSettings(preferences.getDesiredCO2(), preferences.getDeviationCO2())));
+        sensorSettingsList.add(new FarmSettingPreferences(SensorEnum.TEMPERATURE.getmValue(), SensorEnum.TEMPERATURE.getName(), new SensorSettings(preferences.getDesiredTemperature(), preferences.getDeviationTemperature())));
+        sensorSettingsList.add(new FarmSettingPreferences(SensorEnum.HUMIDITY.getmValue(), SensorEnum.HUMIDITY.getName(), new SensorSettings(preferences.getDesiredHumidity(), preferences.getDeviationHumidity())));
         remoteData.savePreferences(sensorSettingsList);
     }
 
@@ -61,12 +63,21 @@ public class SettingsRepository implements ISettingsRepository {
         }
 
         model.savePreferences(new Preferences_ROOM(userID, SensorEnum.C02.getmValue(), CO2Preferred, CO2Deviation,
-                SensorEnum.TEMPERATURE.getmValue(), humidityPreferred, humidityDeviation,
+                SensorEnum.HUMIDITY.getmValue(), humidityPreferred, humidityDeviation,
                 SensorEnum.TEMPERATURE.getmValue(), temperaturePreferred, temperatureDeviation));
-        model.getPreferences(SensorEnum.C02.getmValue());
         Log.i("Preferences", "Preferences updated");
     }
 
     @Override
-    public void getPreferences(int userID) { model.getPreferences(userID); }
+    public void getPreferences(int userID) {
+        this.userID = userID;
+        if(isFirstTime) {
+            remoteData.getPreferences(userID);
+            isFirstTime = false;
+        }
+        else
+        {
+            model.getPreferences(userID);
+        }
+    }
 }
