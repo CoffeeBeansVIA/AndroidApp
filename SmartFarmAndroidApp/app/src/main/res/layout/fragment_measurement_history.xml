@@ -4,15 +4,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#474747"
     tools:context=".MVVM.View.Fragments.MeasurementHistoryFragment">
 
     <Spinner
         android:id="@+id/spinner_fragment_measurments_history"
-        android:layout_width="410dp"
-        android:layout_height="42dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="360dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/white"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_view_fragment_measurement_history"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_fragment_measurement_history"
+        android:layout_width="347dp"
+        android:layout_height="600dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="275dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/choose_the_measurement_you_want_to_see_fragment_measurement_history"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

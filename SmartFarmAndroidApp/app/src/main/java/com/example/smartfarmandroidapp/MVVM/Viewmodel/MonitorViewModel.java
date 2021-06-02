@@ -44,6 +44,7 @@ public class MonitorViewModel extends AndroidViewModel
     @Subscribe
     public void onLastMeasurementsEvent(LastMeasurementsEvent lastMeasurementsEvent)
     {
+
         for (Measurement measurement: lastMeasurementsEvent.getLastMeasurements()){
             if(measurement.getMeasurementSensor().getType().equals("Temperature"))
             {

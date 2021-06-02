@@ -41,7 +41,7 @@ public class MonitorRemoteDataSource implements IMonitorRemoteDataSource {
 
             @Override
             public void onFailure(Call<List<Measurement>> call, Throwable t) {
-
+                System.out.println(t.fillInStackTrace());
             }
         });
     }
