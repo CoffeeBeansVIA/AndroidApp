@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -14,12 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import com.example.smartfarmandroidapp.MVVM.Viewmodel.MonitorViewModel;
 import com.example.smartfarmandroidapp.R;
-
-import java.util.Objects;
 
 public class MonitorFragment extends Fragment {
 
@@ -68,18 +64,8 @@ public class MonitorFragment extends Fragment {
         co2progress = monitorView.findViewById(R.id.CO2progress);
         co2ProgressBar = monitorView.findViewById(R.id.progressBar);
 
-        Button button = monitorView.findViewById(R.id.testButton);
-        button.setOnClickListener(v ->
-        {
-            editor.putString("isNeededToUpdate", "false");
-            editor.apply();
-            Navigation.findNavController(monitorView).navigate(R.id.action_monitorFragment_to_farmSettingsFragment);
-        });
-
         setUpObserver();
-
         updateProgressBar();
-
     }
 
 
