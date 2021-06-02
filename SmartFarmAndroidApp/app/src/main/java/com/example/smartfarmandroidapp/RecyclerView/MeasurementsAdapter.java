@@ -13,7 +13,10 @@ import com.example.smartfarmandroidapp.Domain.Measurments.Measurement;
 import com.example.smartfarmandroidapp.R;
 
 import org.jetbrains.annotations.NotNull;
+import java.util.Date;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class MeasurementsAdapter extends RecyclerView.Adapter<MeasurementsAdapter.ViewHolder> {
@@ -36,7 +39,14 @@ public class MeasurementsAdapter extends RecyclerView.Adapter<MeasurementsAdapte
     @Override
     public void onBindViewHolder(@NonNull @NotNull MeasurementsAdapter.ViewHolder holder, int position) {
        holder.value.setText("Value: " + measurements.get(position).getValue()+"");
-       holder.created_at.setText("Created at: " + measurements.get(position).getTime());
+
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat changeFormat =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS");
+        try {
+            String strDateOutput = changeFormat.parse(measurements.get(position).getTime().replace("T", " ")).toString();
+            holder.created_at.setText("Created at: " + strDateOutput);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 @Override
     public int getItemCount() {
