@@ -1,6 +1,6 @@
-package com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator;
+package com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.FarmSettingsGenerator;
 
-import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.Endpoints.PreferencesAPI;
+import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.FarmSettingsGenerator.Endpoints.PreferencesAPI;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.ServiceGenerator.ServiceGenerator;
 
 import retrofit2.Retrofit;

@@ -1,10 +1,10 @@
-package com.example.smartfarmandroidapp.Domain;
+package com.example.smartfarmandroidapp.Domain.Preferences;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "preferences_table")
-public class Preferences {
+public class Preferences_ROOM {
     @PrimaryKey
     int userID;
     int co2ID;
@@ -17,7 +17,7 @@ public class Preferences {
     int desiredHumidity;
     int deviationHumidity;
 
-    public Preferences(int userID, int co2ID, int desiredCO2, int deviationCO2, int temperatureID, int desiredTemperature, int deviationTemperature, int humidityID, int desiredHumidity, int deviationHumidity) {
+    public Preferences_ROOM(int userID, int co2ID, int desiredCO2, int deviationCO2, int temperatureID, int desiredTemperature, int deviationTemperature, int humidityID, int desiredHumidity, int deviationHumidity) {
         this.userID = userID;
         this.co2ID = co2ID;
         this.desiredCO2 = desiredCO2;

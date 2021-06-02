@@ -1,4 +1,4 @@
-package com.example.smartfarmandroidapp.Domain;
+package com.example.smartfarmandroidapp.Domain.Farm;
 
 import java.util.ArrayList;
 
