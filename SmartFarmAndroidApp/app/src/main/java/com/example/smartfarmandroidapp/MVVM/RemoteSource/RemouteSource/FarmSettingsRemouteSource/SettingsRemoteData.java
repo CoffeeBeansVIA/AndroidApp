@@ -1,7 +1,6 @@
 package com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.FarmSettingsRemouteSource;
 
 import com.example.smartfarmandroidapp.Domain.FarmSettings.FarmSettingPreferences;
-import com.example.smartfarmandroidapp.Domain.FarmSettings.SensorSettings;
 import com.example.smartfarmandroidapp.EventsBusObject.PreferencesEvent;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.FarmSettingsGenerator.Endpoints.PreferencesAPI;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.FarmSettingsGenerator.ISettingsGenerator;
@@ -30,7 +29,7 @@ public class SettingsRemoteData implements ISettingsRemoteData{
         call.enqueue(new Callback<List<FarmSettingPreferences>>() {
             @Override
             public void onResponse(Call<List<FarmSettingPreferences>> call, Response<List<FarmSettingPreferences>> response) {
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     PreferencesEvent preferencesEvent = new PreferencesEvent();
                     preferencesEvent.setPreferencesList(response.body());
                     EventBus.getDefault().post(preferencesEvent);
@@ -42,41 +41,7 @@ public class SettingsRemoteData implements ISettingsRemoteData{
 
             }
         });
-//        call.enqueue(new Callback<Sensors>() {
-//            @Override
-//            public void onResponse(Call<Sensors> call, Response<Sensors> response) {
-//                if(response.isSuccessful()) {
-//                    Sensors sensors = response.body();
-//                    PreferencesEvent event = new PreferencesEvent();
-////                    event.setPreferences(new Preferences(1,sensors.getPlantKeepers().get(0).getId(),
-////                            1,//response.body().getSensors().get(0).getId(),
-////                            getValue(response.body().getSensorSetting().get(0),0),
-////                            getValue(response.body().getSensorSetting().get(1),1),
-////                            2,//response.body().getSensors().get(1).getId(),
-////                            getValue(response.body().getSensorSetting().get(1),0),
-////                            getValue(response.body().getSensorSetting().get(1),1),
-////                            3,//response.body().getSensors().get(2).getId(),
-////                            getValue(response.body().getSensorSetting().get(2),0),
-////                            getValue(response.body().getSensorSetting().get(2),1)));
-////                    EventBus.getDefault().post(event);
-//                }
-//            }
-
-//            @Override
-//            public void onFailure(Call<Sensors> call, Throwable t) {
-//
-//            }
-//
-//            public int getValue(SensorSettings sensorSettings, int type) {
-//                if(sensorSettings == null) { return 0; }
-//                else if (type == 0) { return sensorSettings.getDesiredValue(); }
-//                else { return sensorSettings.getDeviationValue(); }
-//            }
-//        });
     }
-
-
-
 
     @Override
     public void savePreferences(List<FarmSettingPreferences> sensorSettings) {
@@ -87,8 +52,7 @@ public class SettingsRemoteData implements ISettingsRemoteData{
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     System.out.println(response.code());
-                    if(response.isSuccessful())
-                    {
+                    if(response.isSuccessful()) {
                         PreferencesEvent preferencesEvent = new PreferencesEvent();
                         preferencesEvent.setPreferencesList(sensorSettings);
                         EventBus.getDefault().post(preferencesEvent);
@@ -102,6 +66,5 @@ public class SettingsRemoteData implements ISettingsRemoteData{
                 }
             });
         }
-
     }
 }
