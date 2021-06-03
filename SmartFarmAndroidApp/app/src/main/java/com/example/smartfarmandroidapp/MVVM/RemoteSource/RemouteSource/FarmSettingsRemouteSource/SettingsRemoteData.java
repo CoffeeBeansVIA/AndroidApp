@@ -1,7 +1,6 @@
 package com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.FarmSettingsRemouteSource;
 
 import com.example.smartfarmandroidapp.Domain.FarmSettings.FarmSettingPreferences;
-import com.example.smartfarmandroidapp.Domain.FarmSettings.SensorSettings;
 import com.example.smartfarmandroidapp.EventsBusObject.PreferencesEvent;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.FarmSettingsGenerator.Endpoints.PreferencesAPI;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.FarmSettingsGenerator.ISettingsGenerator;
@@ -33,6 +32,11 @@ public class SettingsRemoteData implements ISettingsRemoteData{
                 if(response.isSuccessful()) {
                     PreferencesEvent preferencesEvent = new PreferencesEvent();
                     preferencesEvent.setPreferencesList(response.body());
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     EventBus.getDefault().post(preferencesEvent);
                 }
             }
