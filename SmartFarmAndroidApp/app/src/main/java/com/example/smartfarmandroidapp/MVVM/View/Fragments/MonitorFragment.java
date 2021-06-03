@@ -123,6 +123,7 @@ public class MonitorFragment extends Fragment {
         Thread thread = new Thread(() -> {
             while (updateValuesPrefs.getString("isNeededToUpdate", "false").equals("true")) {
                 monitorViewModel.fetchMeasurementData();
+                monitorViewModel.fetchSettingsData();
                 try {
                     Thread.sleep(5000);
                 } catch (InterruptedException e) {
@@ -147,5 +148,12 @@ public class MonitorFragment extends Fragment {
         monitorViewModel.getTemperature().observe(getViewLifecycleOwner(), temperatureLevel -> {
             temperatureValue.setText(temperatureLevel);
         });
+
+        monitorViewModel.getWarning().observe(getViewLifecycleOwner(), warning ->{
+
+            System.out.println("Warning: " + warning);
+        });
+
+       // monitorViewModel
     }
 }
