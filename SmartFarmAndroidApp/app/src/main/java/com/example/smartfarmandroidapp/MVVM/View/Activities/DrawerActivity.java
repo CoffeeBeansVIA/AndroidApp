@@ -21,8 +21,6 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import org.jetbrains.annotations.NotNull;
-
 public class DrawerActivity extends AppCompatActivity implements MenuItem.OnMenuItemClickListener {
     private AppBarConfiguration mAppBarConfiguration;
     private NavController navController;
@@ -44,7 +42,7 @@ public class DrawerActivity extends AppCompatActivity implements MenuItem.OnMenu
 
         // Passing each menu ID as a set of ID-s because each menu should be considered as top level destinations
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.monitorFragment, R.id.farmSettingsFragment, R.id.historyMeasurmentFragment)
+                R.id.monitorFragment, R.id.farmSettingsFragment, R.id.historyMeasurementFragment)
                 .setDrawerLayout(drawer)
                 .build();
 

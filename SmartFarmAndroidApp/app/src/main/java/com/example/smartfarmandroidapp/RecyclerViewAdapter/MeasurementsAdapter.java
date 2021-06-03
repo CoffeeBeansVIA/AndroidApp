@@ -1,4 +1,4 @@
-package com.example.smartfarmandroidapp.RecyclerView;
+package com.example.smartfarmandroidapp.RecyclerViewAdapter;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -13,7 +13,6 @@ import com.example.smartfarmandroidapp.Domain.Measurments.Measurement;
 import com.example.smartfarmandroidapp.R;
 
 import org.jetbrains.annotations.NotNull;
-import java.util.Date;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,7 +26,6 @@ public class MeasurementsAdapter extends RecyclerView.Adapter<MeasurementsAdapte
     }
 
     @NonNull
-    @NotNull
     @Override
     public MeasurementsAdapter.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
