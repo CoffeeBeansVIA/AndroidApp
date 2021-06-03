@@ -19,7 +19,5 @@ public class SensorSettings {
     }
 
 
-    public int getDesiredValue() {
-        return desiredValue;
-    }
+
 }

@@ -1,4 +1,4 @@
-package com.example.smartfarmandroidapp.App;
+package com.example.smartfarmandroidapp.NotificationChannel;
 
 import android.app.Application;
 import android.app.NotificationChannel;

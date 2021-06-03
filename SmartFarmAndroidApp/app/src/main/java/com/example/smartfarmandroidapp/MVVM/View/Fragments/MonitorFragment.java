@@ -24,7 +24,7 @@ import com.example.smartfarmandroidapp.R;
 
 import java.util.Objects;
 
-import static com.example.smartfarmandroidapp.App.App.CHANNEL_ID;
+import static com.example.smartfarmandroidapp.NotificationChannel.App.CHANNEL_ID;
 
 public class MonitorFragment extends Fragment {
 
@@ -115,7 +115,7 @@ public class MonitorFragment extends Fragment {
 
     public void checkIfValueIsValid(){
         //TODO to pass notifications when the plant's environment reaches dangerous levels
-
+        monitorViewModel.fetchSettingsData();
         sendOnChannel(info);
     }
 
