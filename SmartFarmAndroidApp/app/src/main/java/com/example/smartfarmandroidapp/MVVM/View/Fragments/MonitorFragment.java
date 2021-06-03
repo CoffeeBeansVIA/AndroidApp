@@ -35,13 +35,11 @@ public class MonitorFragment extends Fragment {
 
     private NotificationManagerCompat notificationManager;
 
-    private TextView info, humidityValue, humidityPercentage, humidityTextView, temperatureValue, temperatureCelsius, temperatureTextView, co2progress;
+    private TextView humidityValue, humidityPercentage, humidityTextView, temperatureValue, temperatureCelsius, temperatureTextView, co2progress;
 
     private ProgressBar co2ProgressBar;
     private SharedPreferences updateValuesPrefs;
     private SharedPreferences.Editor editor;
-
-    private Button notificationButton;
 
     private int progress = 50;
     private View monitorView;
@@ -95,31 +93,11 @@ public class MonitorFragment extends Fragment {
         // For passing notifications
         notificationManager = NotificationManagerCompat.from(requireActivity());
 
-        notificationButton = monitorView.findViewById(R.id.testNotificationButton);
-     //   notificationButton.setOnClickListener(v -> checkIfValueIsValid());
-
-        info = monitorView.findViewById(R.id.notificationTextView);
-
     }
 
     // Notification Channel
-    public void sendOnChannel(View v, String warning){
+    public void sendOnChannel(String warning){
 
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            CharSequence name = getString(R.string.channel_name);
-//            String description = getString(R.string.channel_description);
-//            int importance = NotificationManager.IMPORTANCE_HIGH;
-//            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-//            channel.setDescription(description);
-//            channel.setLightColor(1);
-//            channel.shouldVibrate();
-//            // Register the channel with the system; you can't change the importance
-//            // or other notification behaviors after this
-//            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-//            if (notificationManager != null) {
-//                notificationManager.createNotificationChannel(channel);
-//            }
-//        }
         Notification notification = new NotificationCompat.Builder(getActivity(), CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_warning)
                 .setContentTitle("Alert")
@@ -130,13 +108,6 @@ public class MonitorFragment extends Fragment {
 
         notificationManager.notify(1, notification);
 
-
-    }
-
-    public void checkIfValueIsValid(){
-        //TODO to pass notifications when the plant's environment reaches dangerous levels
-        monitorViewModel.fetchSettingsData();
-       // sendOnChannel(info);
     }
 
     private void updateProgressBar() {
@@ -171,11 +142,8 @@ public class MonitorFragment extends Fragment {
 
         monitorViewModel.getWarning().observe(getViewLifecycleOwner(), warning ->{
             System.out.println("Warning: " + warning);
-            info.setText(warning);
-            info.setVisibility(View.VISIBLE);
-            sendOnChannel(info, warning);
+            sendOnChannel(warning);
         });
 
-       // monitorViewModel
     }
 }

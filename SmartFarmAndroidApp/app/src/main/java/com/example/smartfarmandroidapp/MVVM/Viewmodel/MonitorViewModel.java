@@ -25,11 +25,11 @@ public class MonitorViewModel extends AndroidViewModel
     private MutableLiveData<String> CO2Level, humidity, temperature;
     private String CO2LevelString, humidityString, temperatureString;
     private MutableLiveData<String> warning;
+    private String previousWarningStringBuilder ="";
 
     public MonitorViewModel(Application application) {
         super(application);
         EventBus.getDefault().register(this);
-
         // Monitor values
         CO2Level = new MutableLiveData<>();
         humidity = new MutableLiveData<>();
@@ -60,18 +60,27 @@ public class MonitorViewModel extends AndroidViewModel
         for (Measurement measurement: lastMeasurementsEvent.getLastMeasurements()){
             if(measurement.getMeasurementSensor().getType().equals("Temperature"))
             {
-                temperature.postValue(measurement.getValue()+"");
-                temperatureString = measurement.getValue()+"";
+                if(!(measurement.getValue()+"").equals(temperatureString))
+                {
+                    temperature.postValue(measurement.getValue()+"");
+                    temperatureString = measurement.getValue()+"";
+                }
+
             }
             else if (measurement.getMeasurementSensor().getType().equals("Humidity"))
             {
-                humidity.postValue(measurement.getValue()+"");
-                humidityString = measurement.getValue()+"";
+                if(!(measurement.getValue()+"").equals(humidityString)) {
+                    humidity.postValue(measurement.getValue() + "");
+                    humidityString = measurement.getValue() + "";
+                }
             }
             else
             {
-                CO2Level.postValue(measurement.getValue()+"");
-                CO2LevelString = measurement.getValue()+"";
+                if(!(measurement.getValue()+"").equals(CO2LevelString))
+                {
+                    CO2Level.postValue(measurement.getValue() + "");
+                    CO2LevelString = measurement.getValue() + "";
+                }
             }
         }
     }
@@ -93,7 +102,6 @@ public class MonitorViewModel extends AndroidViewModel
         for (FarmSettingPreferences farmSettingPreferences: preferencesEvent.getPreferencesArrayList())
         {
             if(farmSettingPreferences.getType().equals("Temperature")){
-
                response = getNotificationMessageIfNeeded(farmSettingPreferences, temperatureString);
                if(!response.equals(""))
                {
@@ -116,7 +124,10 @@ public class MonitorViewModel extends AndroidViewModel
                 }
             }
         }
-        warning.postValue(stringBuilder.toString());
+        if(!(stringBuilder.toString().equals(previousWarningStringBuilder))) {
+            warning.postValue(stringBuilder.toString());
+            previousWarningStringBuilder = stringBuilder.toString();
+        }
     }
 
     private String getNotificationMessageIfNeeded(FarmSettingPreferences farmSettingPreferences, String value_to_check_with) {
