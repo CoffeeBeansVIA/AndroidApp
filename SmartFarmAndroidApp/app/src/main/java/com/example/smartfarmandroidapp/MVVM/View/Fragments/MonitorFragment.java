@@ -1,11 +1,8 @@
 package com.example.smartfarmandroidapp.MVVM.View.Fragments;
 
 import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,8 +21,6 @@ import androidx.navigation.Navigation;
 
 import com.example.smartfarmandroidapp.MVVM.Viewmodel.MonitorViewModel;
 import com.example.smartfarmandroidapp.R;
-
-import java.util.Objects;
 
 import static com.example.smartfarmandroidapp.NotificationChannel.App.CHANNEL_ID;
 
@@ -92,6 +87,7 @@ public class MonitorFragment extends Fragment {
 
         // For passing notifications
         notificationManager = NotificationManagerCompat.from(requireActivity());
+        monitorViewModel.fetchSettingsData();
 
     }
 
@@ -114,7 +110,7 @@ public class MonitorFragment extends Fragment {
         Thread thread = new Thread(() -> {
             while (updateValuesPrefs.getString("isNeededToUpdate", "false").equals("true")) {
                 monitorViewModel.fetchMeasurementData();
-                monitorViewModel.fetchSettingsData();
+
                 try {
                     Thread.sleep(5000);
                 } catch (InterruptedException e) {

@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.smartfarmandroidapp.Domain.FarmSettings.FarmSettingPreferences;
 import com.example.smartfarmandroidapp.Domain.Measurments.Measurement;
-import com.example.smartfarmandroidapp.Enums.SensorEnum;
 import com.example.smartfarmandroidapp.EventsBusObject.LastMeasurementsEvent;
 import com.example.smartfarmandroidapp.EventsBusObject.PreferencesEvent;
 import com.example.smartfarmandroidapp.MVVM.Repository.FarmSettings.ISettingsRepository;
@@ -57,6 +56,7 @@ public class MonitorViewModel extends AndroidViewModel
     @Subscribe
     public void onLastMeasurementsEvent(LastMeasurementsEvent lastMeasurementsEvent)
     {
+        String temperatureError, humidityError, CO2error;
         for (Measurement measurement: lastMeasurementsEvent.getLastMeasurements()){
             if(measurement.getMeasurementSensor().getType().equals("Temperature"))
             {
@@ -91,15 +91,31 @@ public class MonitorViewModel extends AndroidViewModel
     }
 
     public void fetchSettingsData(){
-        settingsRepository.getPreferences(1);
+        settingsRepository.getPreferencesForMonitorViewModel();
     }
 
     @Subscribe
     public void onFetchedSettingsEvent(PreferencesEvent preferencesEvent)
     {
+        FarmSettingPreferences [] correctOrderFarmSettingPreferences= new FarmSettingPreferences [3];
+        for (FarmSettingPreferences farmSettingPref:preferencesEvent.getPreferencesArrayList()) {
+            if(farmSettingPref.getType().equals("Temperature"))
+            {
+                correctOrderFarmSettingPreferences[0] = farmSettingPref;
+            }
+            else if (farmSettingPref.getType().equals("Humidity"))
+            {
+                correctOrderFarmSettingPreferences[1] = farmSettingPref;
+            }
+            else
+            {
+                correctOrderFarmSettingPreferences[2] = farmSettingPref;
+            }
+        }
+
         StringBuilder stringBuilder = new StringBuilder();
         String response = "";
-        for (FarmSettingPreferences farmSettingPreferences: preferencesEvent.getPreferencesArrayList())
+        for (FarmSettingPreferences farmSettingPreferences: correctOrderFarmSettingPreferences)
         {
             if(farmSettingPreferences.getType().equals("Temperature")){
                response = getNotificationMessageIfNeeded(farmSettingPreferences, temperatureString);
