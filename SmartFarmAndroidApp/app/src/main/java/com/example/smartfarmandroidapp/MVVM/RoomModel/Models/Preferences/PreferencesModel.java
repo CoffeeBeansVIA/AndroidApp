@@ -67,7 +67,7 @@ public class PreferencesModel implements IPreferencesModel {
 
             farmSettingPreferences.add(new FarmSettingPreferences(preferences_room.getHumidityID(), "Humidity", new SensorSettings(preferences_room.getDesiredHumidity(), preferences_room.getDeviationHumidity())));
 
-            farmSettingPreferences.add(new FarmSettingPreferences(preferences_room.getCo2ID(), "CO2", new SensorSettings(preferences_room.getDesiredCO2(), preferences_room.getDeviationCO2())));
+            farmSettingPreferences.add(new FarmSettingPreferences(preferences_room.getCo2ID(), "Co2", new SensorSettings(preferences_room.getDesiredCO2(), preferences_room.getDeviationCO2())));
             PreferencesEvent preferencesEvent = new PreferencesEvent();
             preferencesEvent.setPreferencesList(farmSettingPreferences);
             EventBus.getDefault().post(preferencesEvent);

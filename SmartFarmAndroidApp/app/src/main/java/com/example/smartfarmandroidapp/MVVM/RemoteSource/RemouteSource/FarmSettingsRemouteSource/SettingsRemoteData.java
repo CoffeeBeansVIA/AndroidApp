@@ -32,6 +32,11 @@ public class SettingsRemoteData implements ISettingsRemoteData{
                 if (response.isSuccessful()) {
                     PreferencesEvent preferencesEvent = new PreferencesEvent();
                     preferencesEvent.setPreferencesList(response.body());
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     EventBus.getDefault().post(preferencesEvent);
                 }
             }

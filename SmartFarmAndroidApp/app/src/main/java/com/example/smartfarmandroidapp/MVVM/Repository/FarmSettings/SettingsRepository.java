@@ -3,16 +3,13 @@ package com.example.smartfarmandroidapp.MVVM.Repository.FarmSettings;
 import android.app.Application;
 import android.util.Log;
 
-import androidx.lifecycle.MutableLiveData;
-
-import com.example.smartfarmandroidapp.Domain.Farm.Farm;
 import com.example.smartfarmandroidapp.Domain.FarmSettings.FarmSettingPreferences;
 import com.example.smartfarmandroidapp.Domain.FarmSettings.SensorSettings;
 import com.example.smartfarmandroidapp.Domain.Preferences.Preferences_ROOM;
 import com.example.smartfarmandroidapp.Enums.SensorEnum;
+import com.example.smartfarmandroidapp.EventsBusObject.PreferencesEvent;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.FarmSettingsRemouteSource.ISettingsRemoteData;
 import com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.FarmSettingsRemouteSource.SettingsRemoteData;
-import com.example.smartfarmandroidapp.EventsBusObject.PreferencesEvent;
 import com.example.smartfarmandroidapp.MVVM.RoomModel.Models.Preferences.IPreferencesModel;
 import com.example.smartfarmandroidapp.MVVM.RoomModel.Models.Preferences.PreferencesModel;
 
@@ -40,9 +37,11 @@ public class SettingsRepository implements ISettingsRepository {
     public void savePreferences(Preferences_ROOM preferences) {
         List<FarmSettingPreferences> sensorSettingsList = new ArrayList<>();
         System.out.println(preferences.getDesiredCO2());
-        sensorSettingsList.add(new FarmSettingPreferences(SensorEnum.C02.getmValue(), SensorEnum.C02.getName(), new SensorSettings(preferences.getDesiredCO2(), preferences.getDeviationCO2())));
         sensorSettingsList.add(new FarmSettingPreferences(SensorEnum.TEMPERATURE.getmValue(), SensorEnum.TEMPERATURE.getName(), new SensorSettings(preferences.getDesiredTemperature(), preferences.getDeviationTemperature())));
         sensorSettingsList.add(new FarmSettingPreferences(SensorEnum.HUMIDITY.getmValue(), SensorEnum.HUMIDITY.getName(), new SensorSettings(preferences.getDesiredHumidity(), preferences.getDeviationHumidity())));
+        sensorSettingsList.add(new FarmSettingPreferences(SensorEnum.C02.getmValue(), SensorEnum.C02.getName(), new SensorSettings(preferences.getDesiredCO2(), preferences.getDeviationCO2())));
+
+
         remoteData.savePreferences(sensorSettingsList);
     }
 
@@ -79,5 +78,10 @@ public class SettingsRepository implements ISettingsRepository {
         {
             model.getPreferences(userID);
         }
+    }
+    @Override
+    public void getPreferencesForMonitorViewModel()
+    {
+        remoteData.getPreferences(1);
     }
 }
