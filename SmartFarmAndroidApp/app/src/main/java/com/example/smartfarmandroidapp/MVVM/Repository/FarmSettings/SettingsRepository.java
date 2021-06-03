@@ -45,7 +45,7 @@ public class SettingsRepository implements ISettingsRepository {
         remoteData.savePreferences(sensorSettingsList);
     }
 
-    @Subscribe // This is the last part I need to finish
+    @Subscribe
     public void onPreferencesEvent(PreferencesEvent preferencesEvent) {
         for (FarmSettingPreferences farmSettingPreference : preferencesEvent.getPreferencesArrayList()) {
             if (farmSettingPreference.getType().equals("Temperature")) {
