@@ -25,4 +25,6 @@
         <item>Humidity</item>
         <item>CO2</item>
     </string-array>
+    <string name="channel_name">Alert</string>
+    <string name="channel_description"></string>
 </resources>

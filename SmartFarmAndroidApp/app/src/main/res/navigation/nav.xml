@@ -34,9 +34,9 @@
             app:destination="@id/farmSettingsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/historyMeasurmentFragment"
+        android:id="@+id/historyMeasurementFragment"
         android:name="com.example.smartfarmandroidapp.MVVM.View.Fragments.MeasurementHistoryFragment"
-        android:label="MeasurementHistoryFragment"
+        android:label="Measurement History"
         tools:layout="@layout/fragment_measurement_history">
     </fragment>
 </navigation>

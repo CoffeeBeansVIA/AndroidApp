@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.smartfarmandroidapp.Enums.SensorEnum;
 import com.example.smartfarmandroidapp.MVVM.Viewmodel.HistoryMeasurementViewModel;
 import com.example.smartfarmandroidapp.R;
-import com.example.smartfarmandroidapp.RecyclerView.MeasurementsAdapter;
+import com.example.smartfarmandroidapp.RecyclerViewAdapter.MeasurementsAdapter;
 
 public class MeasurementHistoryFragment extends Fragment {
     private View measurementHistoryView;
