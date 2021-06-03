@@ -1,8 +1,11 @@
 package com.example.smartfarmandroidapp.MVVM.View.Fragments;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,30 +96,47 @@ public class MonitorFragment extends Fragment {
         notificationManager = NotificationManagerCompat.from(requireActivity());
 
         notificationButton = monitorView.findViewById(R.id.testNotificationButton);
-        notificationButton.setOnClickListener(v -> checkIfValueIsValid());
+     //   notificationButton.setOnClickListener(v -> checkIfValueIsValid());
 
         info = monitorView.findViewById(R.id.notificationTextView);
+
     }
 
     // Notification Channel
-    public void sendOnChannel(View v){
-        Notification notification = new NotificationCompat.Builder(requireContext(), CHANNEL_ID)
+    public void sendOnChannel(View v, String warning){
+
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            CharSequence name = getString(R.string.channel_name);
+//            String description = getString(R.string.channel_description);
+//            int importance = NotificationManager.IMPORTANCE_HIGH;
+//            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+//            channel.setDescription(description);
+//            channel.setLightColor(1);
+//            channel.shouldVibrate();
+//            // Register the channel with the system; you can't change the importance
+//            // or other notification behaviors after this
+//            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+//            if (notificationManager != null) {
+//                notificationManager.createNotificationChannel(channel);
+//            }
+//        }
+        Notification notification = new NotificationCompat.Builder(getActivity(), CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_warning)
-                .setContentTitle(getString(R.string.channel_name))
-                .setContentText(getString(R.string.channel_description))
+                .setContentTitle("Alert")
+                .setContentText(warning)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setCategory(NotificationCompat.CATEGORY_ALARM)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                 .build();
 
         notificationManager.notify(1, notification);
 
-        info.setVisibility(View.VISIBLE);
+
     }
 
     public void checkIfValueIsValid(){
         //TODO to pass notifications when the plant's environment reaches dangerous levels
         monitorViewModel.fetchSettingsData();
-        sendOnChannel(info);
+       // sendOnChannel(info);
     }
 
     private void updateProgressBar() {
@@ -150,8 +170,10 @@ public class MonitorFragment extends Fragment {
         });
 
         monitorViewModel.getWarning().observe(getViewLifecycleOwner(), warning ->{
-
             System.out.println("Warning: " + warning);
+            info.setText(warning);
+            info.setVisibility(View.VISIBLE);
+            sendOnChannel(info, warning);
         });
 
        // monitorViewModel

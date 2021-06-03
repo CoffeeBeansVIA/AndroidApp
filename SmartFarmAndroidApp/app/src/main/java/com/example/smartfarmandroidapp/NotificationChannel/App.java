@@ -9,7 +9,7 @@ import com.example.smartfarmandroidapp.R;
 
 public class App extends Application {
 
-    public static final String CHANNEL_ID = "channel";
+    public static final String CHANNEL_ID = "channel_1";
 
     @Override
     public void onCreate(){
