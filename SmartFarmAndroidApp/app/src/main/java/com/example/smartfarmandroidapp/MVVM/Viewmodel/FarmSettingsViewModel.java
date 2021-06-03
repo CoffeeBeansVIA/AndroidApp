@@ -10,8 +10,8 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.smartfarmandroidapp.Domain.FarmSettings.FarmSettingPreferences;
 import com.example.smartfarmandroidapp.Domain.Preferences.Preferences_ROOM;
 import com.example.smartfarmandroidapp.EventsBusObject.PreferencesEvent;
-import com.example.smartfarmandroidapp.MVVM.Repository.Monitor.ISettingsRepository;
-import com.example.smartfarmandroidapp.MVVM.Repository.Monitor.SettingsRepository;
+import com.example.smartfarmandroidapp.MVVM.Repository.FarmSettings.ISettingsRepository;
+import com.example.smartfarmandroidapp.MVVM.Repository.FarmSettings.SettingsRepository;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -81,8 +81,7 @@ public class FarmSettingsViewModel extends AndroidViewModel {
             } else if (farmSettingPreference.getType().equals("Humidity")) {
                 humidityPreferred.postValue(farmSettingPreference.getSensorSetting().getPreferredValue());
                 humidityDeviation.postValue(farmSettingPreference.getSensorSetting().getDeviationValue());
-            }
-            else{
+            } else {
                 CO2Preferred.postValue(farmSettingPreference.getSensorSetting().getPreferredValue());
                 CO2Deviation.postValue(farmSettingPreference.getSensorSetting().getDeviationValue());
             }

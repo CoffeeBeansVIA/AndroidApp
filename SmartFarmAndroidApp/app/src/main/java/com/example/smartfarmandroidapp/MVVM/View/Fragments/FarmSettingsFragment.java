@@ -25,7 +25,7 @@ public class FarmSettingsFragment extends Fragment {
     private EditText CO2Desired, CO2Deviation;
     private EditText temperatureDesired, temperatureDeviation;
     private EditText humidityDesired, humidityDeviation;
-    private Button saveButton, returnButton;
+    private Button saveButton;
     private TextView info;
     private View farmSettingsView;
     private FarmSettingsViewModel viewModel;
@@ -62,12 +62,10 @@ public class FarmSettingsFragment extends Fragment {
         humidityDeviation = farmSettingsView.findViewById(R.id.maxHumidityDev);
 
         saveButton = farmSettingsView.findViewById(R.id.saveThresholdButton);
-        returnButton = farmSettingsView.findViewById(R.id.returnFromTweakingButton);
 
         info = farmSettingsView.findViewById(R.id.errorTextView);
 
         saveButton.setOnClickListener(view -> onClickSave(info));
-        returnButton.setOnClickListener(v -> onClickReturn());
 
         setUpObserver();
         loadValues();
@@ -106,18 +104,16 @@ public class FarmSettingsFragment extends Fragment {
 
     @SuppressLint("SetTextI18n")
     private void onClickSave(View view) {
-        viewModel.savePreferences(Integer.parseInt(CO2Desired.getText().toString()),
+        viewModel.savePreferences(
+                Integer.parseInt(CO2Desired.getText().toString()),
                 Integer.parseInt(CO2Deviation.getText().toString()),
-                Integer.parseInt(humidityDesired.getText().toString()),
-                Integer.parseInt(humidityDeviation.getText().toString()),
                 Integer.parseInt(temperatureDesired.getText().toString()),
-                Integer.parseInt(temperatureDeviation.getText().toString()));
+                Integer.parseInt(temperatureDeviation.getText().toString()),
+                Integer.parseInt(humidityDesired.getText().toString()),
+                Integer.parseInt(humidityDeviation.getText().toString())
+              );
         String text = "Update values...";
         int duration = Toast.LENGTH_SHORT;
         Toast.makeText(getContext(), text, duration).show();
-    }
-
-    private void onClickReturn() {
-
     }
 }

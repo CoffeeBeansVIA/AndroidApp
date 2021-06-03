@@ -1,4 +1,4 @@
-package com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.Endpoints;
+package com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.FarmSettingsGenerator.Endpoints;
 
 import com.example.smartfarmandroidapp.Domain.FarmSettings.SensorSettings;
 import com.example.smartfarmandroidapp.Domain.FarmSettings.FarmSettingPreferences;
@@ -16,6 +16,6 @@ public interface PreferencesAPI {
     @GET("api/farms/{farmId}/sensors")
     Call<List<FarmSettingPreferences>> getPreferences(@Path("farmId") int farmID);
 
-    @PUT("api/farms/{farmId}/sensors/{sensorId}/settings")
-    Call<ResponseBody> savePreferences(@Path("farmId") int farmId, @Path("sensorId") int sensorId, @Body SensorSettings sensorSetting);
+    @PUT("api/farms/{farmId}/sensors/settings")
+    Call<ResponseBody> savePreferences(@Path("farmId") int farmId,  @Body List<FarmSettingPreferences> sensorSettings);
 }

@@ -1,15 +1,14 @@
-package com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.MonitorRemouteSource;
+package com.example.smartfarmandroidapp.MVVM.RemoteSource.RemouteSource.FarmSettingsRemouteSource;
 
-import com.example.smartfarmandroidapp.Domain.FarmSettings.SensorSettings;
 import com.example.smartfarmandroidapp.Domain.FarmSettings.FarmSettingPreferences;
+import com.example.smartfarmandroidapp.Domain.FarmSettings.SensorSettings;
 import com.example.smartfarmandroidapp.EventsBusObject.PreferencesEvent;
-import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.Endpoints.PreferencesAPI;
-import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.ISettingsGenerator;
-import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.MonitorGenerator.SettingsGenerator;
+import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.FarmSettingsGenerator.Endpoints.PreferencesAPI;
+import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.FarmSettingsGenerator.ISettingsGenerator;
+import com.example.smartfarmandroidapp.MVVM.RemoteSource.Generator.FarmSettingsGenerator.SettingsGenerator;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -77,20 +76,32 @@ public class SettingsRemoteData implements ISettingsRemoteData{
     }
 
 
+
+
     @Override
-    public void savePreferences(int sensorID, SensorSettings sensorSetting) {
+    public void savePreferences(List<FarmSettingPreferences> sensorSettings) {
         PreferencesAPI preferencesAPI = settingsGenerator.getPreferencesAPI();
-        Call<ResponseBody> call = preferencesAPI.savePreferences(1, sensorID, sensorSetting);
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+        for (int i = 0; i <sensorSettings.size() ; i++) {
+            Call<ResponseBody> call = preferencesAPI.savePreferences(1, sensorSettings);
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    System.out.println(response.code());
+                    if(response.isSuccessful())
+                    {
+                        PreferencesEvent preferencesEvent = new PreferencesEvent();
+                        preferencesEvent.setPreferencesList(sensorSettings);
+                        EventBus.getDefault().post(preferencesEvent);
+                    }
+                    System.out.println(response.code());
+                }
 
-            }
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    System.out.println(t);
+                }
+            });
+        }
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-            }
-        });
     }
 }
